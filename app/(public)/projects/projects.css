@@ -1,0 +1,114 @@
+/* Projects Page Styles */
+.projects-page {
+  background: var(--white);
+}
+
+/* Tech Stack Summary Section */
+.tech-stack-section {
+  background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 15px;
+  margin-bottom: 5rem;
+}
+
+.tech-stack-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.tech-stack-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tech-stack-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* GitHub Section */
+.github-section {
+  margin-bottom: 4rem;
+}
+
+.github-card {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.github-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.github-card h2 {
+  color: #1a365d;
+  margin-bottom: 1rem;
+}
+
+.github-card p {
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .tech-stack-section {
+    padding: 2rem 1rem;
+  }
+
+  .tech-stack-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .github-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .github-icon {
+    font-size: 2.5rem;
+  }
+
+  .cta-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.5rem;
+  }
+}
+

@@ -27,4 +27,4 @@ yarn-error.log*
 next-env.d.ts
 /gitnode_modules/
 .env
-doc
+docs

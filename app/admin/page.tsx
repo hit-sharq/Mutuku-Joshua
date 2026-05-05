@@ -48,7 +48,7 @@ export default async function AdminDashboard() {
         </div>
         <div className="stat-card">
           <div className="stat-number">{stats.practiceAreaCount}</div>
-          <div className="stat-label">Practice Areas</div>
+          <div className="stat-label">Services</div>
         </div>
         <div className="stat-card">
           <div className="stat-number">{stats.contactCount}</div>
@@ -77,11 +77,11 @@ export default async function AdminDashboard() {
             🖼️ Upload Gallery Image
           </Link>
           <Link
-            href="/admin/practice-areas/new"
+            href="/admin/services/new"
             className="btn btn-primary"
             style={{ textAlign: "center", padding: "1.5rem" }}
           >
-            ⚖️ Add Practice Area
+            💻 Add Service
           </Link>
           <Link
             href="/admin/contact-requests"
@@ -106,8 +106,8 @@ export default async function AdminDashboard() {
       <div className="admin-card">
         <h2>Recent Activity</h2>
         <p style={{ color: "#666", marginBottom: "2rem" }}>
-          Welcome to your admin dashboard. From here you can manage all aspects of your law firm website including blog
-          posts, team members, gallery images, and more.
+          Welcome to your admin dashboard. From here you can manage all aspects of your website including blog
+          posts, team members, gallery images, services, and more.
         </p>
 
         <div style={{ background: "#f8fafc", padding: "2rem", borderRadius: "12px", border: "1px solid #e2e8f0" }}>
@@ -115,7 +115,7 @@ export default async function AdminDashboard() {
           <ul style={{ listStyle: "none", padding: 0 }}>
             <li style={{ marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <span style={{ color: "#d4af37" }}>✓</span>
-              <span>Add your practice areas to showcase your legal expertise</span>
+              <span>Add your services to showcase your technical expertise</span>
             </li>
             <li style={{ marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <span style={{ color: "#d4af37" }}>✓</span>
@@ -123,11 +123,11 @@ export default async function AdminDashboard() {
             </li>
             <li style={{ marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <span style={{ color: "#d4af37" }}>✓</span>
-              <span>Create engaging blog posts to attract clients</span>
+              <span>Create engaging blog posts to share knowledge</span>
             </li>
             <li style={{ marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <span style={{ color: "#d4af37" }}>✓</span>
-              <span>Add gallery images to showcase achievements</span>
+              <span>Add gallery images to showcase projects</span>
             </li>
             <li style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <span style={{ color: "#d4af37" }}>✓</span>

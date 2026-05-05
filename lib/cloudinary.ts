@@ -29,7 +29,7 @@ export async function uploadImage(file: File): Promise<string> {
       .upload_stream(
         {
           resource_type: "image",
-          folder: "mutuku-moses-law",
+          folder: "joshua-mutuku-dev",
         },
         (error, result) => {
           if (error) {

@@ -2,6 +2,7 @@ import type React from "react"
 import { ClerkProvider } from "@clerk/nextjs"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import DbKeepAlive from "@/components/DbKeepAlive"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -22,6 +23,7 @@ export default function RootLayout({
   </head>
   <body className={inter.className} suppressHydrationWarning={true}>
     <ClerkProvider>{children}</ClerkProvider>
+    <DbKeepAlive />
   </body>
 </html>
   )

@@ -102,6 +102,9 @@ export default function Footer() {
               <Link href="/blog">Blog</Link>
             </p>
             <p>
+              <Link href="/news">News</Link>
+            </p>
+            <p>
               <Link href="/contact">Contact</Link>
             </p>
           </div>

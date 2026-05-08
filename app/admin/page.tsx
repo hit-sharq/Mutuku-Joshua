@@ -2,23 +2,39 @@ import Link from "next/link"
 import { prisma } from "@/lib/prisma"
 
 async function getAdminStats() {
-  const [blogCount, teamCount, galleryCount, practiceAreaCount, contactCount, testimonialCount] = await Promise.all([
-    prisma.blogPost.count(),
-    prisma.teamMember.count(),
-    prisma.galleryImage.count(),
-    prisma.practiceArea.count(),
-    prisma.contactRequest.count(),
-    prisma.testimonials.count(),
-  ])
-
-  return {
-    blogCount,
-    teamCount,
-    galleryCount,
-    practiceAreaCount,
-    contactCount,
-    testimonialCount,
+  const stats = {
+    blogCount: 0,
+    newsCount: 0,
+    teamCount: 0,
+    galleryCount: 0,
+    practiceAreaCount: 0,
+    contactCount: 0,
+    testimonialCount: 0,
   }
+
+  try {
+    const [blogCount, newsCount, teamCount, galleryCount, practiceAreaCount, contactCount, testimonialCount] = await Promise.all([
+      prisma.blogPost.count().catch(() => 0),
+      prisma.news.count().catch(() => 0),
+      prisma.teamMember.count().catch(() => 0),
+      prisma.galleryImage.count().catch(() => 0),
+      prisma.practiceArea.count().catch(() => 0),
+      prisma.contactRequest.count().catch(() => 0),
+      prisma.testimonials.count().catch(() => 0),
+    ])
+
+    stats.blogCount = blogCount
+    stats.newsCount = newsCount
+    stats.teamCount = teamCount
+    stats.galleryCount = galleryCount
+    stats.practiceAreaCount = practiceAreaCount
+    stats.contactCount = contactCount
+    stats.testimonialCount = testimonialCount
+  } catch (error) {
+    console.error("Failed to fetch admin stats:", error)
+  }
+
+  return stats
 }
 
 export default async function AdminDashboard() {
@@ -37,6 +53,10 @@ export default async function AdminDashboard() {
         <div className="stat-card">
           <div className="stat-number">{stats.blogCount}</div>
           <div className="stat-label">Blog Posts</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-number">{stats.newsCount}</div>
+          <div className="stat-label">News Items</div>
         </div>
         <div className="stat-card">
           <div className="stat-number">{stats.teamCount}</div>
@@ -65,6 +85,9 @@ export default async function AdminDashboard() {
         <div className="grid grid-3" style={{ marginTop: "2rem" }}>
           <Link href="/admin/blog/new" className="btn btn-primary" style={{ textAlign: "center", padding: "1.5rem" }}>
             📝 Create New Blog Post
+          </Link>
+          <Link href="/admin/news/new" className="btn btn-primary" style={{ textAlign: "center", padding: "1.5rem" }}>
+            📰 Add News Item
           </Link>
           <Link href="/admin/team/new" className="btn btn-primary" style={{ textAlign: "center", padding: "1.5rem" }}>
             👥 Add Team Member

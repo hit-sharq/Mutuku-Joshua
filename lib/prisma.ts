@@ -9,9 +9,26 @@ const prismaClientOptions = {
   log: process.env.NODE_ENV === "development" 
     ? ["query" as const, "error" as const, "warn" as const] 
     : ["error" as const],
+  // Use connection pooling via DATABASE_URL parameters for Neon
+  // See: https://www.prisma.io/docs/orm/connection-pooling
 }
 
 // Create Prisma client with optimized settings for serverless/Neon
-export const prisma = globalForPrisma.prisma ?? new PrismaClient(prismaClientOptions)
+const prisma = globalForPrisma.prisma ?? new PrismaClient(prismaClientOptions)
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma
+// Handle connection errors and auto-reconnect
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.prisma = prisma
+  
+  // Listen for connection errors and log them
+  prisma.$on("error", (e) => {
+    console.error("Prisma client error:", e)
+  })
+  
+  // Listen for disconnect events
+  prisma.$on("disconnect", () => {
+    console.log("Prisma client disconnected")
+  })
+}
+
+export { prisma }

@@ -4,6 +4,7 @@ import Image from "next/image"
 import TestimonialsSection from "@/components/TestimonialsSection"
 import { prisma } from "@/lib/prisma"
 import BlogCard from "@/components/BlogCard"
+import NewsCard from "@/components/NewsCard"
 import "./home.css"
 
 type BlogPostType = {
@@ -13,6 +14,21 @@ type BlogPostType = {
   content: string
   summary: string | null
   image: string | null
+  published: boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+type NewsItemType = {
+  id: string
+  title: string
+  slug: string
+  content: string
+  excerpt: string | null
+  image: string | null
+  link: string | null
+  featured: boolean
+  order: number
   published: boolean
   createdAt: Date
   updatedAt: Date
@@ -73,9 +89,14 @@ const skills = [
   }
 ]
 
-async function getHomeData(): Promise<{ practiceAreas: PracticeAreaType[], recentPosts: BlogPostType[] }> {
+async function getHomeData(): Promise<{ 
+  practiceAreas: PracticeAreaType[], 
+  recentPosts: BlogPostType[],
+  latestNews: NewsItemType[]
+}> {
   let practiceAreas: PracticeAreaType[] = []
   let recentPosts: BlogPostType[] = []
+  let latestNews: NewsItemType[] = []
 
   try {
     practiceAreas = await prisma.practiceArea.findMany({
@@ -96,11 +117,23 @@ async function getHomeData(): Promise<{ practiceAreas: PracticeAreaType[], recen
     console.warn("Could not fetch blog posts")
   }
 
-  return { practiceAreas, recentPosts }
+  try {
+    latestNews = await prisma.news.findMany({
+      take: 3,
+      where: { published: true },
+      orderBy: { createdAt: "desc" },
+    })
+  } catch (error) {
+    console.warn("Could not fetch news items")
+  }
+
+  return { practiceAreas, recentPosts, latestNews }
 }
 
+export const dynamic = "force-dynamic"
+
 export default async function Home() {
-  const { practiceAreas, recentPosts } = await getHomeData()
+  const { practiceAreas, recentPosts, latestNews } = await getHomeData()
 
   // Use static services if no practice areas exist
   const services = practiceAreas.length > 0 ? practiceAreas : staticServices
@@ -283,6 +316,29 @@ export default async function Home() {
             <div style={{ textAlign: "center", marginTop: "3rem" }}>
               <Link href="/blog" className="btn btn-primary">
                 View All Posts
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Latest News */}
+      {latestNews.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <span className="section-badge" style={{ display: "block", textAlign: "center" }}>News & Updates</span>
+            <h2 className="section-title" style={{ marginBottom: "1rem" }}>Latest News</h2>
+            <p className="section-subtitle">Check out my recent projects, achievements, and updates</p>
+
+            <div className="blog-cards-grid">
+              {latestNews.map((news: NewsItemType) => (
+                <NewsCard key={news.id} news={news} />
+              ))}
+            </div>
+
+            <div style={{ textAlign: "center", marginTop: "3rem" }}>
+              <Link href="/news" className="btn btn-primary">
+                View All News
               </Link>
             </div>
           </div>

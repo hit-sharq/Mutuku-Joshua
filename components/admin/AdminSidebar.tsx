@@ -9,6 +9,7 @@ import { useState, useEffect } from "react"
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: "📊" },
   { href: "/admin/blog", label: "Blog Manager", icon: "📝" },
+  { href: "/admin/news", label: "News Manager", icon: "📰" },
   { href: "/admin/projects", label: "Projects", icon: "🚀" },
   { href: "/admin/team", label: "Team Manager", icon: "👥" },
   { href: "/admin/gallery", label: "Gallery Manager", icon: "🖼️" },

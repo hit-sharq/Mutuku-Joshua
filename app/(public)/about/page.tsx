@@ -79,34 +79,36 @@ export default async function AboutPage() {
               </p>
             </AnimatedSection>
 
-            <AnimatedSection delay={0.4}>
-              <div className={styles.heroCtaGroup}>
-                <PremiumButton href="/contact" size="lg">
-                  Let's Work Together
-                </PremiumButton>
-                <PremiumButton href="/projects" variant="secondary" size="lg">
-                  View Projects
-                </PremiumButton>
-              </div>
-            </AnimatedSection>
-          </div>
-
-          <AnimatedSection delay={0.3}>
-            <div className={styles.aboutHeroImage}>
-              <div className={styles.profileImageWrapper}>
-                <div className={styles.profileGlow} />
-                <div style={{ position: "relative", zIndex: "1", borderRadius: "50%", overflow: "hidden", width: "100%", height: "100%" }}>
+            <AnimatedSection delay={0.3}>
+              <div className={styles.aboutHeroImage}>
+                <div className={styles.profileImageWrapper}>
+                  <div className={styles.profileGlow} />
                   <Image
-                    src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif"
-                    alt="Mutuku Joshua - Coding Animation"
+                    src="/Mutuku.JPG"
+                    alt="Mutuku Joshua - Fullstack Developer"
                     fill
                     className={styles.heroProfileImage}
                     priority
                   />
                 </div>
               </div>
-            </div>
-          </AnimatedSection>
+            </AnimatedSection>
+          </div>
+
+           <AnimatedSection delay={0.3}>
+             <div className={styles.aboutHeroImage}>
+               <div className={styles.profileImageWrapper}>
+                 <div className={styles.profileGlow} />
+                 <Image
+                   src="/Mutuku.JPG"
+                   alt="Mutuku Joshua - Fullstack Developer"
+                   fill
+                   className={styles.heroProfileImage}
+                   priority
+                 />
+               </div>
+             </div>
+           </AnimatedSection>
         </div>
       </section>
 
@@ -128,16 +130,16 @@ export default async function AboutPage() {
             </p>
           </AnimatedSection>
 
-          <AnimatedSection delay={0.3}>
-            <PremiumButton
-              href="https://lumyn-tech.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              size="lg"
-            >
-              Visit Lumyn Website →
-            </PremiumButton>
-          </AnimatedSection>
+           <AnimatedSection delay={0.3}>
+             <PremiumButton
+               href="https://lumyn-tech.vercel.app/"
+               target="_blank"
+               rel="noopener noreferrer"
+               size="lg"
+             >
+               Visit Lumyn Website →
+             </PremiumButton>
+           </AnimatedSection>
         </div>
       </section>
 
@@ -382,12 +384,15 @@ export default async function AboutPage() {
       </section>
 
       {/* SERVICES */}
-      <section className={styles.introSection}>
+      <section className={styles.servicesSection}>
         <div className="container">
           <AnimatedSection>
             <div className={styles.introContent}>
               <span className={styles.sectionBadge}>Services</span>
               <h2>What I Do</h2>
+              <p className={styles.sectionSubtitle}>
+                Comprehensive development services tailored to your business needs
+              </p>
             </div>
           </AnimatedSection>
 
@@ -396,25 +401,25 @@ export default async function AboutPage() {
               {
                 icon: '🌐',
                 title: 'Web Development',
-                desc: 'Building custom web applications with modern frameworks and best practices',
+                desc: 'Building custom web applications with modern frameworks and best practices.',
                 items: ['Custom web applications', 'E-commerce platforms', 'SaaS applications', 'Portfolio websites', 'Landing pages'],
               },
               {
                 icon: '📱',
                 title: 'Mobile Development',
-                desc: 'Creating cross-platform mobile applications that delight users',
+                desc: 'Creating cross-platform mobile applications that delight users.',
                 items: ['React Native apps', 'Cross-platform solutions', 'Responsive designs', 'App maintenance', 'App store optimization'],
               },
               {
                 icon: '🔌',
                 title: 'API Development',
-                desc: 'Designing and building robust APIs for seamless integrations',
+                desc: 'Designing and building robust APIs for seamless integrations.',
                 items: ['RESTful APIs', 'GraphQL APIs', 'Third-party integrations', 'API documentation', 'Authentication systems'],
               },
               {
                 icon: '🗄️',
                 title: 'Database Solutions',
-                desc: 'Designing efficient database architectures for scalability',
+                desc: 'Designing efficient database architectures for scalability.',
                 items: ['Database design', 'Query optimization', 'Data migration', 'Backup strategies', 'Performance tuning'],
               },
             ].map((service, i) => (

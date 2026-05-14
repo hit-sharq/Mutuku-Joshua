@@ -78,23 +78,25 @@ export default function HomePage() {
     async function fetchData() {
       try {
         setLoading(true)
-        // Fetch projects
-        const projectsRes = await fetch('/api/projects?limit=3')
-        const projectsData = await projectsRes.json()
+        // Fetch all data in parallel for faster loading
+        const [projectsRes, blogRes, newsRes] = await Promise.all([
+          fetch('/api/projects?limit=3'),
+          fetch('/api/blog?limit=3'),
+          fetch('/api/news?limit=3')
+        ])
+
+        const [projectsData, blogData, newsData] = await Promise.all([
+          projectsRes.json(),
+          blogRes.json(),
+          newsRes.json()
+        ])
+
         if (projectsData.projects) {
           setProjects(projectsData.projects)
         }
-
-        // Fetch blog posts (latest 3)
-        const blogRes = await fetch('/api/blog?limit=3')
-        const blogData = await blogRes.json()
         if (blogData.posts) {
           setBlogPosts(blogData.posts)
         }
-
-        // Fetch news
-        const newsRes = await fetch('/api/news?limit=3&featured=true')
-        const newsData = await newsRes.json()
         if (newsData.news) {
           setNewsItems(newsData.news)
         }
@@ -305,7 +307,30 @@ export default function HomePage() {
       </section>
 
       {/* PROJECTS SECTION */}
-      {projects.length > 0 && (
+      {loading ? (
+        <section className={styles.projectsSection}>
+          <div className={styles.container}>
+            <AnimatedSection>
+              <h2 className={styles.sectionTitle}>Featured Projects</h2>
+              <p className={styles.sectionSubtitle}>
+                A selection of my recent work showcasing modern web development
+              </p>
+            </AnimatedSection>
+            <div className={styles.projectsGrid}>
+              {[1, 2, 3].map((i) => (
+                <div key={i} className={styles.skeletonCard}>
+                  <div className={styles.skeletonImage} />
+                  <div className={styles.skeletonContent}>
+                    <div className={styles.skeletonTitle} />
+                    <div className={styles.skeletonText} />
+                    <div className={styles.skeletonTextShort} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : projects.length > 0 && (
         <section className={styles.projectsSection}>
           <div className={styles.container}>
             <AnimatedSection>
@@ -333,7 +358,30 @@ export default function HomePage() {
       )}
 
       {/* BLOG SECTION */}
-      {blogPosts.length > 0 && (
+      {loading ? (
+        <section className={styles.section}>
+          <div className={styles.container}>
+            <AnimatedSection>
+              <h2 className={styles.sectionTitle}>Latest Blog Posts</h2>
+              <p className={styles.sectionSubtitle}>
+                Insights, tutorials, and thoughts on modern web development
+              </p>
+            </AnimatedSection>
+            <div className={styles.projectsGrid}>
+              {[1, 2, 3].map((i) => (
+                <div key={i} className={styles.skeletonCard}>
+                  <div className={styles.skeletonImage} />
+                  <div className={styles.skeletonContent}>
+                    <div className={styles.skeletonTitle} />
+                    <div className={styles.skeletonText} />
+                    <div className={styles.skeletonTextShort} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : blogPosts.length > 0 && (
         <section className={styles.section}>
           <div className={styles.container}>
             <AnimatedSection>
@@ -361,7 +409,30 @@ export default function HomePage() {
       )}
 
       {/* NEWS SECTION */}
-      {newsItems.length > 0 && (
+      {loading ? (
+        <section className={styles.section}>
+          <div className={styles.container}>
+            <AnimatedSection>
+              <h2 className={styles.sectionTitle}>Recent News</h2>
+              <p className={styles.sectionSubtitle}>
+                Stay updated with the latest announcements and industry trends
+              </p>
+            </AnimatedSection>
+            <div className={styles.projectsGrid}>
+              {[1, 2, 3].map((i) => (
+                <div key={i} className={styles.skeletonCard}>
+                  <div className={styles.skeletonImage} />
+                  <div className={styles.skeletonContent}>
+                    <div className={styles.skeletonTitle} />
+                    <div className={styles.skeletonText} />
+                    <div className={styles.skeletonTextShort} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : newsItems.length > 0 && (
         <section className={styles.section}>
           <div className={styles.container}>
             <AnimatedSection>

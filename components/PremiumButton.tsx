@@ -15,6 +15,8 @@ interface PremiumButtonProps {
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   className?: string
+  target?: string
+  rel?: string
 }
 
 export default function PremiumButton({
@@ -28,6 +30,8 @@ export default function PremiumButton({
   type = 'button',
   disabled = false,
   className = '',
+  target,
+  rel,
 }: PremiumButtonProps) {
   const buttonContent = (
     <motion.button
@@ -47,7 +51,7 @@ export default function PremiumButton({
 
   if (href) {
     return (
-      <Link href={href} className={styles.linkWrapper}>
+      <Link href={href} className={styles.linkWrapper} target={target} rel={rel}>
         {buttonContent}
       </Link>
     )

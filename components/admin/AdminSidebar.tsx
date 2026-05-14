@@ -57,7 +57,10 @@ export default function AdminSidebar() {
         {isMobileOpen ? "✕" : "☰"}
       </button>
 
-      <div className={`admin-mobile-overlay ${isMobileOpen ? "active" : ""}`} onClick={() => setIsMobileOpen(false)} />
+      <div 
+        className={`admin-mobile-overlay ${isMobileOpen ? "active" : ""}`} 
+        onClick={() => setIsMobileOpen(false)} 
+      />
 
       <div className={`admin-sidebar ${isMobileOpen ? "mobile-open" : ""}`}>
         <div className="admin-sidebar-header">
@@ -73,28 +76,18 @@ export default function AdminSidebar() {
               onClick={() => setIsMobileOpen(false)}
             >
               <span className="nav-icon">{item.icon}</span>
-              {item.label}
+              <span>{item.label}</span>
             </Link>
           ))}
         </nav>
 
         <div className="admin-sidebar-footer">
           <div className="admin-user-info">
-            <UserButton />
+            <UserButton afterSignOutUrl="/" />
             <span>Admin User</span>
           </div>
-          <Link
-            href="/"
-            className="back-to-website"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "100%",
-              textAlign: "center",
-            }}
-          >
-            Back to Website
+          <Link href="/" className="back-to-website">
+            ← Back to Website
           </Link>
         </div>
       </div>

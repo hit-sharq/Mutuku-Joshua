@@ -1,0 +1,772 @@
+/* About Page Styles - Lumyn Premium Design System */
+
+/* Container utility */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+/* ============================================
+   HERO SECTION
+============================================ */
+.aboutHero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  padding: 160px 24px 120px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(109, 129, 150, 0.08) 0%, var(--background) 100%);
+}
+
+.aboutHero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(255, 255, 227, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(109, 129, 150, 0.08) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.aboutHeroContent {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .aboutHeroContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+}
+
+.aboutHeroText {
+  max-width: 600px;
+}
+
+@media (max-width: 1024px) {
+  .aboutHeroText {
+    max-width: 100%;
+  }
+}
+
+.heroBadge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  margin-bottom: 24px;
+}
+
+.aboutHero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin: 0 0 16px 0;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.aboutHeroSubtitle {
+  font-size: 1.25rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin: 0 0 24px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.aboutHeroDescription {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--muted-foreground);
+  margin: 0 0 40px 0;
+}
+
+.heroCtaGroup {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+@media (max-width: 1024px) {
+  .heroCtaGroup {
+    justify-content: center;
+  }
+}
+
+.aboutHeroImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileImageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  aspect-ratio: 1;
+}
+
+@media (max-width: 1024px) {
+  .profileImageWrapper {
+    max-width: 280px;
+  }
+}
+
+.profileGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(109, 129, 150, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.heroProfileImage {
+  position: relative;
+  z-index: 1;
+  border-radius: 50%;
+  border: 4px solid var(--border);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+}
+
+/* ============================================
+   LUMYN TECHNOLOGIES SECTION
+============================================ */
+.lumynSection {
+  padding: 120px 24px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.lumynContent {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.lumynBadge {
+  display: inline-block;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 227, 0.2);
+  border-radius: 50px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #ffffe3;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.lumynSection h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: white;
+  margin: 0 0 24px 0;
+}
+
+.lumynSection p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 227, 0.85);
+  margin: 0 0 32px 0;
+}
+
+/* ============================================
+   INTRO / MISSION SECTION
+============================================ */
+.introSection {
+  padding: 120px 24px;
+  background: var(--background);
+}
+
+.introContent {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sectionBadge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.introContent h2 {
+  margin: 0 0 32px 0;
+}
+
+.introText {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--muted-foreground);
+}
+
+.introText p {
+  margin-bottom: 1.5rem;
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+@media (max-width: 768px) {
+  .introGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.missionCard {
+  padding: 40px 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.missionCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(109, 129, 150, 0.3);
+}
+
+.missionIcon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.missionCard h3 {
+  margin: 0 0 16px 0;
+  color: var(--foreground);
+}
+
+.missionCard p {
+  color: var(--muted-foreground);
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* ============================================
+   CREDENTIALS SECTION
+============================================ */
+.credentialsSection {
+  padding: 120px 24px;
+  background: var(--background);
+  border-top: 1px solid var(--border);
+}
+
+.credentialsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .credentialsGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.credentialCard {
+  padding: 40px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.credentialCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(109, 129, 150, 0.3);
+}
+
+.credentialIconWrapper {
+  margin-bottom: 24px;
+}
+
+.credentialIcon {
+  font-size: 3.5rem;
+}
+
+.credentialCard h3 {
+  font-size: 1.75rem;
+  margin: 0 0 32px 0;
+  text-align: center;
+  color: var(--foreground);
+}
+
+.credentialList,
+.experienceTimeline {
+  text-align: left;
+}
+
+.credentialItem,
+.experienceItem {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.credentialItem:last-child,
+.experienceItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.credentialYear {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  background: var(--secondary);
+  border-radius: 4px;
+}
+
+.credentialItem h4,
+.experienceItem h4 {
+  font-size: 1.125rem;
+  margin: 0 0 8px 0;
+  color: var(--foreground);
+}
+
+.credentialItem p,
+.experienceCompany {
+  font-size: 0.9375rem;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+.experienceCompany {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.experienceDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.experienceTag {
+  padding: 4px 12px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+
+/* ============================================
+   TECH STACK SECTION
+============================================ */
+.techStackSection {
+  padding: 120px 24px;
+  background: var(--background);
+}
+
+.techStackGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .techStackGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.techCategory {
+  padding: 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.techCategoryHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.techIcon {
+  font-size: 2rem;
+}
+
+.techCategoryHeader h3 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--foreground);
+}
+
+.techItems {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.techItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.techName {
+  font-weight: 600;
+  color: var(--foreground);
+  font-size: 0.9375rem;
+}
+
+.techBar {
+  height: 8px;
+  background: rgba(255, 255, 227, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.techProgress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), #ffffe3);
+  border-radius: 4px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   SERVICES SECTION (already covered in services section styling)
+============================================ */
+
+/* ============================================
+   TEAM SECTION
+============================================ */
+.teamSection {
+  padding: 120px 24px;
+  background: var(--secondary);
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .teamGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.teamMemberCard {
+  display: flex;
+  gap: 24px;
+  padding: 28px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.teamMemberCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(109, 129, 150, 0.3);
+}
+
+@media (max-width: 768px) {
+  .teamMemberCard {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+}
+
+.teamMemberImage {
+  flex-shrink: 0;
+}
+
+.memberPhoto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary);
+  transition: transform 0.3s ease;
+}
+
+.teamMemberCard:hover .memberPhoto {
+  transform: scale(1.05);
+}
+
+.teamMemberInfo {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .teamMemberInfo {
+    text-align: center;
+  }
+}
+
+.teamMemberInfo h3 {
+  font-size: 1.5rem;
+  margin: 0 0 8px 0;
+  color: var(--foreground);
+}
+
+.memberTitle {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0 0 16px 0;
+}
+
+.memberBio {
+  color: var(--muted-foreground);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+}
+
+.memberSocial {
+  display: flex;
+  gap: 12px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--secondary);
+  border-radius: 10px;
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.socialLink:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   CTA SECTION
+============================================ */
+.ctaSection {
+  padding: 160px 24px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #6d8196, transparent);
+}
+
+.ctaContent {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ctaTitle {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 800;
+  margin: 0 0 24px 0;
+  color: white;
+}
+
+.ctaText {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 227, 0.9);
+  margin: 0 0 48px 0;
+  line-height: 1.7;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.ctaContact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.ctaContactLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 227, 0.9);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.ctaContactLink:hover {
+  color: #ffffe3;
+}
+
+.ctaSocial {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.ctaSocialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.ctaSocialLink:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 768px) {
+  .aboutHero {
+    padding: 120px 20px 100px;
+    min-height: auto;
+  }
+
+  .aboutHeroContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .heroCtaGroup {
+    justify-content: center;
+  }
+
+  .profileImageWrapper {
+    max-width: 240px;
+  }
+
+  .section {
+    padding: 80px 20px;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .statNumber {
+    font-size: 2.5rem;
+  }
+
+  .serviceCard {
+    padding: 32px 24px;
+  }
+
+  .credentialCard {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutHero h1 {
+    font-size: 2.25rem;
+  }
+
+  .heroBadge {
+    font-size: 0.75rem;
+    padding: 6px 16px;
+  }
+
+  .serviceCard,
+  .credentialCard {
+    padding: 28px 20px;
+  }
+}

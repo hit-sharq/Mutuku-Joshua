@@ -1,0 +1,206 @@
+/* Footer Styles - Lumyn Premium Design System */
+/* Note: globals.css is already imported at app level, providing CSS variables */
+
+.footer {
+  background: var(--background);
+  border-top: 1px solid var(--border);
+  padding: 80px 24px 40px;
+  margin-top: 120px;
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 1024px) {
+  .footerGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+}
+
+.footerSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.footerTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footerText {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.footerDesc {
+  font-size: 0.9375rem;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .socialLinks {
+    justify-content: center;
+  }
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.socialLink:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(109, 129, 150, 0.3);
+}
+
+.footerHeading {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  color: var(--foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerLinks a {
+  color: var(--muted-foreground);
+  font-size: 0.9375rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  padding: 4px 0;
+}
+
+.footerLinks a:hover {
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+@media (max-width: 640px) {
+  .footerLinks {
+    align-items: center;
+  }
+}
+
+.techList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.techList span {
+  padding: 4px 10px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.techList span:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+@media (max-width: 640px) {
+  .techList {
+    justify-content: center;
+  }
+}
+
+.footerBottom {
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footerBottom p {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin: 0 0 8px 0;
+}
+
+.footerLegal {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+
+.footerLegal a {
+  color: var(--muted-foreground);
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.footerLegal a:hover {
+  color: var(--primary);
+}
+
+.footerLegal span {
+  opacity: 0.5;
+}

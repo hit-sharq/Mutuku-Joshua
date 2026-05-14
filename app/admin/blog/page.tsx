@@ -2,6 +2,12 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import AdminPage from "@/components/admin/AdminPage"
+import AdminPageHeader from "@/components/admin/AdminPageHeader"
+import AdminCard from "@/components/admin/AdminCard"
+import AdminButton from "@/components/admin/AdminButton"
+import AdminTable from "@/components/admin/AdminTable"
+import AdminBadge from "@/components/admin/AdminBadge"
 
 interface BlogPost {
   id: string
@@ -51,89 +57,111 @@ export default function BlogManager() {
     }
   }
 
+  const columns = [
+    {
+      key: "title",
+      header: "Title",
+      render: (post: BlogPost) => (
+        <div>
+          <strong style={{ color: "var(--admin-text-primary)" }}>
+            {post.title}
+          </strong>
+          {post.summary && (
+            <div
+              style={{
+                fontSize: "0.8125rem",
+                color: "var(--admin-text-muted)",
+                marginTop: "0.25rem",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+              }}
+            >
+              {post.summary}
+            </div>
+          )}
+        </div>
+      ),
+    },
+    {
+      key: "status",
+      header: "Status",
+      render: (post: BlogPost) => (
+        <AdminBadge variant={post.published ? "success" : "neutral"}>
+          {post.published ? "Published" : "Draft"}
+        </AdminBadge>
+      ),
+    },
+    {
+      key: "createdAt",
+      header: "Created",
+      render: (post: BlogPost) => (
+        <span style={{ color: "var(--admin-text-secondary)" }}>
+          {new Date(post.createdAt).toLocaleDateString()}
+        </span>
+      ),
+    },
+    {
+      key: "actions",
+      header: "Actions",
+      render: (post: BlogPost) => (
+        <div style={{ display: "flex", gap: "0.5rem" }}>
+          <AdminButton
+            href={`/admin/blog/edit/${post.id}`}
+            variant="secondary"
+            size="sm"
+          >
+            Edit
+          </AdminButton>
+          <AdminButton
+            variant="danger"
+            size="sm"
+            onClick={(e) => {
+              e.preventDefault()
+              handleDelete(post.id)
+            }}
+          >
+            Delete
+          </AdminButton>
+        </div>
+      ),
+    },
+  ]
+
   if (loading) {
     return (
-      <div>
-        <div className="admin-header">
-          <h1 className="admin-title">Blog Manager</h1>
-        </div>
-        <div className="card">
-          <p>Loading...</p>
-        </div>
-      </div>
+      <AdminPage>
+        <AdminPageHeader title="Blog Manager" />
+        <AdminCard>
+          <div className="admin-loading">
+            <div className="spinner" />
+          </div>
+        </AdminCard>
+      </AdminPage>
     )
   }
 
   return (
-    <div>
-      <div className="admin-header">
-        <h1 className="admin-title">Blog Manager</h1>
-        <Link href="/admin/blog/new" className="btn btn-primary">
-          Create New Post
-        </Link>
-      </div>
+    <AdminPage>
+      <AdminPageHeader
+        title="Blog Manager"
+        description="Manage your blog posts. Create, edit, and publish content."
+        actions={
+          <AdminButton href="/admin/blog/new" variant="primary">
+            + New Post
+          </AdminButton>
+        }
+      />
 
-      <div className="card">
-        {posts.length === 0 ? (
-          <div style={{ textAlign: "center", padding: "3rem" }}>
-            <h3>No blog posts yet</h3>
-            <p>Create your first blog post to get started.</p>
-            <Link href="/admin/blog/new" className="btn btn-primary">
-              Create First Post
-            </Link>
-          </div>
-        ) : (
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Status</th>
-                <th>Created</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {posts.map((post) => (
-                <tr key={post.id}>
-                  <td>
-                    <strong>{post.title}</strong>
-                    {post.summary && (
-                      <div style={{ fontSize: "0.9rem", color: "#666", marginTop: "0.25rem" }}>
-                        {post.summary.substring(0, 100)}...
-                      </div>
-                    )}
-                  </td>
-                  <td>
-                    <span
-                      style={{
-                        padding: "0.25rem 0.5rem",
-                        borderRadius: "3px",
-                        fontSize: "0.8rem",
-                        fontWeight: "600",
-                        background: post.published ? "#c6f6d5" : "#fed7d7",
-                        color: post.published ? "#276749" : "#c53030",
-                      }}
-                    >
-                      {post.published ? "Published" : "Draft"}
-                    </span>
-                  </td>
-                  <td>{new Date(post.createdAt).toLocaleDateString()}</td>
-                  <td>
-                    <div style={{ display: "flex", gap: "0.5rem" }}>
-                      <Link href={`/admin/blog/edit/${post.id}`} className="btn btn-secondary">
-                        Edit
-                      </Link>
-                      <button onClick={() => handleDelete(post.id)} className="btn btn-danger">
-                        Delete
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
-    </div>
+      <AdminCard noPadding>
+        <AdminTable
+          columns={columns}
+          data={posts}
+          keyExtractor={(post) => post.id}
+          emptyMessage="No blog posts yet. Create your first post to get started."
+        />
+      </AdminCard>
+    </AdminPage>
   )
 }

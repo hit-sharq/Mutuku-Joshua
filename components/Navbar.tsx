@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import { useUser, SignInButton, UserButton } from "@clerk/nextjs"
 import SearchBar from "./SearchBar"
+import styles from "./Navbar.module.css"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -20,17 +21,14 @@ export default function Navbar() {
   }, [isSignedIn])
 
   return (
-    <header className="header">
+    <header className={styles.header}>
       <div className="container">
-        <nav
-          className="nav"
-          style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "2rem" }}
-        >
-          <Link href="/" className="logo">
+        <nav className={styles.nav}>
+          <Link href="/" className={styles.logo}>
             Mutuku Joshua
           </Link>
 
-          <ul className={`nav-links ${isMenuOpen ? "mobile-open" : ""}`}>
+          <ul className={`${styles.navLinks} ${isMenuOpen ? styles.mobileOpen : ""}`}>
             <li>
               <Link href="/" onClick={() => setIsMenuOpen(false)}>
                 Home
@@ -53,7 +51,7 @@ export default function Navbar() {
             </li>
             {isAdmin && (
               <li>
-                <Link href="/admin" className="admin-link" onClick={() => setIsMenuOpen(false)}>
+                <Link href="/admin" className={styles.adminLink} onClick={() => setIsMenuOpen(false)}>
                   Admin Panel
                 </Link>
               </li>
@@ -69,15 +67,13 @@ export default function Navbar() {
             )}
           </ul>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <div style={{ display: isMenuOpen ? "none" : "block" }}>
-              <SearchBar />
-            </div>
-
-            <button className="mobile-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              ☰
-            </button>
+          <div className={styles.searchBarContainer}>
+            <SearchBar />
           </div>
+
+          <button className={styles.mobileMenuBtn} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            ☰
+          </button>
         </nav>
       </div>
     </header>

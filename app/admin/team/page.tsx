@@ -3,6 +3,11 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import AdminPage from "@/components/admin/AdminPage"
+import AdminPageHeader from "@/components/admin/AdminPageHeader"
+import AdminCard from "@/components/admin/AdminCard"
+import AdminButton from "@/components/admin/AdminButton"
+import AdminBadge from "@/components/admin/AdminBadge"
 
 interface TeamMember {
   id: string
@@ -55,68 +60,132 @@ export default function TeamManager() {
 
   if (loading) {
     return (
-      <div>
-        <div className="admin-header">
-          <h1 className="admin-title">Team Manager</h1>
-        </div>
-        <div className="card">
-          <p>Loading...</p>
-        </div>
-      </div>
+      <AdminPage>
+        <AdminPageHeader title="Team Manager" />
+        <AdminCard>
+          <div className="admin-loading">
+            <div className="spinner" />
+          </div>
+        </AdminCard>
+      </AdminPage>
     )
   }
 
   return (
-    <div>
-      <div className="admin-header">
-        <h1 className="admin-title">Team Manager</h1>
-        <Link href="/admin/team/new" className="btn btn-primary">
-          Add Team Member
-        </Link>
-      </div>
+    <AdminPage>
+      <AdminPageHeader
+        title="Team Manager"
+        description="Manage your team members. Add profiles, photos, and positions."
+        actions={
+          <AdminButton href="/admin/team/new" variant="primary">
+            + Add Team Member
+          </AdminButton>
+        }
+      />
 
-      <div className="card">
+      <AdminCard>
         {members.length === 0 ? (
-          <div style={{ textAlign: "center", padding: "3rem" }}>
-            <h3>No team members yet</h3>
-            <p>Add your first team member to get started.</p>
-            <Link href="/admin/team/new" className="btn btn-primary">
+          <div className="admin-empty">
+            <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>👥</div>
+            <h3>No Team Members Yet</h3>
+            <p>Build your team page by adding your first team member.</p>
+            <AdminButton href="/admin/team/new" variant="primary">
               Add First Team Member
-            </Link>
+            </AdminButton>
           </div>
         ) : (
-          <div className="grid grid-2" style={{ gap: "2rem" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
+              gap: "1.5rem",
+            }}
+          >
             {members.map((member) => (
-              <div key={member.id} className="card" style={{ display: "flex", gap: "1.5rem" }}>
-                <div style={{ width: "100px", height: "100px", flexShrink: 0 }}>
+              <div
+                key={member.id}
+                style={{
+                  display: "flex",
+                  gap: "1.25rem",
+                  padding: "1.25rem",
+                  background: "var(--background)",
+                  borderRadius: "12px",
+                  border: "1px solid var(--admin-border-color)",
+                  transition: "all 0.2s ease",
+                }}
+                className="team-member-card"
+              >
+                <div style={{ flexShrink: 0 }}>
                   <Image
-                    src={member.image || "/placeholder.svg?height=100&width=100"}
+                    src={member.image || "/placeholder.svg?height=80&width=80"}
                     alt={member.name}
-                    width={100}
-                    height={100}
-                    style={{ borderRadius: "50%", objectFit: "cover" }}
+                    width={80}
+                    height={80}
+                    style={{
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                      border: "2px solid var(--admin-border-color)",
+                    }}
                   />
                 </div>
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ marginBottom: "0.5rem" }}>{member.name}</h3>
-                  <p style={{ color: "#1a365d", fontWeight: "600", marginBottom: "0.5rem" }}>{member.title}</p>
-                  <p style={{ color: "#666", marginBottom: "1rem", fontSize: "0.9rem" }}>
-                    {member.bio.substring(0, 100)}...
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <h3
+                    style={{
+                      marginBottom: "0.25rem",
+                      fontSize: "1.125rem",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {member.name}
+                  </h3>
+                  <p
+                    style={{
+                      color: "var(--primary)",
+                      fontWeight: "500",
+                      fontSize: "0.875rem",
+                      marginBottom: "0.75rem",
+                    }}
+                  >
+                    {member.title}
+                  </p>
+                  <p
+                    style={{
+                      color: "var(--admin-text-secondary)",
+                      fontSize: "0.875rem",
+                      marginBottom: "1rem",
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {member.bio}
                   </p>
                   <div style={{ display: "flex", gap: "0.5rem" }}>
-                    <Link href={`/admin/team/edit/${member.id}`} className="btn btn-secondary">
+                    <AdminButton
+                      href={`/admin/team/edit/${member.id}`}
+                      variant="secondary"
+                      size="sm"
+                    >
                       Edit
-                    </Link>
-                    <button onClick={() => handleDelete(member.id)} className="btn btn-danger">
+                    </AdminButton>
+                    <AdminButton
+                      variant="danger"
+                      size="sm"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        handleDelete(member.id)
+                      }}
+                    >
                       Delete
-                    </button>
+                    </AdminButton>
                   </div>
                 </div>
               </div>
             ))}
           </div>
         )}
-      </div>
-    </div>
+      </AdminCard>
+    </AdminPage>
   )
 }

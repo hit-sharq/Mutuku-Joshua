@@ -2,6 +2,12 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import AdminPage from "@/components/admin/AdminPage"
+import AdminPageHeader from "@/components/admin/AdminPageHeader"
+import AdminCard from "@/components/admin/AdminCard"
+import AdminButton from "@/components/admin/AdminButton"
+import AdminTable from "@/components/admin/AdminTable"
+import AdminBadge from "@/components/admin/AdminBadge"
 
 interface NewsItem {
   id: string
@@ -52,93 +58,122 @@ export default function NewsManager() {
     }
   }
 
+  const columns = [
+    {
+      key: "title",
+      header: "Title",
+      render: (item: NewsItem) => (
+        <div>
+          <strong style={{ color: "var(--admin-text-primary)" }}>
+            {item.title}
+          </strong>
+          {item.excerpt && (
+            <div
+              style={{
+                fontSize: "0.8125rem",
+                color: "var(--admin-text-muted)",
+                marginTop: "0.25rem",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+              }}
+            >
+              {item.excerpt}
+            </div>
+          )}
+        </div>
+      ),
+    },
+    {
+      key: "status",
+      header: "Status",
+      render: (item: NewsItem) => (
+        <AdminBadge variant={item.published ? "success" : "neutral"}>
+          {item.published ? "Published" : "Draft"}
+        </AdminBadge>
+      ),
+    },
+    {
+      key: "featured",
+      header: "Featured",
+      render: (item: NewsItem) => (
+        item.featured ? (
+          <span style={{ color: "var(--primary)" }}>⭐ Yes</span>
+        ) : (
+          <span style={{ color: "var(--admin-text-muted)" }}>No</span>
+        )
+      ),
+    },
+    {
+      key: "createdAt",
+      header: "Created",
+      render: (item: NewsItem) => (
+        <span style={{ color: "var(--admin-text-secondary)" }}>
+          {new Date(item.createdAt).toLocaleDateString()}
+        </span>
+      ),
+    },
+    {
+      key: "actions",
+      header: "Actions",
+      render: (item: NewsItem) => (
+        <div style={{ display: "flex", gap: "0.5rem" }}>
+          <AdminButton
+            href={`/admin/news/edit/${item.id}`}
+            variant="secondary"
+            size="sm"
+          >
+            Edit
+          </AdminButton>
+          <AdminButton
+            variant="danger"
+            size="sm"
+            onClick={(e) => {
+              e.preventDefault()
+              handleDelete(item.id)
+            }}
+          >
+            Delete
+          </AdminButton>
+        </div>
+      ),
+    },
+  ]
+
   if (loading) {
     return (
-      <div>
-        <div className="admin-header">
-          <h1 className="admin-title">News Manager</h1>
-        </div>
-        <div className="card">
-          <p>Loading...</p>
-        </div>
-      </div>
+      <AdminPage>
+        <AdminPageHeader title="News Manager" />
+        <AdminCard>
+          <div className="admin-loading">
+            <div className="spinner" />
+          </div>
+        </AdminCard>
+      </AdminPage>
     )
   }
 
   return (
-    <div>
-      <div className="admin-header">
-        <h1 className="admin-title">News Manager</h1>
-        <Link href="/admin/news/new" className="btn btn-primary">
-          Add News
-        </Link>
-      </div>
+    <AdminPage>
+      <AdminPageHeader
+        title="News Manager"
+        description="Manage news articles and announcements."
+        actions={
+          <AdminButton href="/admin/news/new" variant="primary">
+            + Add News
+          </AdminButton>
+        }
+      />
 
-      <div className="card">
-        {newsItems.length === 0 ? (
-          <div style={{ textAlign: "center", padding: "3rem" }}>
-            <h3>No news items yet</h3>
-            <p>Add your first news item to get started.</p>
-            <Link href="/admin/news/new" className="btn btn-primary">
-              Add First News
-            </Link>
-          </div>
-        ) : (
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Status</th>
-                <th>Featured</th>
-                <th>Created</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {newsItems.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    <strong>{item.title}</strong>
-                    {item.excerpt && (
-                      <div style={{ fontSize: "0.9rem", color: "#666", marginTop: "0.25rem" }}>
-                        {item.excerpt.substring(0, 100)}...
-                      </div>
-                    )}
-                  </td>
-                  <td>
-                    <span
-                      style={{
-                        padding: "0.25rem 0.5rem",
-                        borderRadius: "3px",
-                        fontSize: "0.8rem",
-                        fontWeight: "600",
-                        background: item.published ? "#c6f6d5" : "#fed7d7",
-                        color: item.published ? "#276749" : "#c53030",
-                      }}
-                    >
-                      {item.published ? "Published" : "Draft"}
-                    </span>
-                  </td>
-                  <td>
-                    {item.featured ? "⭐ Yes" : "No"}
-                  </td>
-                  <td>{new Date(item.createdAt).toLocaleDateString()}</td>
-                  <td>
-                    <div style={{ display: "flex", gap: "0.5rem" }}>
-                      <Link href={`/admin/news/edit/${item.id}`} className="btn btn-secondary">
-                        Edit
-                      </Link>
-                      <button onClick={() => handleDelete(item.id)} className="btn btn-danger">
-                        Delete
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
-    </div>
+      <AdminCard noPadding>
+        <AdminTable
+          columns={columns}
+          data={newsItems}
+          keyExtractor={(item) => item.id}
+          emptyMessage="No news items yet. Add your first news article to get started."
+        />
+      </AdminCard>
+    </AdminPage>
   )
 }

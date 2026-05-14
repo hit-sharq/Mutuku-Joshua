@@ -1,0 +1,264 @@
+/* Blog Page Styles - Lumyn Premium Design System */
+
+/* Page wrapper */
+.page {
+  min-height: 100vh;
+  background: var(--background);
+}
+
+/* Section */
+.section {
+  padding: 120px 24px;
+  background: var(--background);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 20px;
+  }
+}
+
+/* Container utility */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+/* ============================================
+   SECTION TITLE STYLES
+============================================ */
+.sectionTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  text-align: center;
+  margin: 0 0 16px 0;
+  background: linear-gradient(135deg, var(--primary), var(--foreground));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sectionSubtitle {
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 48px;
+  line-height: 1.7;
+}
+
+/* ============================================
+   HERO SECTION
+============================================ */
+.hero {
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px 80px;
+  overflow: hidden;
+  background: var(--background);
+  text-align: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(109, 129, 150, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 227, 0.04) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.hero .sectionTitle {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  margin: 0 0 24px 0;
+  background: linear-gradient(135deg, var(--primary), var(--foreground));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.hero .sectionSubtitle {
+  font-size: 1.25rem;
+  color: var(--muted-foreground);
+  margin: 0 auto;
+  max-width: 700px;
+  line-height: 1.7;
+}
+
+/* ============================================
+   BLOG GRID
+============================================ */
+.blogGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+@media (max-width: 768px) {
+  .blogGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .blogGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px 0;
+  }
+}
+
+/* Featured post - full width */
+.featuredPost {
+  grid-column: 1 / -1;
+  margin-bottom: 16px;
+}
+
+/* ============================================
+   PAGINATION
+============================================ */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 48px 0;
+}
+
+.pagination button {
+  min-width: 44px;
+  height: 44px;
+  padding: 0 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--foreground);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: var(--secondary);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination button.active {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+
+/* ============================================
+   EMPTY STATE
+============================================ */
+.emptyState {
+  text-align: center;
+  padding: 80px 24px;
+  color: var(--muted-foreground);
+}
+
+.emptyStateIcon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 24px;
+}
+
+/* ============================================
+   NEWSLETTER CTA
+============================================ */
+.newsletterSection {
+  padding: 80px 24px 120px;
+}
+
+.newsletterCta {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 48px 32px;
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--card) 100%);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletterCta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+}
+
+.newsletterCta h3 {
+  font-size: 1.5rem;
+  color: var(--foreground);
+  margin: 0 0 12px 0;
+}
+
+.newsletterCta p {
+  color: var(--muted-foreground);
+  margin: 0 0 24px 0;
+  line-height: 1.6;
+}
+
+/* ============================================
+   LOADING STATE
+============================================ */
+.loading {
+  text-align: center;
+  padding: 120px 24px;
+  color: var(--muted-foreground);
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

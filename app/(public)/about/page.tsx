@@ -1,7 +1,9 @@
 import Image from "next/image"
 import { prisma } from "@/lib/prisma"
 import Link from "next/link"
-import "./about.css"
+import AnimatedSection from "@/components/AnimatedSection"
+import PremiumButton from "@/components/PremiumButton"
+import styles from "./about.module.css"
 
 type UserType = {
   id: string
@@ -43,514 +45,510 @@ export default async function AboutPage() {
 
   return (
     <div className="about-page">
-      {/* Hero Section */}
-      <section className="about-hero">
-        <div className="about-hero-bg">
-          <div className="floating-code code-1">{"<code>"}</div>
-          <div className="floating-code code-2">{"{ }"}</div>
-          <div className="floating-code code-3">{"</div>"}</div>
-          <div className="floating-code code-4">{"const"}</div>
-          <div className="floating-code code-5">{"return"}</div>
+      {/* HERO SECTION */}
+      <section className={styles.aboutHero}>
+        <div className={styles.heroBg}>
+          <div className={`${styles.floatingCode} ${styles.code1}`}>{'{ }'}</div>
+          <div className={`${styles.floatingCode} ${styles.code2}`}>{'</code>'}</div>
+          <div className={`${styles.floatingCode} ${styles.code3}`}>{'<div>'}</div>
+          <div className={`${styles.floatingCode} ${styles.code4}`}>{'const'}</div>
+           <div className={`${styles.floatingCode} ${styles.code5}`}>{'return'}</div>
         </div>
-        <div className="container">
-          <div className="about-hero-content">
-            <div className="about-hero-text fade-in">
-              <span className="hero-badge">Fullstack Developer</span>
-              <h1>Mutuku Joshua</h1>
-              <p className="about-hero-subtitle">
+
+        <div className={styles.aboutHeroContent}>
+          <div className={styles.aboutHeroText}>
+            <AnimatedSection>
+              <span className={styles.heroBadge}>Fullstack Developer & Entrepreneur</span>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.1}>
+              <h1 className={styles.aboutHeroName}>Mutuku Joshua</h1>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.2}>
+              <p className={styles.aboutHeroSubtitle}>
                 Founder of Lumyn Technologies
               </p>
-              <p className="about-hero-description">
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.3}>
+              <p className={styles.aboutHeroDescription}>
                 {profile?.bio ||
                   `Passionate fullstack developer committed to building scalable web applications
                   and digital solutions with clean, efficient code and modern technologies.`}
               </p>
-              <div className="hero-cta-group">
-                <Link href="/contact" className="cta-button">
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.4}>
+              <div className={styles.heroCtaGroup}>
+                <PremiumButton href="/contact" size="lg">
                   Let's Work Together
-                </Link>
-                <Link href="/projects" className="btn btn-secondary">
+                </PremiumButton>
+                <PremiumButton href="/projects" variant="secondary" size="lg">
                   View Projects
-                </Link>
+                </PremiumButton>
               </div>
-            </div>
-            <div className="about-hero-image fade-in">
-              <div className="profile-image-wrapper">
-                <div className="profile-glow"></div>
-                <div style={{ position: "relative", zIndex: "1", borderRadius: "50%", overflow: "hidden" }}>
+            </AnimatedSection>
+          </div>
+
+          <AnimatedSection delay={0.3}>
+            <div className={styles.aboutHeroImage}>
+              <div className={styles.profileImageWrapper}>
+                <div className={styles.profileGlow} />
+                <div style={{ position: "relative", zIndex: "1", borderRadius: "50%", overflow: "hidden", width: "100%", height: "100%" }}>
                   <Image
                     src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif"
-                    alt="Coding Animation"
-                    width={400}
-                    height={400}
-                    className="hero-profile-image"
+                    alt="Mutuku Joshua - Coding Animation"
+                    fill
+                    className={styles.heroProfileImage}
                     priority
-                    style={{ maxWidth: "100%", height: "auto" }}
                   />
                 </div>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Lumyn Technologies Section */}
-      <section className="about-lumyn section" style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)", color: "white" }}>
-        <div className="container">
-          <div style={{ textAlign: "center", maxWidth: "900px", margin: "0 auto" }}>
-            <div style={{
-              display: "inline-block",
-              background: "rgba(255,255,255,0.1)",
-              padding: "0.75rem 1.5rem",
-              borderRadius: "50px",
-              marginBottom: "1.5rem"
-            }}>
-              <span style={{ fontSize: "1.2rem", fontWeight: "600" }}>🏢 Lumyn Technologies</span>
-            </div>
+      {/* LUMYN TECHNOLOGIES SECTION */}
+      <section className={styles.lumynSection}>
+        <div className={styles.lumynContent}>
+          <AnimatedSection>
+            <div className={styles.lumynBadge}>🏢 Lumyn Technologies</div>
+          </AnimatedSection>
 
-            <h2 style={{ fontSize: "2rem", marginBottom: "1rem", color: "white" }}>
-              Building the Future of Digital Innovation
-            </h2>
+          <AnimatedSection delay={0.1}>
+            <h2>Building the Future of Digital Innovation</h2>
+          </AnimatedSection>
 
-            <p style={{ fontSize: "1.1rem", lineHeight: "1.8", opacity: "0.9", marginBottom: "1.5rem" }}>
+          <AnimatedSection delay={0.2}>
+            <p>
               Lumyn is a forward-thinking tech company that designs and develops modern, high-performance digital experiences.
               We blend creativity, strategy, and engineering to help brands shine online — from sleek websites to intelligent web applications.
             </p>
+          </AnimatedSection>
 
-            <Link
+          <AnimatedSection delay={0.3}>
+            <PremiumButton
               href="https://lumyn-tech.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="cta-button"
-              style={{ background: "white", color: "var(--primary-color)", fontWeight: "600" }}
+              size="lg"
             >
               Visit Lumyn Website →
-            </Link>
+            </PremiumButton>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* MISSION & VISION */}
+      <section className={styles.introSection}>
+        <div className="container">
+          <AnimatedSection>
+            <div className={styles.introContent}>
+              <span className={styles.sectionBadge}>Mission & Vision</span>
+              <h2>Our Purpose</h2>
+            </div>
+          </AnimatedSection>
+
+          <div className={styles.introGrid}>
+            <AnimatedSection delay={0.1}>
+              <div className={styles.missionCard}>
+                <div className={styles.missionIcon}>🎯</div>
+                <h3>Our Mission</h3>
+                <p>To empower businesses and individuals with elegant, efficient, and scalable digital solutions.</p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.2}>
+              <div className={styles.missionCard}>
+                <div className={styles.missionIcon}>🔭</div>
+                <h3>Our Vision</h3>
+                <p>To become a trusted digital partner for startups and enterprises seeking innovation and impact.</p>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="about-intro section">
+      {/* INTRODUCTION */}
+      <section className={styles.introSection}>
         <div className="container">
-          <div className="intro-content">
-            <span className="section-badge">Mission & Vision</span>
-            <h2>Our Purpose</h2>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "2rem",
-              marginTop: "2rem"
-            }}>
-              <div style={{
-                padding: "2rem",
-                borderRadius: "12px",
-                background: "#f7fafc",
-                border: "1px solid #e2e8f0",
-                textAlign: "center"
-              }}>
-                <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>🎯</div>
-                <h3 style={{ fontSize: "1.3rem", marginBottom: "0.75rem", color: "var(--primary-color)" }}>Our Mission</h3>
-                <p style={{ fontSize: "1rem", lineHeight: "1.7", color: "#4a5568" }}>
-                  To empower businesses and individuals with elegant, efficient, and scalable digital solutions.
+          <AnimatedSection>
+            <div className={styles.introContent}>
+              <span className={styles.sectionBadge}>Introduction</span>
+              <h2>Fullstack Developer & Technology Enthusiast</h2>
+              <div className={styles.introText}>
+                <p>
+                  Mutuku Joshua is a skilled Fullstack Developer and tech entrepreneur. As the founder of Lumyn Technologies,
+                  he is dedicated to building scalable web applications and digital solutions with clean, efficient code and modern technologies.
+                </p>
+                <p>
+                  With a comprehensive understanding of the MERN stack, Python, and cloud technologies,
+                  Mutuku Joshua has successfully delivered projects ranging from dynamic web applications
+                  to RESTful APIs and database solutions, always prioritizing performance and user experience.
                 </p>
               </div>
-              <div style={{
-                padding: "2rem",
-                borderRadius: "12px",
-                background: "#f7fafc",
-                border: "1px solid #e2e8f0",
-                textAlign: "center"
-              }}>
-                <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>🔭</div>
-                <h3 style={{ fontSize: "1.3rem", marginBottom: "0.75rem", color: "var(--primary-color)" }}>Our Vision</h3>
-                <p style={{ fontSize: "1rem", lineHeight: "1.7", color: "#4a5568" }}>
-                  To become a trusted digital partner for startups and enterprises seeking innovation and impact.
-                </p>
-              </div>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Introduction Section */}
-      <section className="about-intro section">
+      {/* EDUCATION & EXPERIENCE */}
+      <section className={styles.credentialsSection}>
         <div className="container">
-          <div className="intro-content">
-            <span className="section-badge">Introduction</span>
-            <h2>Fullstack Developer & Technology Enthusiast</h2>
-            <div className="intro-text">
-              <p>
-                Mutuku Joshua is a skilled Fullstack Developer and tech entrepreneur. As the founder of Lumyn Technologies,
-                he is dedicated to building scalable web applications and digital solutions with clean, efficient code and modern technologies.
-              </p>
-              <p>
-                With a comprehensive understanding of the MERN stack, Python, and cloud technologies,
-                Mutuku Joshua has successfully delivered projects ranging from dynamic web applications
-                to RESTful APIs and database solutions, always prioritizing performance and user experience.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+          <AnimatedSection>
+            <span className={styles.sectionBadge}>Background</span>
+            <h2>Education & Technical Experience</h2>
+          </AnimatedSection>
 
-      {/* Education & Experience Section */}
-      <section className="about-credentials section">
-        <div className="container">
-          <span className="section-badge">Background</span>
-          <h2>Education & Technical Experience</h2>
-          <div className="credentials-grid">
-            <div className="credential-card">
-              <div className="credential-icon-wrapper">
-                <div className="credential-icon">🎓</div>
-              </div>
-              <h3>Education & Certifications</h3>
-              <div className="credential-list">
-                <div className="credential-item">
-                  <div className="credential-year">2024</div>
-                  <h4>Computer Science / Software Engineering</h4>
-                  <p>Zetech University</p>
+          <div className={styles.credentialsGrid}>
+            {/* Education */}
+            <AnimatedSection delay={0.1}>
+              <div className={styles.credentialCard}>
+                <div className={styles.credentialIconWrapper}>
+                  <div className={styles.credentialIcon}>🎓</div>
                 </div>
-                <div className="credential-item">
-                  <div className="credential-year">2024</div>
-                  <h4>Fullstack Development Certification</h4>
-                  <p>UNiAthena</p>
-                </div>
-                <div className="credential-item">
-                  <div className="credential-year">2024</div>
-                  <h4>Cloud Computing Certification</h4>
-                  <p>AWS</p>
-                </div>
-                <div className="credential-item">
-                  <div className="credential-year">2024</div>
-                  <h4>Web Development Bootcamp</h4>
-                  <p>Moringa School</p>
-                </div>
-                <div className="credential-item">
-                  <div className="credential-year">2024</div>
-                  <h4>AI for Software Engineering</h4>
-                  <p>Power Learn Project (PLP)</p>
+                <h3>Education & Certifications</h3>
+                <div className={styles.credentialList}>
+                  <div className={styles.credentialItem}>
+                    <div className={styles.credentialYear}>2024</div>
+                    <h4>Computer Science / Software Engineering</h4>
+                    <p>Zetech University</p>
+                  </div>
+                  <div className={styles.credentialItem}>
+                    <div className={styles.credentialYear}>2024</div>
+                    <h4>Fullstack Development Certification</h4>
+                    <p>UNiAthena</p>
+                  </div>
+                  <div className={styles.credentialItem}>
+                    <div className={styles.credentialYear}>2024</div>
+                    <h4>Cloud Computing Certification</h4>
+                    <p>AWS</p>
+                  </div>
+                  <div className={styles.credentialItem}>
+                    <div className={styles.credentialYear}>2024</div>
+                    <h4>Web Development Bootcamp</h4>
+                    <p>Moringa School</p>
+                  </div>
+                  <div className={styles.credentialItem}>
+                    <div className={styles.credentialYear}>2024</div>
+                    <h4>AI for Software Engineering</h4>
+                    <p>Power Learn Project (PLP)</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
 
-            <div className="credential-card">
-              <div className="credential-icon-wrapper">
-                <div className="credential-icon">💻</div>
-              </div>
-              <h3>Technical Skills & Experience</h3>
-              <div className="experience-timeline">
-                <div className="experience-item">
-                  <div className="experience-icon">⚛️</div>
-                  <div className="experience-content">
+            {/* Skills & Experience */}
+            <AnimatedSection delay={0.2}>
+              <div className={styles.credentialCard}>
+                <div className={styles.credentialIconWrapper}>
+                  <div className={styles.credentialIcon}>💻</div>
+                </div>
+                <h3>Technical Skills & Experience</h3>
+                <div className={styles.experienceTimeline}>
+                  <div className={styles.experienceItem}>
+                    <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>⚛️</div>
                     <h4>Frontend Development</h4>
-                    <p className="experience-company">React, Next.js, TypeScript, Tailwind CSS</p>
-                    <div className="experience-details">
-                      <span className="experience-tag">Responsive Design</span>
-                      <span className="experience-tag">State Management</span>
-                      <span className="experience-tag">SEO</span>
-                      <span className="experience-tag">Performance</span>
+                    <p className={styles.experienceCompany}>React, Next.js, TypeScript, Tailwind CSS</p>
+                    <div className={styles.experienceDetails}>
+                      <span className={styles.experienceTag}>Responsive Design</span>
+                      <span className={styles.experienceTag}>State Management</span>
+                      <span className={styles.experienceTag}>SEO</span>
+                      <span className={styles.experienceTag}>Performance</span>
                     </div>
                   </div>
-                </div>
-                <div className="experience-item">
-                  <div className="experience-icon">🟢</div>
-                  <div className="experience-content">
+                  <div className={styles.experienceItem}>
+                    <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>🟢</div>
                     <h4>Backend Development</h4>
-                    <p className="experience-company">Node.js, Express, Python, PostgreSQL, MongoDB</p>
-                    <div className="experience-details">
-                      <span className="experience-tag">RESTful APIs</span>
-                      <span className="experience-tag">Database Design</span>
-                      <span className="experience-tag">Authentication</span>
-                      <span className="experience-tag">Microservices</span>
+                    <p className={styles.experienceCompany}>Node.js, Express, Python, PostgreSQL, MongoDB</p>
+                    <div className={styles.experienceDetails}>
+                      <span className={styles.experienceTag}>RESTful APIs</span>
+                      <span className={styles.experienceTag}>Database Design</span>
+                      <span className={styles.experienceTag}>Authentication</span>
+                      <span className={styles.experienceTag}>Microservices</span>
                     </div>
                   </div>
-                </div>
-                <div className="experience-item">
-                  <div className="experience-icon">🛠️</div>
-                  <div className="experience-content">
+                  <div className={styles.experienceItem}>
+                    <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>🛠️</div>
                     <h4>DevOps & Tools</h4>
-                    <p className="experience-company">Git, Docker, CI/CD, AWS</p>
-                    <div className="experience-details">
-                      <span className="experience-tag">Version Control</span>
-                      <span className="experience-tag">Containerization</span>
-                      <span className="experience-tag">Cloud Deployment</span>
-                      <span className="experience-tag">Agile</span>
+                    <p className={styles.experienceCompany}>Git, Docker, CI/CD, AWS</p>
+                    <div className={styles.experienceDetails}>
+                      <span className={styles.experienceTag}>Version Control</span>
+                      <span className={styles.experienceTag}>Containerization</span>
+                      <span className={styles.experienceTag}>Cloud Deployment</span>
+                      <span className={styles.experienceTag}>Agile</span>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Tech Stack Section */}
-      <section className="about-expertise section">
+      {/* TECH STACK */}
+      <section className={styles.techStackSection}>
         <div className="container">
-          <span className="section-badge">Technologies</span>
-          <h2>Tech Stack</h2>
-          <div className="tech-stack-grid">
-            <div className="tech-category">
-              <div className="tech-category-header">
-                <span className="tech-icon">🎨</span>
-                <h3>Frontend</h3>
-              </div>
-              <div className="tech-items">
-                <div className="tech-item">
-                  <span className="tech-name">React</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "95%" }}></div></div>
+          <AnimatedSection>
+            <span className={styles.sectionBadge}>Technologies</span>
+            <h2 className={styles.sectionTitle}>Tech Stack</h2>
+          </AnimatedSection>
+
+          <div className={styles.techStackGrid}>
+            <AnimatedSection delay={0.1}>
+              <div className={styles.techCategory}>
+                <div className={styles.techCategoryHeader}>
+                  <span className={styles.techIcon}>🎨</span>
+                  <h3>Frontend</h3>
                 </div>
-                <div className="tech-item">
-                  <span className="tech-name">Next.js</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "90%" }}></div></div>
-                </div>
-                <div className="tech-item">
-                  <span className="tech-name">TypeScript</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "85%" }}></div></div>
-                </div>
-                <div className="tech-item">
-                  <span className="tech-name">Tailwind CSS</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "92%" }}></div></div>
-                </div>
-                <div className="tech-item">
-                  <span className="tech-name">HTML5/CSS3</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "98%" }}></div></div>
-                </div>
-              </div>
-            </div>
-            <div className="tech-category">
-              <div className="tech-category-header">
-                <span className="tech-icon">⚙️</span>
-                <h3>Backend</h3>
-              </div>
-              <div className="tech-items">
-                <div className="tech-item">
-                  <span className="tech-name">Node.js</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "90%" }}></div></div>
-                </div>
-                <div className="tech-item">
-                  <span className="tech-name">Express</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "88%" }}></div></div>
-                </div>
-                <div className="tech-item">
-                  <span className="tech-name">Python</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "82%" }}></div></div>
-                </div>
-                <div className="tech-item">
-                  <span className="tech-name">PostgreSQL</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "85%" }}></div></div>
-                </div>
-                <div className="tech-item">
-                  <span className="tech-name">MongoDB</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "87%" }}></div></div>
+                <div className={styles.techItems}>
+                  <div className={styles.techItem}>
+                    <span className={styles.techName}>React / Next.js</span>
+                    <div className={styles.techBar}><div className={styles.techProgress} style={{ width: "95%" }}></div></div>
+                  </div>
+                  <div className={styles.techItem}>
+                    <span className={styles.techName}>TypeScript</span>
+                    <div className={styles.techBar}><div className={styles.techProgress} style={{ width: "85%" }}></div></div>
+                  </div>
+                  <div className={styles.techItem}>
+                    <span className={styles.techName}>Tailwind CSS</span>
+                    <div className={styles.techBar}><div className={styles.techProgress} style={{ width: "92%" }}></div></div>
+                  </div>
+                  <div className={styles.techItem}>
+                    <span className={styles.techName}>HTML5 / CSS3</span>
+                    <div className={styles.techBar}><div className={styles.techProgress} style={{ width: "98%" }}></div></div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="tech-category">
-              <div className="tech-category-header">
-                <span className="tech-icon">☁️</span>
-                <h3>Cloud & DevOps</h3>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.2}>
+              <div className={styles.techCategory}>
+                <div className={styles.techCategoryHeader}>
+                  <span className={styles.techIcon}>⚙️</span>
+                  <h3>Backend</h3>
+                </div>
+                <div className={styles.techItems}>
+                  <div className={styles.techItem}>
+                    <span className={styles.techName}>Node.js / Express</span>
+                    <div className={styles.techBar}><div className={styles.techProgress} style={{ width: "90%" }}></div></div>
+                  </div>
+                  <div className={styles.techItem}>
+                    <span className={styles.techName}>Python</span>
+                    <div className={styles.techBar}><div className={styles.techProgress} style={{ width: "82%" }}></div></div>
+                  </div>
+                  <div className={styles.techItem}>
+                    <span className={styles.techName}>PostgreSQL</span>
+                    <div className={styles.techBar}><div className={styles.techProgress} style={{ width: "85%" }}></div></div>
+                  </div>
+                  <div className={styles.techItem}>
+                    <span className={styles.techName}>MongoDB</span>
+                    <div className={styles.techBar}><div className={styles.techProgress} style={{ width: "87%" }}></div></div>
+                  </div>
+                </div>
               </div>
-              <div className="tech-items">
-                <div className="tech-item">
-                  <span className="tech-name">AWS</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "78%" }}></div></div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.3}>
+              <div className={styles.techCategory}>
+                <div className={styles.techCategoryHeader}>
+                  <span className={styles.techIcon}>☁️</span>
+                  <h3>Cloud & DevOps</h3>
                 </div>
-                <div className="tech-item">
-                  <span className="tech-name">Docker</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "80%" }}></div></div>
-                </div>
-                <div className="tech-item">
-                  <span className="tech-name">Git/GitHub</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "95%" }}></div></div>
-                </div>
-                <div className="tech-item">
-                  <span className="tech-name">Prisma ORM</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "88%" }}></div></div>
-                </div>
-                <div className="tech-item">
-                  <span className="tech-name">CI/CD</span>
-                  <div className="tech-bar"><div className="tech-progress" style={{ width: "75%" }}></div></div>
+                <div className={styles.techItems}>
+                  <div className={styles.techItem}>
+                    <span className={styles.techName}>AWS</span>
+                    <div className={styles.techBar}><div className={styles.techProgress} style={{ width: "78%" }}></div></div>
+                  </div>
+                  <div className={styles.techItem}>
+                    <span className={styles.techName}>Docker</span>
+                    <div className={styles.techBar}><div className={styles.techProgress} style={{ width: "80%" }}></div></div>
+                  </div>
+                  <div className={styles.techItem}>
+                    <span className={styles.techName}>Git / GitHub</span>
+                    <div className={styles.techBar}><div className={styles.techProgress} style={{ width: "95%" }}></div></div>
+                  </div>
+                  <div className={styles.techItem}>
+                    <span className={styles.techName}>Prisma ORM</span>
+                    <div className={styles.techBar}><div className={styles.techProgress} style={{ width: "88%" }}></div></div>
+                  </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="about-memberships section">
+      {/* SERVICES */}
+      <section className={styles.introSection}>
         <div className="container">
-          <span className="section-badge">Services</span>
-          <h2>What I Do</h2>
-          <div className="services-grid">
-            <div className="service-card">
-              <div className="service-icon-wrapper">
-                <div className="service-icon">🌐</div>
-              </div>
-              <h3>Web Development</h3>
-              <p>Building custom web applications with modern frameworks and best practices</p>
-              <ul className="service-list">
-                <li>Custom web applications</li>
-                <li>E-commerce platforms</li>
-                <li>SaaS applications</li>
-                <li>Portfolio websites</li>
-                <li>Landing pages</li>
-              </ul>
+          <AnimatedSection>
+            <div className={styles.introContent}>
+              <span className={styles.sectionBadge}>Services</span>
+              <h2>What I Do</h2>
             </div>
-            <div className="service-card">
-              <div className="service-icon-wrapper">
-                <div className="service-icon">📱</div>
-              </div>
-              <h3>Mobile Development</h3>
-              <p>Creating cross-platform mobile applications that delight users</p>
-              <ul className="service-list">
-                <li>React Native apps</li>
-                <li>Cross-platform solutions</li>
-                <li>Responsive designs</li>
-                <li>App maintenance</li>
-                <li>App store optimization</li>
-              </ul>
-            </div>
-            <div className="service-card">
-              <div className="service-icon-wrapper">
-                <div className="service-icon">🔌</div>
-              </div>
-              <h3>API Development</h3>
-              <p>Designing and building robust APIs for seamless integrations</p>
-              <ul className="service-list">
-                <li>RESTful APIs</li>
-                <li>GraphQL APIs</li>
-                <li>Third-party integrations</li>
-                <li>API documentation</li>
-                <li>Authentication systems</li>
-              </ul>
-            </div>
-            <div className="service-card">
-              <div className="service-icon-wrapper">
-                <div className="service-icon">🗄️</div>
-              </div>
-              <h3>Database Solutions</h3>
-              <p>Designing efficient database architectures for scalability</p>
-              <ul className="service-list">
-                <li>Database design</li>
-                <li>Query optimization</li>
-                <li>Data migration</li>
-                <li>Backup strategies</li>
-                <li>Performance tuning</li>
-              </ul>
-            </div>
+          </AnimatedSection>
+
+          <div className={styles.servicesGrid}>
+            {[
+              {
+                icon: '🌐',
+                title: 'Web Development',
+                desc: 'Building custom web applications with modern frameworks and best practices',
+                items: ['Custom web applications', 'E-commerce platforms', 'SaaS applications', 'Portfolio websites', 'Landing pages'],
+              },
+              {
+                icon: '📱',
+                title: 'Mobile Development',
+                desc: 'Creating cross-platform mobile applications that delight users',
+                items: ['React Native apps', 'Cross-platform solutions', 'Responsive designs', 'App maintenance', 'App store optimization'],
+              },
+              {
+                icon: '🔌',
+                title: 'API Development',
+                desc: 'Designing and building robust APIs for seamless integrations',
+                items: ['RESTful APIs', 'GraphQL APIs', 'Third-party integrations', 'API documentation', 'Authentication systems'],
+              },
+              {
+                icon: '🗄️',
+                title: 'Database Solutions',
+                desc: 'Designing efficient database architectures for scalability',
+                items: ['Database design', 'Query optimization', 'Data migration', 'Backup strategies', 'Performance tuning'],
+              },
+            ].map((service, i) => (
+              <AnimatedSection key={service.title} delay={i * 0.1}>
+                <div className={styles.serviceCard}>
+                  <div className={styles.serviceIcon}>{service.icon}</div>
+                  <h3>{service.title}</h3>
+                  <p>{service.desc}</p>
+                  <ul className={styles.serviceList}>
+                    {service.items.map(item => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Team/Collaborations Section */}
+      {/* TEAM */}
       {teamMembers.length > 0 && (
-        <section className="about-team section">
+        <section className={styles.teamSection}>
           <div className="container">
-            <span className="section-badge">Collaborations</span>
-            <h2>Working With Amazing People</h2>
-            <p className="section-subtitle">Great projects come from great collaborations</p>
+            <AnimatedSection>
+              <div className={styles.introContent}>
+                <span className={styles.sectionBadge}>Collaborations</span>
+                <h2>Working With Amazing People</h2>
+                <p className={styles.sectionSubtitle}>Great projects come from great collaborations</p>
+              </div>
+            </AnimatedSection>
 
-            <div className="team-grid">
+            <div className={styles.teamGrid}>
               {teamMembers.map((member: TeamMemberType) => (
-                <div key={member.id} className="team-member-card">
-                  <div className="team-member-image">
-                    <Image
-                      src={member.image || "/placeholder.svg?height=100&width=100"}
-                      alt={member.name}
-                      width={100}
-                      height={100}
-                      className="member-photo"
-                    />
-                  </div>
-                  <div className="team-member-info">
-                    <h3>{member.name}</h3>
-                    <p className="member-title">{member.title}</p>
-                    <p className="member-bio">{member.bio}</p>
-                    <div className="member-social">
-                      <a href="https://www.linkedin.com/in/joshua-mwendwa-b183b5287/" target="_blank" rel="noopener noreferrer" className="social-link">💼</a>
-                      <a href="https://github.com/hit-sharq" target="_blank" rel="noopener noreferrer" className="social-link">🐙</a>
-                      <a href="mailto:officialjoshuamwendwa@gmail.com" className="social-link">📧</a>
+                <AnimatedSection key={member.id} delay={0.1}>
+                  <div className={styles.teamMemberCard}>
+                    <div className={styles.teamMemberImage}>
+                      <Image
+                        src={member.image || "/placeholder.svg?height=100&width=100"}
+                        alt={member.name}
+                        width={100}
+                        height={100}
+                        className={styles.memberPhoto}
+                      />
+                    </div>
+                    <div className={styles.teamMemberInfo}>
+                      <h3>{member.name}</h3>
+                      <p className={styles.memberTitle}>{member.title}</p>
+                      <p className={styles.memberBio}>{member.bio}</p>
+                      <div className={styles.memberSocial}>
+                        <a href="https://www.linkedin.com/in/joshua-mwendwa-b183b5287/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>💼</a>
+                        <a href="https://github.com/hit-sharq" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>🐙</a>
+                        <a href="mailto:officialjoshuamwendwa@gmail.com" className={styles.socialLink}>📧</a>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </AnimatedSection>
               ))}
             </div>
           </div>
         </section>
       )}
 
-      {/* Call to Action Section */}
-      <section className="about-cta">
-        <div className="cta-bg-pattern"></div>
+      {/* CTA SECTION */}
+      <section className={styles.ctaSection}>
         <div className="container">
-          <div className="cta-content">
-            <span className="cta-badge">Get In Touch</span>
-            <h2>Let's Build Something Amazing</h2>
-            <p>
-              Have a project in mind? Let's collaborate and turn your ideas into reality.
-              Contact me today to discuss your project needs.
-            </p>
-            <div className="cta-buttons">
-              <a href="/contact" className="cta-button">
-                Start a Project
-              </a>
-              <a href="/projects" className="btn btn-secondary cta-secondary">
-                View My Work
-              </a>
+          <AnimatedSection>
+            <div className={styles.ctaContent}>
+              <span className={styles.ctaBadge}>Get In Touch</span>
+              <h2 className={styles.ctaTitle}>Let's Build Something Amazing</h2>
+              <p className={styles.ctaText}>
+                Have a project in mind? Let's collaborate and turn your ideas into reality.
+                Contact me today to discuss your project needs.
+              </p>
+              <div className={styles.ctaButtons}>
+                <PremiumButton href="/contact" size="lg">
+                  Start a Project
+                </PremiumButton>
+                <PremiumButton href="/projects" variant="secondary" size="lg">
+                  View My Work
+                </PremiumButton>
+              </div>
+
+              <div className={styles.ctaContact}>
+                <a href="mailto:officialjoshuamwendwa@gmail.com" className={styles.ctaContactLink}>
+                  <span>📧</span> officialjoshuamwendwa@gmail.com
+                </a>
+                <a href="tel:+254794773452" className={styles.ctaContactLink}>
+                  <span>📞</span> +254 794 773 452
+                </a>
+              </div>
+
+              <div className={styles.ctaSocial}>
+                <a
+                  href="https://github.com/hit-sharq"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="GitHub"
+                  className={styles.ctaSocialLink}
+                >
+                  🐙
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/joshua-mwendwa-b183b5287/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="LinkedIn"
+                  className={styles.ctaSocialLink}
+                >
+                  💼
+                </a>
+                <a
+                  href="https://www.instagram.com/j_lee087"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Instagram"
+                  className={styles.ctaSocialLink}
+                >
+                  📷
+                </a>
+                <a
+                  href="https://wa.me/+25492687584"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="WhatsApp"
+                  className={styles.ctaSocialLink}
+                >
+                  💬
+                </a>
+              </div>
             </div>
-            <div className="cta-contact">
-              <a href="mailto:officialjoshuamwendwa@gmail.com" className="cta-contact-link">
-                <span>📧</span> officialjoshuamwendwa@gmail.com
-              </a>
-              <a href="tel:+254794773452" className="cta-contact-link">
-                <span>📞</span> +254 794 773 452
-              </a>
-            </div>
-            <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", marginTop: "1.5rem" }}>
-              <a
-                href="https://github.com/hit-sharq"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="GitHub"
-                style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", background: "rgba(255,255,255,0.15)", borderRadius: "8px", transition: "all 0.2s ease" }}
-              >
-                <img src="https://skillicons.dev/icons?i=github" alt="GitHub" style={{ width: "24px", height: "24px" }} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/joshua-mwendwa-b183b5287/"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="LinkedIn"
-                style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", background: "rgba(255,255,255,0.15)", borderRadius: "8px", transition: "all 0.2s ease" }}
-              >
-                <img src="https://skillicons.dev/icons?i=linkedin" alt="LinkedIn" style={{ width: "24px", height: "24px" }} />
-              </a>
-              <a
-                href="https://www.instagram.com/j_lee087"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Instagram"
-                style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", background: "rgba(255,255,255,0.15)", borderRadius: "8px", transition: "all 0.2s ease" }}
-              >
-                <img src="https://skillicons.dev/icons?i=instagram" alt="Instagram" style={{ width: "24px", height: "24px" }} />
-              </a>
-              <a
-                href="https://wa.me/+25492687584"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="WhatsApp"
-                style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", background: "rgba(255,255,255,0.15)", borderRadius: "8px", transition: "all 0.2s ease" }}
-              >
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style={{ width: "24px", height: "24px" }} />
-              </a>
-            </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
     </div>
   )
 }
-

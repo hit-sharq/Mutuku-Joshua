@@ -1,0 +1,430 @@
+/* Projects Page Styles - Lumyn Premium Design System */
+
+/* Container utility */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+/* ============================================
+   HERO SECTION
+============================================ */
+.hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px 80px;
+  overflow: hidden;
+  background: var(--background);
+  text-align: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(109, 129, 150, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 227, 0.04) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.hero .sectionTitle {
+  margin-bottom: 24px;
+}
+
+.hero .sectionSubtitle {
+  font-size: 1.125rem;
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+/* ============================================
+   PROJECTS GRID
+============================================ */
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+@media (max-width: 768px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px 0;
+  }
+}
+
+/* Card styles now handled by ProjectCard component's CSS modules */
+
+@media (max-width: 768px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px 0;
+  }
+}
+
+.projectCard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.projectCard:hover {
+  transform: translateY(-10px);
+  border-color: rgba(109, 129, 150, 0.3);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 0 40px rgba(109, 129, 150, 0.08) inset;
+}
+
+.projectImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.projectImage {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.projectCard:hover .projectImage {
+  transform: scale(1.08);
+}
+
+.projectContent {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.projectTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: var(--foreground);
+  line-height: 1.3;
+}
+
+.projectDescription {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+  margin: 0 0 20px 0;
+  flex: 1;
+}
+
+.projectTech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.techBadge {
+  padding: 6px 14px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  transition: all 0.2s ease;
+}
+
+.projectCard:hover .techBadge {
+  border-color: rgba(109, 129, 150, 0.3);
+  color: var(--primary);
+}
+
+.projectLinks {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.projectLink {
+  flex: 1;
+  text-align: center;
+}
+
+/* ============================================
+   TECH STACK SECTION
+============================================ */
+.techStackSection {
+  padding: 120px 24px;
+  background: var(--background);
+  border-top: 1px solid var(--border);
+}
+
+.techStackSection .sectionSubtitle {
+  font-size: 1.125rem;
+  max-width: 800px;
+}
+
+.techGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.techItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  transition: all 0.3s ease;
+}
+
+.techItem:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(109, 129, 150, 0.15);
+}
+
+.techIcon {
+  font-size: 1.25rem;
+}
+
+/* ============================================
+   GITHUB SECTION
+============================================ */
+.githubSection {
+  padding: 120px 24px;
+  background: var(--background);
+}
+
+.githubCard {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+.githubCard:hover {
+  transform: translateY(-8px);
+  border-color: rgba(109, 129, 150, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.githubIcon {
+  font-size: 4rem;
+  margin-bottom: 24px;
+  display: block;
+}
+
+.githubCard h2 {
+  margin: 0 0 16px 0;
+  color: var(--foreground);
+}
+
+.githubCard p {
+  color: var(--muted-foreground);
+  margin: 0 0 32px 0;
+  font-size: 1.125rem;
+}
+
+/* ============================================
+   CTA SECTION
+============================================ */
+.ctaSection {
+  padding: 120px 24px;
+  text-align: center;
+  background: linear-gradient(135deg, #0ea5e9 0%, #6d8196 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 227, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 227, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin: 0 0 16px 0;
+  color: white;
+}
+
+.ctaText {
+  font-size: 1.25rem;
+  margin: 0 0 40px 0;
+  opacity: 0.95;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ctaButton {
+  background: white;
+  color: #0ea5e9;
+  font-weight: 700;
+  padding: 16px 32px;
+  border-radius: calc(var(--radius) * 1.1);
+}
+
+.ctaButton:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   EMPTY / ERROR STATES
+============================================ */
+.emptyState,
+.errorState {
+  text-align: center;
+  padding: 80px 24px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.emptyStateIcon,
+.errorStateIcon {
+  font-size: 4rem;
+  margin-bottom: 24px;
+  display: block;
+}
+
+.emptyState h3,
+.errorState h3 {
+  font-size: 1.75rem;
+  margin: 0 0 16px 0;
+  color: var(--foreground);
+}
+
+.emptyState p,
+.errorState p {
+  color: var(--muted-foreground);
+  margin: 0 0 32px 0;
+  font-size: 1.0625rem;
+}
+
+.errorCard {
+  padding: 40px;
+  background: rgba(220, 38, 38, 0.1);
+  border: 2px solid rgba(220, 38, 38, 0.3);
+  border-radius: 16px;
+  margin: 40px 0;
+}
+
+.errorCard h3 {
+  color: #dc2626;
+  margin-bottom: 16px;
+}
+
+.errorCard p {
+  margin-bottom: 24px;
+}
+
+.errorCard .buttonGroup {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 20px 60px;
+    min-height: 50vh;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .projectContent {
+    padding: 24px;
+  }
+
+  .projectTitle {
+    font-size: 1.25rem;
+  }
+
+  .githubCard {
+    padding: 40px 24px;
+  }
+
+  .ctaTitle {
+    font-size: 2rem;
+  }
+
+  .ctaText {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projectsGrid {
+    gap: 20px;
+  }
+
+  .projectLinks {
+    flex-direction: column;
+  }
+
+  .techItem {
+    padding: 10px 20px;
+    font-size: 0.9375rem;
+  }
+}

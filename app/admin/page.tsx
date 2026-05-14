@@ -1,5 +1,11 @@
 import Link from "next/link"
 import { prisma } from "@/lib/prisma"
+import AdminPage from "@/components/admin/AdminPage"
+import AdminPageHeader from "@/components/admin/AdminPageHeader"
+import AdminStatCard from "@/components/admin/AdminStatCard"
+import AdminStatsGrid from "@/components/admin/AdminStatsGrid"
+import AdminCard from "@/components/admin/AdminCard"
+import AdminButton from "@/components/admin/AdminButton"
 
 async function getAdminStats() {
   const stats = {
@@ -40,125 +46,142 @@ async function getAdminStats() {
 export default async function AdminDashboard() {
   const stats = await getAdminStats()
 
+  const quickActions = [
+    { href: "/admin/blog/new", label: "Create Blog Post", icon: "📝", variant: "primary" as const },
+    { href: "/admin/news/new", label: "Add News Item", icon: "📰", variant: "primary" as const },
+    { href: "/admin/team/new", label: "Add Team Member", icon: "👥", variant: "primary" as const },
+    { href: "/admin/gallery/new", label: "Upload Image", icon: "🖼️", variant: "primary" as const },
+    { href: "/admin/services/new", label: "Add Service", icon: "💻", variant: "primary" as const },
+    { href: "/admin/testimonials/new", label: "Add Testimonial", icon: "💬", variant: "primary" as const },
+    { href: "/admin/contact-requests", label: "Contact Requests", icon: "📧", variant: "secondary" as const },
+    { href: "/admin/profile", label: "Settings", icon: "⚙️", variant: "secondary" as const },
+  ]
+
   return (
-    <div className="admin-main">
-      <div className="admin-header">
-        <h1>Admin Dashboard</h1>
-        <Link href="/" className="back-to-website">
-          🌐 Back to Website
-        </Link>
-      </div>
+    <AdminPage>
+      <AdminPageHeader
+        title="Dashboard"
+        description="Welcome to your admin dashboard. Manage all aspects of your website from here."
+      />
 
-      <div className="admin-stats">
-        <div className="stat-card">
-          <div className="stat-number">{stats.blogCount}</div>
-          <div className="stat-label">Blog Posts</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-number">{stats.newsCount}</div>
-          <div className="stat-label">News Items</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-number">{stats.teamCount}</div>
-          <div className="stat-label">Team Members</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-number">{stats.galleryCount}</div>
-          <div className="stat-label">Gallery Images</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-number">{stats.practiceAreaCount}</div>
-          <div className="stat-label">Services</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-number">{stats.contactCount}</div>
-          <div className="stat-label">Contact Requests</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-number">{stats.testimonialCount}</div>
-          <div className="stat-label">Testimonials</div>
-        </div>
-      </div>
+      <AdminStatsGrid>
+        <AdminStatCard
+          number={stats.blogCount}
+          label="Blog Posts"
+          icon="📝"
+        />
+        <AdminStatCard
+          number={stats.newsCount}
+          label="News Items"
+          icon="📰"
+        />
+        <AdminStatCard
+          number={stats.teamCount}
+          label="Team Members"
+          icon="👥"
+        />
+        <AdminStatCard
+          number={stats.galleryCount}
+          label="Gallery Images"
+          icon="🖼️"
+        />
+        <AdminStatCard
+          number={stats.practiceAreaCount}
+          label="Services"
+          icon="💻"
+        />
+        <AdminStatCard
+          number={stats.contactCount}
+          label="Contact Requests"
+          icon="📧"
+        />
+        <AdminStatCard
+          number={stats.testimonialCount}
+          label="Testimonials"
+          icon="💬"
+        />
+      </AdminStatsGrid>
 
-      <div className="admin-card">
-        <h2>Quick Actions</h2>
-        <div className="grid grid-3" style={{ marginTop: "2rem" }}>
-          <Link href="/admin/blog/new" className="btn btn-primary" style={{ textAlign: "center", padding: "1.5rem" }}>
-            📝 Create New Blog Post
-          </Link>
-          <Link href="/admin/news/new" className="btn btn-primary" style={{ textAlign: "center", padding: "1.5rem" }}>
-            📰 Add News Item
-          </Link>
-          <Link href="/admin/team/new" className="btn btn-primary" style={{ textAlign: "center", padding: "1.5rem" }}>
-            👥 Add Team Member
-          </Link>
-          <Link
-            href="/admin/gallery/new"
-            className="btn btn-primary"
-            style={{ textAlign: "center", padding: "1.5rem" }}
-          >
-            🖼️ Upload Gallery Image
-          </Link>
-          <Link
-            href="/admin/services/new"
-            className="btn btn-primary"
-            style={{ textAlign: "center", padding: "1.5rem" }}
-          >
-            💻 Add Service
-          </Link>
-          <Link
-            href="/admin/contact-requests"
-            className="btn btn-secondary"
-            style={{ textAlign: "center", padding: "1.5rem" }}
-          >
-            📧 View Contact Requests
-          </Link>
-          <Link href="/admin/profile" className="btn btn-secondary" style={{ textAlign: "center", padding: "1.5rem" }}>
-            ⚙️ Profile Settings
-          </Link>
-          <Link
-            href="/admin/testimonials/new"
-            className="btn btn-primary"
-            style={{ textAlign: "center", padding: "1.5rem" }}
-          >
-            💬 Add Testimonial
-          </Link>
+      <AdminCard title="Quick Actions">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+            gap: "1rem",
+          }}
+        >
+          {quickActions.map((action) => (
+            <AdminButton
+              key={action.href}
+              href={action.href}
+              variant={action.variant}
+              size="lg"
+              style={{ textAlign: "center", padding: "1.25rem" }}
+            >
+              <span style={{ fontSize: "1.25rem", marginRight: "0.5rem" }}>
+                {action.icon}
+              </span>
+              {action.label}
+            </AdminButton>
+          ))}
         </div>
-      </div>
+      </AdminCard>
 
-      <div className="admin-card">
-        <h2>Recent Activity</h2>
-        <p style={{ color: "#666", marginBottom: "2rem" }}>
-          Welcome to your admin dashboard. From here you can manage all aspects of your website including blog
-          posts, team members, gallery images, services, and more.
-        </p>
-
-        <div style={{ background: "#f8fafc", padding: "2rem", borderRadius: "12px", border: "1px solid #e2e8f0" }}>
-          <h3 style={{ color: "#1a365d", marginBottom: "1rem" }}>Getting Started</h3>
-          <ul style={{ listStyle: "none", padding: 0 }}>
-            <li style={{ marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span style={{ color: "#d4af37" }}>✓</span>
-              <span>Add your services to showcase your technical expertise</span>
-            </li>
-            <li style={{ marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span style={{ color: "#d4af37" }}>✓</span>
-              <span>Upload team member profiles and photos</span>
-            </li>
-            <li style={{ marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span style={{ color: "#d4af37" }}>✓</span>
-              <span>Create engaging blog posts to share knowledge</span>
-            </li>
-            <li style={{ marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span style={{ color: "#d4af37" }}>✓</span>
-              <span>Add gallery images to showcase projects</span>
-            </li>
-            <li style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span style={{ color: "#d4af37" }}>✓</span>
-              <span>Monitor and respond to contact requests</span>
-            </li>
+      <AdminCard title="Getting Started">
+        <div
+          style={{
+            background: "rgba(109, 129, 150, 0.05)",
+            padding: "1.5rem",
+            borderRadius: "12px",
+            border: "1px solid var(--admin-border-color)",
+          }}
+        >
+          <h3 style={{ color: "var(--primary)", marginBottom: "1rem" }}>
+            Welcome to your admin panel
+          </h3>
+          <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            {[
+              "Add your services to showcase your technical expertise",
+              "Upload team member profiles and photos",
+              "Create engaging blog posts to share knowledge",
+              "Add gallery images to showcase projects",
+              "Monitor and respond to contact requests",
+              "Customize your profile settings",
+            ].map((item, index) => (
+              <li
+                key={index}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                  padding: "0.5rem 0",
+                  borderBottom: index < 5 ? "1px solid var(--admin-border-color)" : "none",
+                }}
+              >
+                <span
+                  style={{
+                    width: "24px",
+                    height: "24px",
+                    borderRadius: "50%",
+                    background: "var(--admin-success-bg)",
+                    color: "var(--admin-success)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "0.75rem",
+                    flexShrink: 0,
+                  }}
+                >
+                  ✓
+                </span>
+                <span style={{ color: "var(--admin-text-secondary)" }}>
+                  {item}
+                </span>
+              </li>
+            ))}
           </ul>
         </div>
-      </div>
-    </div>
+      </AdminCard>
+    </AdminPage>
   )
 }

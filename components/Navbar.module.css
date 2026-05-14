@@ -1,0 +1,173 @@
+/* Navbar Styles - Lumyn Premium Design System */
+/* Note: globals.css is already imported at app level, providing CSS variables */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.header.scrolled {
+  background: rgba(10, 10, 10, 0.95);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  height: 80px;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    height: 70px;
+    gap: 1rem;
+  }
+}
+
+.logo {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--foreground);
+  text-decoration: none;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    gap: 0;
+  }
+
+  .navLinks.mobileOpen {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .navLinks li {
+    width: 100%;
+  }
+
+  .navLinks a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+  }
+
+  .navLinks li:last-child a {
+    border-bottom: none;
+  }
+}
+
+.navLinks a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: var(--muted-foreground);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.navLinks a:hover {
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.adminLink {
+  background: var(--gradient-primary) !important;
+  color: var(--primary-foreground) !important;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(109, 129, 150, 0.3);
+}
+
+.adminLink:hover {
+  background: linear-gradient(135deg, #7a92a8 0%, #6d8196 100%) !important;
+  color: var(--primary-foreground) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(109, 129, 150, 0.4);
+}
+
+.mobileMenuBtn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--foreground);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+.mobileMenuBtn:hover {
+  background: var(--secondary);
+}
+
+@media (max-width: 768px) {
+  .mobileMenuBtn {
+    display: block;
+  }
+}
+
+/* Clerk UserButton styling adjustments */
+.clerk-user-button {
+  color: var(--foreground) !important;
+}
+
+/* Search bar container */
+.searchBarContainer {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .searchBarContainer {
+    display: none;
+  }
+}

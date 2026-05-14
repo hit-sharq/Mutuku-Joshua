@@ -1,9 +1,12 @@
-import Image from "next/image"
-import Link from "next/link"
-import { prisma } from "@/lib/prisma"
-import BlogCard from "@/components/BlogCard"
+'use client'
 
-type BlogPostType = {
+import { useEffect, useState } from 'react'
+import AnimatedSection from '@/components/AnimatedSection'
+import BlogCard from '@/components/BlogCard'
+import PremiumButton from '@/components/PremiumButton'
+import styles from './blog.module.css'
+
+type BlogPost = {
   id: string
   title: string
   slug: string
@@ -15,57 +18,124 @@ type BlogPostType = {
   updatedAt: Date
 }
 
-async function getBlogPosts(): Promise<BlogPostType[]> {
-  return await prisma.blogPost.findMany({
-    where: { published: true },
-    orderBy: { createdAt: "desc" },
-  })
-}
+const POSTS_PER_PAGE = 6
 
-export const dynamic = "force-dynamic"
+export default function BlogPage() {
+  const [posts, setPosts] = useState<BlogPost[]>([])
+  const [loading, setLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1)
 
-export default async function BlogPage() {
-  const posts = await getBlogPosts()
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const res = await fetch('/api/blog?limit=100')
+        const data = await res.json()
+        if (data.posts) {
+          setPosts(data.posts)
+        }
+      } catch (error) {
+        console.error('Error fetching blog posts:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchPosts()
+  }, [])
+
+  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE)
+  const startIndex = (currentPage - 1) * POSTS_PER_PAGE
+  const currentPosts = posts.slice(startIndex, startIndex + POSTS_PER_PAGE)
+
+  if (loading) {
+    return (
+      <div className={styles.loading}>
+        <div className={styles.loadingSpinner} />
+        <p>Loading blog posts...</p>
+      </div>
+    )
+  }
 
   return (
-    <div className="section">
-      <div className="container">
-        <h1 className="section-title">Tech Blog</h1>
-        <p className="section-subtitle">
-          Stay updated with my latest articles on programming, web development, technology trends, and coding best practices.
-        </p>
-
-        <div className="blog-cards-grid">
-          {posts.map((post: BlogPostType) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
+    <div className={styles.page}>
+      {/* HERO */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <AnimatedSection>
+            <h1 className={styles.sectionTitle}>Tech Blog</h1>
+            <p className={styles.sectionSubtitle}>
+              Stay updated with my latest articles on programming, web development, technology trends, and coding best practices.
+            </p>
+          </AnimatedSection>
         </div>
+      </section>
 
-        {posts.length === 0 && (
-          <div className="card" style={{ textAlign: "center", padding: "4rem 2rem" }}>
-            <h3>Blog Posts Coming Soon</h3>
-            <p>I'm currently working on my first tech articles. Check back soon for programming tutorials and insights.</p>
+      {/* BLOG CONTENT */}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          {posts.length === 0 ? (
+            <div className={styles.emptyState}>
+              <span className={styles.emptyStateIcon}>✍️</span>
+              <h3>Blog Posts Coming Soon</h3>
+              <p>I'm currently working on my first tech articles. Check back soon for programming tutorials and insights.</p>
+            </div>
+          ) : (
+            <>
+              {/* Posts Grid */}
+              <div className={styles.blogGrid}>
+                {currentPosts.map((post, index) => (
+                  <AnimatedSection key={post.id} delay={index * 0.05}>
+                    <BlogCard post={post} />
+                  </AnimatedSection>
+                ))}
+              </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className={styles.pagination}>
+                  <button
+                    disabled={currentPage === 1}
+                    onClick={() => setCurrentPage(p => p - 1)}
+                  >
+                    ←
+                  </button>
+
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                    <button
+                      key={page}
+                      className={currentPage === page ? styles.active : ''}
+                      onClick={() => setCurrentPage(page)}
+                    >
+                      {page}
+                    </button>
+                  ))}
+
+                  <button
+                    disabled={currentPage === totalPages}
+                    onClick={() => setCurrentPage(p => p + 1)}
+                  >
+                    →
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* NEWSLETTER CTA */}
+      {posts.length > 0 && (
+        <section className={styles.newsletterSection}>
+          <div className={styles.container}>
+            <div className={styles.newsletterCta}>
+              <h3>Stay Updated</h3>
+              <p>Subscribe to my newsletter to receive the latest tech articles and coding tips directly in your inbox.</p>
+              <PremiumButton href="/contact" size="lg">
+                Get in Touch
+              </PremiumButton>
+            </div>
           </div>
-        )}
-
-        <div
-          style={{
-            background: "#f7fafc",
-            padding: "3rem 2rem",
-            borderRadius: "15px",
-            textAlign: "center",
-            marginTop: "4rem",
-          }}
-        >
-          <h3 style={{ color: "#1a365d", marginBottom: "1rem" }}>Stay Updated</h3>
-          <p style={{ marginBottom: "2rem", color: "#666" }}>
-            Subscribe to my newsletter to receive the latest tech articles and coding tips directly in your inbox.
-          </p>
-          <a href="/contact" className="btn btn-primary">
-            Get in Touch
-          </a>
-        </div>
-      </div>
+        </section>
+      )}
     </div>
   )
 }

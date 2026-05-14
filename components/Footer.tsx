@@ -6,64 +6,50 @@ export default function Footer() {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <div className="flex items-center gap-4 mb-4">
-              <img
-                src="/Mutuku.JPG"
-                alt="Mutuku Joshua"
-                className="w-16 h-16 object-cover rounded-full shadow-lg border-2 border-gray-300"
-              />
-              <div>
-                <h3>Mutuku Joshua</h3>
-                <p className="text-sm opacity-90">Fullstack Developer</p>
-              </div>
-            </div>
+            <h3>Mutuku Joshua</h3>
+            <p className="text-sm opacity-90">Fullstack Developer</p>
             <p>Crafting Code That Works</p>
             <p>Building scalable web applications and digital solutions with modern technologies.</p>
-            <div className="mt-4" style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+            <div className="mt-4" style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
               <a
                 href="mailto:officialjoshuamwendwa@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Gmail"
-                style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", background: "#f1f5f9", borderRadius: "8px", transition: "all 0.2s ease" }}
               >
-                <img src="https://skillicons.dev/icons?i=gmail" alt="Gmail" style={{ width: "24px", height: "24px" }} />
+                <img src="https://skillicons.dev/icons?i=gmail" alt="Gmail" style={{ width: "20px", height: "20px" }} />
               </a>
               <a
                 href="https://www.linkedin.com/in/joshua-mwendwa-b183b5287/"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="LinkedIn"
-                style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", background: "#f1f5f9", borderRadius: "8px", transition: "all 0.2s ease" }}
               >
-                <img src="https://skillicons.dev/icons?i=linkedin" alt="LinkedIn" style={{ width: "24px", height: "24px" }} />
+                <img src="https://skillicons.dev/icons?i=linkedin" alt="LinkedIn" style={{ width: "20px", height: "20px" }} />
               </a>
               <a
                 href="https://github.com/hit-sharq"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="GitHub"
-                style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", background: "#f1f5f9", borderRadius: "8px", transition: "all 0.2s ease" }}
               >
-                <img src="https://skillicons.dev/icons?i=github" alt="GitHub" style={{ width: "24px", height: "24px" }} />
+                <img src="https://skillicons.dev/icons?i=github" alt="GitHub" style={{ width: "20px", height: "20px" }} />
               </a>
               <a
                 href="https://wa.me/+25492687584"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="WhatsApp"
-                style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", background: "#f1f5f9", borderRadius: "8px", transition: "all 0.2s ease" }}
               >
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style={{ width: "24px", height: "24px" }} />
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style={{ width: "20px", height: "20px" }} />
               </a>
               <a
                 href="https://www.instagram.com/j_lee087"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Instagram"
-                style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", background: "#f1f5f9", borderRadius: "8px", transition: "all 0.2s ease" }}
               >
-                <img src="https://skillicons.dev/icons?i=instagram" alt="Instagram" style={{ width: "24px", height: "24px" }} />
+                <img src="https://skillicons.dev/icons?i=instagram" alt="Instagram" style={{ width: "20px", height: "20px" }} />
               </a>
             </div>
           </div>
@@ -110,41 +96,13 @@ export default function Footer() {
           </div>
 
           <div className="footer-section">
-            <h3>Contact Info</h3>
-            <p>📧 officialjoshuamwendwa@gmail.com</p>
-            <p>📞 +254 794 773 452</p>
-            <p>📍 Nairobi, Kenya</p>
-            <div className="mt-4">
-              <h4 className="text-white font-semibold mb-2">Availability</h4>
-              <p className="text-sm">Mon - Sat: 9:00 AM - 7:00 PM</p>
-              <p className="text-sm">Sunday: By Appointment</p>
-              <p className="text-sm" style={{ marginTop: "0.5rem", color: "#48bb78" }}>
-                ✓ Open for freelance projects
-              </p>
-            </div>
-          </div>
-
-          <div className="footer-section">
-            <h3>Tech Stack</h3>
-            <div className="flex flex-col space-y-2">
-              <p>
-                <span style={{ marginRight: "0.5rem" }}>⚛️</span> React / Next.js
-              </p>
-              <p>
-                <span style={{ marginRight: "0.5rem" }}>🟢</span> Node.js / Express
-              </p>
-              <p>
-                <span style={{ marginRight: "0.5rem" }}>🐍</span> Python
-              </p>
-              <p>
-                <span style={{ marginRight: "0.5rem" }}>🗄️</span> PostgreSQL / MongoDB
-              </p>
-              <p>
-                <span style={{ marginRight: "0.5rem" }}>🐳</span> Docker / AWS
-              </p>
-              <p>
-                <span style={{ marginRight: "0.5rem" }}>📱</span> React Native
-              </p>
+            <h3>All Technologies</h3>
+            <div style={{ fontSize: "0.75rem" }}>
+              <p style={{ margin: "0.25rem 0" }}><strong>Frontend:</strong> <a href="https://react.dev" target="_blank" rel="noopener noreferrer">React</a> | <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">Next.js</a> | <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer">Vue</a> | <a href="https://angular.io" target="_blank" rel="noopener noreferrer">Angular</a> | <a href="https://svelte.dev" target="_blank" rel="noopener noreferrer">Svelte</a> | <a href="https://www.typescriptlang.org" target="_blank" rel="noopener noreferrer">TypeScript</a> | <a href="https://www.javascript.com" target="_blank" rel="noopener noreferrer">JavaScript</a> | <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">Tailwind CSS</a></p>
+              <p style={{ margin: "0.25rem 0" }}><strong>Backend:</strong> <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">Node.js</a> | <a href="https://expressjs.com" target="_blank" rel="noopener noreferrer">Express</a> | <a href="https://nestjs.com" target="_blank" rel="noopener noreferrer">NestJS</a> | <a href="https://www.python.org" target="_blank" rel="noopener noreferrer">Python</a> | <a href="https://www.java.com" target="_blank" rel="noopener noreferrer">Java</a> | <a href="https://dotnet.microsoft.com" target="_blank" rel="noopener noreferrer">.NET</a> | <a href="https://go.dev" target="_blank" rel="noopener noreferrer">Go</a> | <a href="https://www.php.net" target="_blank" rel="noopener noreferrer">PHP</a></p>
+              <p style={{ margin: "0.25rem 0" }}><strong>Mobile:</strong> <a href="https://reactnative.dev" target="_blank" rel="noopener noreferrer">React Native</a> | <a href="https://flutter.dev" target="_blank" rel="noopener noreferrer">Flutter</a> | <a href="https://developer.apple.com/swift" target="_blank" rel="noopener noreferrer">Swift</a> | <a href="https://kotlinlang.org" target="_blank" rel="noopener noreferrer">Kotlin</a></p>
+              <p style={{ margin: "0.25rem 0" }}><strong>Database &amp; Auth:</strong> <a href="https://www.prisma.io" target="_blank" rel="noopener noreferrer">Prisma ORM</a> | <a href="https://www.postgresql.org" target="_blank" rel="noopener noreferrer">PostgreSQL</a> | <a href="https://www.mongodb.com" target="_blank" rel="noopener noreferrer">MongoDB</a> | <a href="https://neon.tech" target="_blank" rel="noopener noreferrer">Neon</a> | <a href="https://clerk.com" target="_blank" rel="noopener noreferrer">Clerk</a></p>
+              <p style={{ margin: "0.25rem 0" }}><strong>DevOps &amp; Cloud:</strong> <a href="https://aws.amazon.com" target="_blank" rel="noopener noreferrer">AWS</a> | <a href="https://cloud.google.com" target="_blank" rel="noopener noreferrer">GCP</a> | <a href="https://azure.microsoft.com" target="_blank" rel="noopener noreferrer">Azure</a> | <a href="https://www.docker.com" target="_blank" rel="noopener noreferrer">Docker</a> | <a href="https://kubernetes.io" target="_blank" rel="noopener noreferrer">Kubernetes</a> | <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">Vercel</a> | <a href="https://git-scm.com" target="_blank" rel="noopener noreferrer">Git</a></p>
             </div>
           </div>
         </div>

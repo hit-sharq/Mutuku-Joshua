@@ -13,25 +13,28 @@ export async function GET(request: NextRequest) {
       whereClause.featured = true
     }
 
-    const projects = await prisma.project.findMany({
-      where: whereClause,
-      orderBy: featured ? { order: "desc" } : { createdAt: "desc" },
-      take: limit,
-      select: {
-        id: true,
-        title: true,
-        description: true,
-        imageUrl: true,
-        technologies: true,
-        demoUrl: true,
-        githubUrl: true,
-        featured: true,
-        order: true,
-        createdAt: true,
-      },
-    })
+    const [projects, totalCount] = await Promise.all([
+      prisma.project.findMany({
+        where: whereClause,
+        orderBy: featured ? { order: "desc" } : { createdAt: "desc" },
+        take: limit,
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          imageUrl: true,
+          technologies: true,
+          demoUrl: true,
+          githubUrl: true,
+          featured: true,
+          order: true,
+          createdAt: true,
+        },
+      }),
+      prisma.project.count({ where: whereClause }),
+    ])
 
-    return NextResponse.json({ projects })
+    return NextResponse.json({ projects, totalCount })
   } catch (error) {
     console.error("Error fetching projects:", error)
     return NextResponse.json(

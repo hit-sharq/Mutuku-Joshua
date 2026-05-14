@@ -65,25 +65,41 @@ export default function HomePage() {
   const [newsItems, setNewsItems] = useState<NewsItem[]>([])
   const [statsVisible, setStatsVisible] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [projectCount, setProjectCount] = useState(0)
   const statsRef = useRef(null)
 
+  // Calculate years since 2024 (bootcamp graduation)
+  const currentYear = new Date().getFullYear()
+  const yearsExperience = currentYear - 2024 // 2024 to 2026 = 2 years
+
+  // Stats will be updated after data loads
   const stats: Stat[] = [
-    { number: 15, label: 'Years Experience', suffix: '+', icon: '📅' },
-    { number: 120, label: 'Projects Delivered', suffix: '+', icon: '🚀' },
-    { number: 98, label: 'Client Satisfaction', suffix: '%', icon: '⭐' },
+    { number: yearsExperience, label: 'Years Experience', suffix: '+', icon: '📅' },
+    { number: projectCount, label: 'Projects Delivered', suffix: '+', icon: '🚀' },
+    { number: 100, label: 'Client Satisfaction', suffix: '%', icon: '⭐' },
     { number: 24, label: 'Awards Won', suffix: '', icon: '🏆' },
   ]
+
+  // Trigger stats animation once on mount (after initial render)
+  useEffect(() => {
+    setStatsVisible(true)
+  }, [setStatsVisible])
+
+
+
 
   useEffect(() => {
     async function fetchData() {
       try {
         setLoading(true)
-        // Fetch all data in parallel for faster loading
+        // Fetch projects with full list to count
         const [projectsRes, blogRes, newsRes] = await Promise.all([
+          // projects list is limited for the homepage, but projectsData.totalCount gives the full count
           fetch('/api/projects?limit=3'),
           fetch('/api/blog?limit=3'),
           fetch('/api/news?limit=3')
         ])
+
 
         const [projectsData, blogData, newsData] = await Promise.all([
           projectsRes.json(),
@@ -93,6 +109,9 @@ export default function HomePage() {
 
         if (projectsData.projects) {
           setProjects(projectsData.projects)
+          // Also set total count
+          setProjectCount(projectsData.totalCount ?? projectsData.projects.length)
+
         }
         if (blogData.posts) {
           setBlogPosts(blogData.posts)
@@ -110,31 +129,15 @@ export default function HomePage() {
   }, [])
 
   // Stats counter animation
+
   function Counter({ to, suffix = '' }: { to: number, suffix?: string }) {
-    const [count, setCount] = useState(0)
-    const [started, setStarted] = useState(false)
-
-    useEffect(() => {
-      if (statsVisible && !started) {
-        setStarted(true)
-        let start = 0
-        const duration = 2000
-        const increment = to / (duration / 16)
-        const timer = setInterval(() => {
-          start += increment
-          if (start >= to) {
-            setCount(to)
-            clearInterval(timer)
-          } else {
-            setCount(Math.floor(start))
-          }
-        }, 16)
-        return () => clearInterval(timer)
-      }
-    }, [statsVisible, started, to])
-
-    return <span>{count}{suffix}</span>
+    // Deterministic rendering: when stats are visible, always render the final value.
+    // This avoids any timing/animation state bugs that cause 0 to be displayed.
+    if (!statsVisible) return <span>0{suffix}</span>
+    return <span>{to}{suffix}</span>
   }
+
+
 
   return (
     <div className={styles.page}>
@@ -226,7 +229,11 @@ export default function HomePage() {
       <section
         ref={statsRef}
         className={styles.statsSection}
-        onMouseEnter={() => setStatsVisible(true)}
+        onMouseEnter={() => {
+          if (!loading) {
+            setStatsVisible(true)
+          }
+        }}
       >
         <div className={styles.container}>
           <AnimatedSection>

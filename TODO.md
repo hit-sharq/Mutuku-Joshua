@@ -1,5 +1,7 @@
-- [ ] Add camelCase aliases in `app/admin/admin.module.css` so CSS module keys used by admin pages resolve correctly (adminHeader, adminTitle, adminEmptyState, adminLoading, adminSpinner, tableContainer, btnPrimary, btnSecondary, btnDanger, badgeSuccess, badgeDraft, grid3, etc.)
-- [ ] Run `npm run lint` and `npm run build` to verify styles compile and no runtime/CSS-module errors
+# TODO
 
-- [ ] Quick sanity check by rebuilding admin dashboard UI (manually in browser)
+- [x] Update `app/api/projects/route.ts` to return `totalCount` for all projects.
+- [x] Update `app/(public)/page.tsx` to use `totalCount` for `Projects Delivered` and to fix stats visibility/animation so counters don’t stay at 0.
+- [ ] Verify home page “By The Numbers” shows correct values: years since 2024, projects count, 100% client satisfaction, 24 awards.
+
 

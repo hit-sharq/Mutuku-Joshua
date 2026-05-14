@@ -84,7 +84,7 @@ export default async function AboutPage() {
                 <div className={styles.profileImageWrapper}>
                   <div className={styles.profileGlow} />
                   <Image
-                    src="/Mutuku.JPG"
+                    src="/jm.png"
                     alt="Mutuku Joshua - Fullstack Developer"
                     fill
                     className={styles.heroProfileImage}
@@ -237,6 +237,11 @@ export default async function AboutPage() {
                     <div className={styles.credentialYear}>2024</div>
                     <h4>AI for Software Engineering</h4>
                     <p>Power Learn Project (PLP)</p>
+                  </div>
+                  <div className={styles.credentialItem}>
+                    <div className={styles.credentialYear}>2026</div>
+                    <h4>Ethical Hacking Certification</h4>
+                    <p>Cisco</p>
                   </div>
                 </div>
               </div>

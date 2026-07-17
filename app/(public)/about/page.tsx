@@ -41,17 +41,17 @@ async function getAboutData(): Promise<{ profile: UserType | null; teamMembers: 
 }
 
 const VALUES = [
-  { icon: "⌘", title: "Clean code", desc: "Readable, maintainable, and well-documented. Always." },
-  { icon: "▦", title: "Design-first thinking", desc: "I design before I code. UX is not an afterthought." },
-  { icon: "↗", title: "Ship it", desc: "I build MVPs fast and iterate with real users in mind." },
+  { icon: "⌘", title: "Precision Engineering", desc: "Readable, maintainable, and well-documented. Always." },
+  { icon: "▦", title: "Aesthetic Intuition", desc: "I design before I code. UX is not an afterthought." },
+  { icon: "↗", title: "Relentless Execution", desc: "I build MVPs fast and iterate with real users in mind." },
 ]
 
 const TIMELINE = [
-  { yr: "2024", title: "Founder — Lumyn Technologies", sub: "Digital engineering & design · Global" },
-  { yr: "2024", title: "Freelance Full-Stack Developer", sub: "Real estate, e-commerce, SaaS clients" },
-  { yr: "2024", title: "Moringa School — Certified Engineer", sub: "Software Engineering · Nairobi" },
-  { yr: "2023", title: "Zetech University", sub: "Diploma in Software Engineering · In progress" },
-  { yr: "2022", title: "UI/UX & Frontend Development", sub: "Independent projects · Kenya" },
+  { yr: "2024", title: "Founder & Principal Engineer — Lumyn Technologies", sub: "Digital engineering & design · Global" },
+  { yr: "2024", title: "Independent Operator", sub: "Real estate, e-commerce, SaaS clients" },
+  { yr: "2023", title: "Moringa School — Engineering Certification", sub: "Software Engineering · Nairobi" },
+  { yr: "2023", title: "Zetech University — Software Engineering", sub: "Diploma program · In progress" },
+  { yr: "2022", title: "Design & Frontend Practice", sub: "Independent projects · Kenya" },
 ]
 
 const SKILLS = [
@@ -152,6 +152,9 @@ export default async function AboutPage() {
           <p className={styles.aboutP}>
             Founder of Lumyn Technologies, a digital engineering company operating globally. Moringa School
             certified engineer, currently pursuing a Diploma in Software Engineering at Zetech University.
+          </p>
+          <p className={styles.aboutP}>
+            I specialize in React/Next.js frontends, Django and Laravel backends, and Kenya-specific integrations like M-Pesa Daraja. I care deeply about design systems, product thinking, and code quality.
           </p>
         </div>
         <div className={styles.aboutRight}>
@@ -274,8 +277,8 @@ export default async function AboutPage() {
         <div className="container">
           <AnimatedSection>
             <div className={styles.ctaContent}>
-              <span className={styles.ctaBadge}>Get In Touch</span>
-              <h2 className={styles.ctaTitle}>Let&apos;s Build Something Amazing</h2>
+              <span className={styles.ctaBadge}>Engage</span>
+              <h2 className={styles.ctaTitle}>Let&apos;s Build Something That Outlasts the Noise</h2>
               <p className={styles.ctaText}>
                 Have a project in mind? Let&apos;s collaborate and turn your ideas into reality.
                 Contact me today to discuss your project needs.

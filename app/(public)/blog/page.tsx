@@ -59,8 +59,8 @@ export default function BlogPage() {
     <div className={styles.page}>
       {/* HERO */}
       <div className={styles.blogHeader}>
-        <div className={styles.secEyebrow}>WRITING</div>
-        <div className={styles.secTitle}>Thoughts on code &amp; craft</div>
+        <div className={styles.secEyebrow}>JOURNAL</div>
+        <div className={styles.secTitle}>Dispatches from the lab</div>
         <p className={styles.sectionSubtitle}>
           Stay updated with my latest articles on programming, web development, technology trends, and coding best practices.
         </p>

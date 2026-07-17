@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { useUser, SignInButton, UserButton } from "@clerk/nextjs"
-import SearchBar from "./SearchBar"
 import styles from "./Navbar.module.css"
 
 const NAV_LINKS = [
@@ -60,10 +59,6 @@ export default function Navbar() {
             </li>
           )}
         </ul>
-
-        <div className={styles.searchBarContainer}>
-          <SearchBar />
-        </div>
 
         <Link href="/contact" className={styles.navCta} onClick={() => setIsMenuOpen(false)}>
           HIRE ME

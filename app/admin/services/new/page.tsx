@@ -101,9 +101,9 @@ export default function NewPracticeArea() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    border: formData.icon === emoji ? "2px solid #1a365d" : "1px solid #e2e8f0",
-                    borderRadius: "5px",
-                    background: formData.icon === emoji ? "#e2e8f0" : "transparent",
+                    border: formData.icon === emoji ? "0.5px solid var(--primary)" : "0.5px solid var(--admin-card-border)",
+                    borderRadius: "0",
+                    background: formData.icon === emoji ? "var(--admin-sidebar-hover)" : "transparent",
                   }}
                 >
                   {emoji}

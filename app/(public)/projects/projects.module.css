@@ -143,16 +143,36 @@
   color: var(--primary, #c8a820);
 }
 
-/* Host the slide-out ProjectCard invisibly for interaction */
-.projCardHost {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: auto;
+.projLinks {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
 }
 
-.projCardHost :global(.project-card-small) {
-  display: none;
+.projBtn {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  padding: 6px 12px;
+  background: var(--primary, #c8a820);
+  color: var(--ink, #0f0f0f);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.projBtn:hover {
+  background: var(--gold3, #e8c840);
+}
+
+.projBtnGhost {
+  background: transparent;
+  color: var(--primary, #c8a820);
+  border: 0.5px solid rgba(184, 150, 12, 0.25);
+}
+
+.projBtnGhost:hover {
+  background: rgba(184, 150, 12, 0.08);
 }
 
 /* ---- Skeleton ---- */

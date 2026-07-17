@@ -91,11 +91,6 @@
   background: var(--gold3, #e8c840);
 }
 
-.searchBarContainer {
-  display: flex;
-  align-items: center;
-}
-
 .mobileMenuBtn {
   display: none;
   background: none;
@@ -111,8 +106,7 @@
 }
 
 @media (max-width: 980px) {
-  .navLinks,
-  .searchBarContainer {
+  .navLinks {
     display: none;
   }
   .nav {

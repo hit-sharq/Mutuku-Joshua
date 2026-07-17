@@ -60,32 +60,32 @@ export default function ContactPage() {
       <div className={styles.contactGrid}>
         {/* LEFT: info */}
         <div className={styles.contactLeft}>
-          <div className={styles.secEyebrow}>GET IN TOUCH</div>
-          <div className={styles.secTitle}>Let&apos;s build<br />something great.</div>
+        <div className={styles.secEyebrow}>ENGAGE</div>
+        <div className={styles.secTitle}>Let&apos;s build something<br />that outlasts us.</div>
           <p className={styles.aboutP} style={{ marginTop: 8 }}>
             Whether you need a website, a web app, a design system, or a full product — I&apos;m available for freelance projects, full-time roles, and collaborations.
           </p>
-          <div className={styles.availBadge}><span className={styles.availDot}></span>Available for new projects</div>
+          <div className={styles.availBadge}><span className={styles.availDot}></span>Accepting engagements</div>
 
           <div className={styles.cInfoRows}>
             <div className={styles.cRow}>
               <div className={styles.cIcon}>✉</div>
               <div>
-                <div className={styles.cLabel}>EMAIL</div>
+                <div className={styles.cLabel}>DIRECT LINE</div>
                 <div className={styles.cVal}>officialjoshuamwendwa@gmail.com</div>
               </div>
             </div>
             <div className={styles.cRow}>
               <div className={styles.cIcon}>⚲</div>
               <div>
-                <div className={styles.cLabel}>LOCATION</div>
+                <div className={styles.cLabel}>COORDINATES</div>
                 <div className={styles.cVal}>Nairobi, Kenya · Available remotely</div>
               </div>
             </div>
             <div className={styles.cRow}>
               <div className={styles.cIcon}>◍</div>
               <div>
-                <div className={styles.cLabel}>WEBSITE</div>
+                <div className={styles.cLabel}>DIGITAL FOOTPRINT</div>
                 <div className={styles.cVal}>lumyn.co.ke</div>
               </div>
             </div>
@@ -101,7 +101,7 @@ export default function ContactPage() {
 
         {/* RIGHT: form */}
         <div className={styles.contactRight}>
-          <div className={styles.secEyebrow} style={{ marginBottom: 16 }}>SEND A MESSAGE</div>
+          <div className={styles.secEyebrow} style={{ marginBottom: 16 }}>TRANSMIT</div>
           <form onSubmit={handleSubmit}>
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
@@ -135,7 +135,7 @@ export default function ContactPage() {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="subject" className={styles.fLabel}>SUBJECT</label>
+              <label htmlFor="subject" className={styles.fLabel}>PROJECT TYPE</label>
               <select
                 id="subject"
                 name="subject"
@@ -159,32 +159,32 @@ export default function ContactPage() {
               </select>
             </div>
 
-            <div className={styles.formGroup}>
-              <label htmlFor="message" className={styles.fLabel}>MESSAGE</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                placeholder="Tell me about your project..."
-                rows={5}
-                disabled={isSubmitting}
-                className={styles.fInput}
-                style={{ resize: "none" }}
-              />
-            </div>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="message" className={styles.fLabel}>BRIEF</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      placeholder="Tell me about your project..."
+                      rows={5}
+                      disabled={isSubmitting}
+                      className={styles.fInput}
+                      style={{ resize: "none" }}
+                    />
+                  </div>
 
-            {submitStatus === "success" && (
-              <div className={styles.successMessage}>✓ Message sent! I&apos;ll get back to you within 24 hours.</div>
-            )}
-            {submitStatus === "error" && (
-              <div className={styles.errorMessage}>✕ {errorMessage || "Something went wrong. Please try again."}</div>
-            )}
+                  {submitStatus === "success" && (
+                    <div className={styles.successMessage}>✓ Message received. I&apos;ll respond within 24 hours.</div>
+                  )}
+                  {submitStatus === "error" && (
+                    <div className={styles.errorMessage}>✕ {errorMessage || "Something went wrong. Please try again."}</div>
+                  )}
 
-            <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
-              {isSubmitting ? "SENDING…" : "SEND MESSAGE →"}
-            </button>
+                  <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
+                    {isSubmitting ? "TRANSMITTING…" : "TRANSMIT →"}
+                  </button>
           </form>
         </div>
       </div>

@@ -208,14 +208,14 @@ export default function ContactRequestsManager() {
               </p>
               <p style={{ margin: "0.25rem 0" }}>
                 <strong>Email:</strong>{" "}
-                <a href={`mailto:${selectedRequest.email}`} style={{ color: "#1a365d" }}>
+                <a href={`mailto:${selectedRequest.email}`} style={{ color: "var(--primary)" }}>
                   {selectedRequest.email}
                 </a>
               </p>
               {selectedRequest.phone && (
                 <p style={{ margin: "0.25rem 0" }}>
                   <strong>Phone:</strong>{" "}
-                  <a href={`tel:${selectedRequest.phone}`} style={{ color: "#1a365d" }}>
+                  <a href={`tel:${selectedRequest.phone}`} style={{ color: "var(--primary)" }}>
                     {selectedRequest.phone}
                   </a>
                 </p>

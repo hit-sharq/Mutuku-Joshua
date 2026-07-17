@@ -64,7 +64,7 @@ export default function AdminSidebar() {
 
       <div className={`admin-sidebar ${isMobileOpen ? "mobile-open" : ""}`}>
         <div className="admin-sidebar-header">
-          <h2>Admin Panel</h2>
+          <h2>J·<em>M</em></h2>
         </div>
 
         <nav className="admin-nav">
@@ -84,7 +84,7 @@ export default function AdminSidebar() {
         <div className="admin-sidebar-footer">
           <div className="admin-user-info">
             <UserButton afterSignOutUrl="/" />
-            <span>Admin User</span>
+            <span>Admin</span>
           </div>
           <Link href="/" className="back-to-website">
             ← Back to Website

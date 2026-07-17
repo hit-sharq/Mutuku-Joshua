@@ -72,10 +72,10 @@ export default function HomePage() {
 
   // Stats will be updated after data loads
   const stats: Stat[] = [
-    { number: yearsExperience, label: 'Years Experience', suffix: '+', icon: '📅' },
-    { number: projectCount, label: 'Projects Delivered', suffix: '+', icon: '🚀' },
-    { number: 100, label: 'Client Satisfaction', suffix: '%', icon: '⭐' },
-    { number: 24, label: 'Awards Won', suffix: '', icon: '🏆' },
+    { number: yearsExperience, label: 'YRS EXP', suffix: '+', icon: '📅' },
+    { number: projectCount, label: 'SHIPPED', suffix: '+', icon: '🚀' },
+    { number: 100, label: 'SATISFACTION', suffix: '%', icon: '⭐' },
+    { number: 24, label: 'AWARDS', suffix: '', icon: '🏆' },
   ]
 
   // Trigger stats animation once on mount (after initial render)
@@ -148,7 +148,7 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            FULL-STACK DEVELOPER & DESIGNER
+            DIGITAL ARCHITECT & CREATIVE ENGINEER
           </motion.span>
 
           <motion.h1
@@ -161,12 +161,12 @@ export default function HomePage() {
           </motion.h1>
 
           <motion.p
-            className={styles.heroP}
+            className={styles.heroDescription}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
           >
-            React · Next.js · Node · Django · Laravel. Based in Nairobi — building for the world. Founder of Lumyn Technologies.
+            React · Next.js · Node · Django · Laravel. Nairobi-born, globally deployed. Founder of Lumyn Technologies.
           </motion.p>
 
           <motion.div
@@ -179,7 +179,7 @@ export default function HomePage() {
               VIEW MY WORK
             </PremiumButton>
             <PremiumButton href="/contact" variant="secondary" size="lg">
-              LET&apos;S TALK
+              INITIATE CONTACT
             </PremiumButton>
           </motion.div>
 
@@ -236,12 +236,12 @@ export default function HomePage() {
         }}
       >
         <div className={styles.container}>
-          <AnimatedSection>
-            <h2 className={styles.sectionTitle}>By The Numbers</h2>
-            <p className={styles.sectionSubtitle}>
-              A track record of delivering quality solutions and building lasting partnerships
-            </p>
-          </AnimatedSection>
+            <AnimatedSection>
+              <h2 className={styles.sectionTitle}>By The Numbers</h2>
+              <p className={styles.sectionSubtitle}>
+                Precision in every metric. Consistency in every delivery.
+              </p>
+            </AnimatedSection>
 
           <div className={styles.statsGrid}>
             {stats.map((stat, index) => (
@@ -263,37 +263,37 @@ export default function HomePage() {
       <section className={styles.section}>
         <div className={styles.container}>
           <AnimatedSection>
-            <h2 className={styles.sectionTitle}>What I Do</h2>
+            <h2 className={styles.sectionTitle}>Disciplines</h2>
             <p className={styles.sectionSubtitle}>
-              Comprehensive development services tailored to your business needs
+              Engineering disciplines for the modern operator
             </p>
           </AnimatedSection>
 
           <div className={styles.servicesGrid}>
             {[
               {
-                icon: '🌐',
-                title: 'Web Development',
-                desc: 'Building custom web applications with modern frameworks and best practices.',
-                items: ['Custom web applications', 'E-commerce platforms', 'SaaS applications', 'Portfolio websites'],
+                icon: '◈',
+                title: 'Web Engineering',
+                desc: 'High-performance web applications engineered for scale, speed, and aesthetic precision.',
+                items: ['Custom platforms', 'E-commerce ecosystems', 'SaaS infrastructure', 'Portfolio systems'],
               },
               {
-                icon: '📱',
-                title: 'Mobile Development',
-                desc: 'Creating cross-platform mobile applications that delight users.',
-                items: ['React Native apps', 'Cross-platform solutions', 'Responsive designs', 'App maintenance'],
+                icon: '▣',
+                title: 'Mobile Systems',
+                desc: 'Cross-platform mobile experiences designed to feel native and perform under pressure.',
+                items: ['React Native', 'Cross-platform builds', 'Responsive architectures', 'Performance tuning'],
               },
               {
-                icon: '🔌',
-                title: 'API Development',
-                desc: 'Designing and building robust APIs for seamless integrations.',
-                items: ['RESTful APIs', 'GraphQL APIs', 'Third-party integrations', 'Authentication systems'],
+                icon: '⎔',
+                title: 'API Architecture',
+                desc: 'Robust, well-documented APIs built for seamless integrations and developer experience.',
+                items: ['RESTful systems', 'GraphQL layers', 'Third-party integrations', 'Auth infrastructure'],
               },
               {
-                icon: '🗄️',
-                title: 'Database Solutions',
-                desc: 'Designing efficient database architectures for scalability.',
-                items: ['Database design', 'Query optimization', 'Data migration', 'Performance tuning'],
+                icon: '⛁',
+                title: 'Database Engineering',
+                desc: 'Efficient data architectures designed for reliability, speed, and long-term maintainability.',
+                items: ['Schema design', 'Query optimization', 'Data migration', 'Performance tuning'],
               },
             ].map((service, i) => (
               <AnimatedSection key={service.title} delay={i * 0.1}>
@@ -475,7 +475,7 @@ export default function HomePage() {
                 Ready to <span className={styles.ctaHighlight}>Transform</span> Your Business?
               </h2>
               <p className={styles.ctaText}>
-                Partner with Lumyn and let's build the future together.
+                Let's engineer something that outlasts the noise.
               </p>
               <div className={styles.ctaButtons}>
                 <PremiumButton href="/contact" size="lg">

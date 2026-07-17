@@ -130,10 +130,10 @@ export default async function AdminDashboard() {
       <AdminCard title="Getting Started">
         <div
           style={{
-            background: "rgba(109, 129, 150, 0.05)",
+            background: "rgba(184, 150, 12, 0.06)",
             padding: "1.5rem",
-            borderRadius: "12px",
-            border: "1px solid var(--admin-border-color)",
+            borderRadius: "0",
+            border: "0.5px solid var(--admin-border-color)",
           }}
         >
           <h3 style={{ color: "var(--primary)", marginBottom: "1rem" }}>

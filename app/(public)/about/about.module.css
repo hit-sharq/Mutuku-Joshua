@@ -264,27 +264,42 @@
 .toolsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 1px;
+  background: rgba(184, 150, 12, 0.12);
   margin-top: 24px;
 }
 
 .toolChip {
-  background: var(--ink2, #1c1c1c);
-  border: 0.5px solid rgba(184, 150, 12, 0.15);
-  padding: 12px;
+  background: var(--ink, #0f0f0f);
+  border: none;
+  padding: 24px 12px 20px;
   text-align: center;
+  transition: background 0.25s;
+  cursor: default;
+}
+
+.toolChip:hover {
+  background: var(--ink2, #1c1c1c);
 }
 
 .toolIcon {
-  font-size: 20px;
+  font-size: 26px;
   color: var(--primary, #c8a820);
-  margin-bottom: 6px;
+  margin-bottom: 10px;
+  line-height: 1;
 }
 
 .toolName {
-  font-size: 11px;
-  color: var(--cream3, rgba(240, 232, 212, 0.6));
-  letter-spacing: 1px;
+  font-size: 10px;
+  color: var(--cream2, #f0e8d4);
+  letter-spacing: 1.5px;
+  font-weight: 500;
+}
+
+@media (max-width: 860px) {
+  .toolsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* ============================================

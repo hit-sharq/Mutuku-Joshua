@@ -1,5 +1,6 @@
 /* Import Google Fonts - Must be at the very top before any other CSS */
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -47,6 +48,66 @@
   --muted-foreground: rgba(245, 245, 245, 0.6);
   --border: rgba(255, 255, 227, 0.12);
   --ring: rgba(109, 129, 150, 0.5);
+}
+
+/* ==========================================
+   LUXURY GOLD/CREAM THEME (Public Portfolio)
+   Remaps the Lumyn design tokens to the new
+   dark gold + cream "luxury" palette without
+   touching any component logic or markup.
+   Admin panel is excluded (scoped to .luxury).
+   ========================================== */
+.luxury {
+  --background: #0f0f0f;
+  --foreground: #faf7f2;
+  --card: rgba(28, 28, 28, 0.8);
+  --primary: #c8a820;
+  --primary-foreground: #0f0f0f;
+  --secondary: rgba(184, 150, 12, 0.08);
+  --muted: rgba(240, 232, 212, 0.06);
+  --muted-foreground: rgba(240, 232, 212, 0.6);
+  --border: rgba(184, 150, 12, 0.18);
+  --ring: rgba(200, 168, 32, 0.5);
+  --radius: 0.75rem;
+
+  /* Luxury-specific tokens mirroring the template */
+  --ink: #0f0f0f;
+  --ink2: #1c1c1c;
+  --ink3: #2a2a2a;
+  --gold: #b8960c;
+  --gold2: #c8a820;
+  --gold3: #e8c840;
+  --goldb: rgba(184, 150, 12, 0.25);
+  --goldf: rgba(184, 150, 12, 0.1);
+  --cream: #faf7f2;
+  --cream2: #f0e8d4;
+  --cream3: rgba(240, 232, 212, 0.6);
+  --cream4: rgba(240, 232, 212, 0.3);
+  --dust: #7a6a50;
+  --gradient-primary: linear-gradient(135deg, #e8c840 0%, #c8a820 100%);
+}
+
+.luxury body,
+.luxury {
+  font-family: 'Cormorant Garamond', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Serif display headings inside the luxury scope */
+.luxury h1,
+.luxury h2,
+.luxury h3 {
+  font-family: 'Cormorant Garamond', 'Inter', serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--cream);
+}
+
+/* Gold gradient text utility for luxury pages */
+.luxury .gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Base reset */

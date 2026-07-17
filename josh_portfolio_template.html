@@ -1,0 +1,496 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#0f0f0f;--ink2:#1c1c1c;--ink3:#2a2a2a;
+  --gold:#b8960c;--gold2:#c8a820;--gold3:#e8c840;
+  --goldb:rgba(184,150,12,0.25);--goldf:rgba(184,150,12,0.1);
+  --cream:#faf7f2;--cream2:#f0e8d4;--cream3:rgba(240,232,212,0.6);
+  --cream4:rgba(240,232,212,0.3);--dust:#7a6a50;
+}
+.shell{background:var(--ink);color:var(--cream2);font-family:'Inter',sans-serif;}
+
+.nav{position:sticky;top:0;z-index:30;background:rgba(15,15,15,0.97);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;border-bottom:0.5px solid rgba(184,150,12,0.2);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;letter-spacing:2px;cursor:pointer;}
+.nav-logo em{font-style:italic;color:var(--gold3);}
+.nav-links{display:flex;gap:0;}
+.nav-link{font-size:10px;letter-spacing:2px;padding:0 14px;height:56px;display:flex;align-items:center;color:var(--cream4);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;}
+.nav-link:hover{color:var(--cream2);}
+.nav-link.on{color:var(--gold3);border-bottom-color:var(--gold3);}
+.nav-cta{background:var(--gold3);color:var(--ink);font-size:10px;letter-spacing:2px;padding:8px 16px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;}
+
+.pages{display:flex;gap:1px;padding:0 32px;background:var(--ink2);border-bottom:0.5px solid rgba(184,150,12,0.15);overflow-x:auto;}
+.ptab{font-size:10px;letter-spacing:1.5px;padding:8px 12px;cursor:pointer;color:var(--cream4);white-space:nowrap;transition:all .15s;}
+.ptab.on{background:var(--cream);color:var(--ink);font-weight:500;}
+.ptab:hover:not(.on){color:var(--cream2);}
+
+.page{display:none;}
+.page.on{display:block;}
+
+/* ── HERO ── */
+.hero{min-height:580px;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+.hero-left{padding:64px 48px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;}
+.hero-right{display:flex;align-items:center;justify-content:center;padding:48px;position:relative;background:var(--ink2);}
+.hero-tag{font-size:10px;letter-spacing:4px;color:var(--gold3);margin-bottom:16px;}
+.hero-h{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;line-height:1.05;margin-bottom:16px;color:var(--cream);}
+.hero-h em{font-style:italic;color:var(--gold3);}
+.hero-p{font-size:13px;color:var(--cream3);line-height:1.8;max-width:380px;margin-bottom:32px;}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-gold{background:var(--gold3);color:var(--ink);font-size:10px;letter-spacing:2px;padding:12px 24px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;}
+.btn-ghost{background:transparent;color:var(--cream2);font-size:10px;letter-spacing:2px;padding:11px 24px;border:0.5px solid var(--goldb);cursor:pointer;font-family:'Inter',sans-serif;}
+.btn-ghost:hover{border-color:var(--gold3);color:var(--gold3);}
+.hero-av{width:220px;height:220px;background:var(--ink3);border:0.5px solid var(--goldb);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:72px;color:var(--gold2);position:relative;}
+.hero-av-badge{position:absolute;bottom:-1px;right:-1px;background:var(--gold3);color:var(--ink);font-size:9px;letter-spacing:2px;padding:4px 10px;font-weight:500;}
+.hero-scroll{display:flex;gap:32px;padding:20px 48px;border-top:0.5px solid rgba(184,150,12,0.15);}
+.hero-stat{text-align:center;}
+.h-stat-n{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold3);}
+.h-stat-l{font-size:10px;letter-spacing:2px;color:var(--cream4);margin-top:2px;}
+.h-stat-sep{width:0.5px;background:var(--goldb);}
+
+/* ── STACK BADGES ── */
+.stack-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;}
+.stk{font-size:10px;letter-spacing:1.5px;padding:4px 10px;border:0.5px solid var(--goldb);color:var(--cream4);}
+
+/* ── WORK ── */
+.work-header{padding:40px 32px 24px;border-bottom:0.5px solid rgba(184,150,12,0.15);}
+.work-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+.wpill{font-size:10px;letter-spacing:1.5px;padding:6px 14px;border:0.5px solid var(--goldb);color:var(--cream4);cursor:pointer;font-family:'Inter',sans-serif;background:transparent;transition:all .15s;}
+.wpill.on{background:var(--ink2);border-color:var(--gold3);color:var(--gold3);}
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,150,12,0.12);}
+.proj{background:var(--ink);padding:28px;cursor:pointer;transition:background .2s;position:relative;}
+.proj:hover{background:var(--ink2);}
+.proj-num{font-family:'Cormorant Garamond',serif;font-size:48px;color:rgba(184,150,12,0.12);font-weight:300;line-height:1;margin-bottom:12px;}
+.proj-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.ptag{font-size:9px;letter-spacing:1.5px;padding:3px 8px;border:0.5px solid var(--goldb);color:var(--gold2);}
+.proj-name{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--cream);margin-bottom:6px;}
+.proj-desc{font-size:12px;color:var(--cream4);line-height:1.7;margin-bottom:16px;}
+.proj-stack{display:flex;gap:6px;flex-wrap:wrap;}
+.pstk{font-size:10px;color:var(--dust);letter-spacing:1px;}
+.proj-link{position:absolute;top:20px;right:20px;color:var(--cream4);font-size:18px;opacity:0;transition:opacity .2s;}
+.proj:hover .proj-link{opacity:1;color:var(--gold3);}
+.proj-visual{height:120px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;border:0.5px solid rgba(184,150,12,0.12);color:var(--gold2);font-size:36px;}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.about-left{padding:40px 40px;border-right:0.5px solid rgba(184,150,12,0.15);}
+.about-right{padding:40px 32px;}
+.sec-eyebrow{font-size:10px;letter-spacing:4px;color:var(--gold3);margin-bottom:8px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--cream);margin-bottom:16px;line-height:1.2;}
+.about-p{font-size:13px;color:var(--cream3);line-height:1.8;margin-bottom:14px;}
+.about-vals{display:flex;flex-direction:column;gap:12px;margin-top:24px;}
+.aval{display:flex;align-items:flex-start;gap:12px;padding:14px;border:0.5px solid rgba(184,150,12,0.15);}
+.aval-icon{color:var(--gold3);font-size:18px;flex-shrink:0;margin-top:2px;}
+.aval-title{font-size:12px;font-weight:500;color:var(--cream);margin-bottom:3px;}
+.aval-desc{font-size:11px;color:var(--cream4);line-height:1.6;}
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{padding:16px 0;border-bottom:0.5px solid rgba(184,150,12,0.12);display:grid;grid-template-columns:80px 1fr;}
+.tl-yr{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold3);}
+.tl-title{font-size:13px;font-weight:500;color:var(--cream);margin-bottom:2px;}
+.tl-sub{font-size:11px;color:var(--cream4);}
+
+/* ── SKILLS ── */
+.skills-wrap{padding:40px 32px;}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;}
+.skill-cat{background:var(--ink2);border:0.5px solid rgba(184,150,12,0.15);padding:20px;}
+.sc-title{font-size:10px;letter-spacing:3px;color:var(--gold3);margin-bottom:16px;}
+.skill-list{display:flex;flex-direction:column;gap:12px;}
+.skill-item{display:flex;flex-direction:column;gap:6px;}
+.skill-name{font-size:12px;color:var(--cream2);display:flex;justify-content:space-between;}
+.skill-pct{font-size:10px;color:var(--gold2);}
+.skill-bar{height:2px;background:rgba(184,150,12,0.15);}
+.skill-fill{height:2px;background:var(--gold3);}
+.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px;}
+.tool-chip{background:var(--ink2);border:0.5px solid rgba(184,150,12,0.15);padding:12px;text-align:center;}
+.tool-icon{font-size:20px;color:var(--gold3);margin-bottom:6px;}
+.tool-name{font-size:11px;color:var(--cream3);letter-spacing:1px;}
+
+/* ── BLOG ── */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,150,12,0.12);margin:0;}
+.blog-card{background:var(--ink);padding:24px;cursor:pointer;transition:background .15s;}
+.blog-card:hover{background:var(--ink2);}
+.blog-cat{font-size:9px;letter-spacing:2.5px;color:var(--gold3);margin-bottom:10px;}
+.blog-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--cream);margin-bottom:8px;line-height:1.3;}
+.blog-excerpt{font-size:12px;color:var(--cream4);line-height:1.7;margin-bottom:14px;}
+.blog-meta{font-size:10px;color:var(--dust);letter-spacing:1px;display:flex;justify-content:space-between;}
+.blog-vis{height:100px;background:var(--ink3);margin:-24px -24px 20px;display:flex;align-items:center;justify-content:center;color:var(--gold2);font-size:28px;border-bottom:0.5px solid rgba(184,150,12,0.12);}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.contact-left{padding:48px 40px;border-right:0.5px solid rgba(184,150,12,0.15);}
+.contact-right{padding:48px 40px;}
+.c-info-rows{display:flex;flex-direction:column;gap:16px;margin-top:24px;}
+.c-row{display:flex;align-items:center;gap:14px;padding:14px;border:0.5px solid rgba(184,150,12,0.15);}
+.c-icon{color:var(--gold3);font-size:18px;width:32px;text-align:center;flex-shrink:0;}
+.c-label{font-size:10px;letter-spacing:2px;color:var(--cream4);margin-bottom:2px;}
+.c-val{font-size:13px;color:var(--cream2);}
+.social-row{display:flex;gap:8px;margin-top:20px;}
+.soc-btn{background:rgba(184,150,12,0.08);border:0.5px solid var(--goldb);color:var(--cream4);font-size:14px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;}
+.soc-btn:hover{border-color:var(--gold3);color:var(--gold3);}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.f-label{font-size:10px;letter-spacing:2px;color:var(--cream4);}
+.f-input{background:rgba(255,255,255,0.04);border:0.5px solid rgba(184,150,12,0.2);color:var(--cream2);padding:11px 14px;font-size:13px;font-family:'Inter',sans-serif;outline:none;transition:border-color .15s;width:100%;}
+.f-input:focus{border-color:var(--gold3);}
+.f-input::placeholder{color:var(--cream4);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.submit-btn{background:var(--gold3);color:var(--ink);font-size:11px;letter-spacing:2px;padding:13px;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;}
+.avail-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#5dcaa5;border:0.5px solid rgba(93,202,165,.25);background:rgba(93,202,165,.08);padding:6px 12px;margin-top:20px;}
+.avail-dot{width:6px;height:6px;background:#5dcaa5;border-radius:50%;}
+
+.sec-divider{height:0.5px;background:rgba(184,150,12,0.15);margin:0 32px;}
+.footer{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;border-top:0.5px solid rgba(184,150,12,0.15);}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:2px;color:var(--gold3);}
+.footer-copy{font-size:11px;color:var(--cream4);}
+</style>
+
+<div class="shell">
+  <h2 class="sr-only">Full-stack developer and designer portfolio template with hero, projects, about, skills, blog, and contact pages</h2>
+
+  <nav class="nav">
+    <div class="nav-logo" onclick="goPage('hero')">J·<em>M</em></div>
+    <div class="nav-links">
+      <div class="nav-link on" onclick="goPage('hero')">HOME</div>
+      <div class="nav-link" onclick="goPage('work')">WORK</div>
+      <div class="nav-link" onclick="goPage('about')">ABOUT</div>
+      <div class="nav-link" onclick="goPage('skills')">SKILLS</div>
+      <div class="nav-link" onclick="goPage('blog')">BLOG</div>
+      <div class="nav-link" onclick="goPage('contact')">CONTACT</div>
+    </div>
+    <button class="nav-cta" onclick="goPage('contact')">HIRE ME</button>
+  </nav>
+
+  <div class="pages">
+    <div class="ptab on" onclick="goPage('hero')">① Hero</div>
+    <div class="ptab" onclick="goPage('work')">② Projects</div>
+    <div class="ptab" onclick="goPage('about')">③ About</div>
+    <div class="ptab" onclick="goPage('skills')">④ Skills</div>
+    <div class="ptab" onclick="goPage('blog')">⑤ Blog</div>
+    <div class="ptab" onclick="goPage('contact')">⑥ Contact</div>
+  </div>
+
+  <!-- ① HERO -->
+  <div class="page on" id="page-hero">
+    <div class="hero">
+      <div class="hero-left">
+        <div class="hero-tag">FULL-STACK DEVELOPER & DESIGNER</div>
+        <h1 class="hero-h">I build things<br>that <em>work</em><br>and look good.</h1>
+        <p class="hero-p">React · Next.js · Node · Django · Laravel. Based in Nairobi — building for the world. Founder of Lumyn Technologies.</p>
+        <div class="hero-btns">
+          <button class="btn-gold" onclick="goPage('work')">VIEW MY WORK</button>
+          <button class="btn-ghost" onclick="goPage('contact')">LET'S TALK</button>
+        </div>
+        <div class="stack-row">
+          <span class="stk">REACT</span><span class="stk">NEXT.JS</span><span class="stk">NODE</span>
+          <span class="stk">DJANGO</span><span class="stk">LARAVEL</span><span class="stk">TYPESCRIPT</span>
+          <span class="stk">POSTGRES</span><span class="stk">M-PESA</span>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div style="text-align:center;">
+          <div class="hero-av">
+            JM
+            <div class="hero-av-badge">AVAILABLE</div>
+          </div>
+          <div style="font-size:11px;color:var(--cream4);margin-top:16px;letter-spacing:1.5px;">JOSHUA MWENDWA</div>
+          <div style="font-size:11px;color:var(--gold3);margin-top:4px;letter-spacing:1px;">NAIROBI, KENYA</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-stat"><div class="h-stat-n">3+</div><div class="h-stat-l">YRS EXP</div></div>
+      <div class="h-stat-sep"></div>
+      <div class="hero-stat"><div class="h-stat-n">20+</div><div class="h-stat-l">PROJECTS</div></div>
+      <div class="h-stat-sep"></div>
+      <div class="hero-stat"><div class="h-stat-n">12</div><div class="h-stat-l">CLIENTS</div></div>
+      <div class="h-stat-sep"></div>
+      <div class="hero-stat"><div class="h-stat-n">4</div><div class="h-stat-l">PRODUCTS</div></div>
+    </div>
+  </div>
+
+  <!-- ② WORK -->
+  <div class="page" id="page-work">
+    <div class="work-header">
+      <div class="sec-eyebrow">SELECTED WORK</div>
+      <div class="sec-title" style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--cream);">Projects that shipped</div>
+      <div class="work-pills">
+        <button class="wpill on">ALL</button>
+        <button class="wpill">WEB APP</button>
+        <button class="wpill">MOBILE</button>
+        <button class="wpill">UI/UX</button>
+        <button class="wpill">API</button>
+      </div>
+    </div>
+    <div class="work-grid">
+      <div class="proj">
+        <div class="proj-visual"><i class="ti ti-shopping-cart" aria-hidden="true"></i></div>
+        <div class="proj-num">01</div>
+        <div class="proj-tags"><span class="ptag">WEB APP</span><span class="ptag">MARKETPLACE</span></div>
+        <div class="proj-name">StockFlow</div>
+        <div class="proj-desc">Surplus goods marketplace with microservices architecture, real-time inventory, and M-Pesa payments integration.</div>
+        <div class="proj-stack"><span class="pstk">Next.js</span><span class="pstk">·</span><span class="pstk">Node.js</span><span class="pstk">·</span><span class="pstk">PostgreSQL</span><span class="pstk">·</span><span class="pstk">M-Pesa</span></div>
+        <div class="proj-link"><i class="ti ti-arrow-up-right" aria-hidden="true"></i></div>
+      </div>
+      <div class="proj">
+        <div class="proj-visual"><i class="ti ti-car" aria-hidden="true"></i></div>
+        <div class="proj-num">02</div>
+        <div class="proj-tags"><span class="ptag">DASHBOARD</span><span class="ptag">UI/UX</span></div>
+        <div class="proj-name">AutoDesk</div>
+        <div class="proj-desc">Car dealership management dashboard with real-time unit tracking, sales analytics, and role-based access control.</div>
+        <div class="proj-stack"><span class="pstk">React</span><span class="pstk">·</span><span class="pstk">TypeScript</span><span class="pstk">·</span><span class="pstk">Django</span></div>
+        <div class="proj-link"><i class="ti ti-arrow-up-right" aria-hidden="true"></i></div>
+      </div>
+      <div class="proj">
+        <div class="proj-visual"><i class="ti ti-building" aria-hidden="true"></i></div>
+        <div class="proj-num">03</div>
+        <div class="proj-tags"><span class="ptag">REAL ESTATE</span><span class="ptag">WEB</span></div>
+        <div class="proj-name">Gaia Brookside</div>
+        <div class="proj-desc">Luxury real estate platform with virtual tours, floor plans, lead capture, and a real-time unit availability admin panel.</div>
+        <div class="proj-stack"><span class="pstk">Next.js</span><span class="pstk">·</span><span class="pstk">Laravel</span><span class="pstk">·</span><span class="pstk">PostgreSQL</span></div>
+        <div class="proj-link"><i class="ti ti-arrow-up-right" aria-hidden="true"></i></div>
+      </div>
+      <div class="proj">
+        <div class="proj-visual"><i class="ti ti-palette" aria-hidden="true"></i></div>
+        <div class="proj-num">04</div>
+        <div class="proj-tags"><span class="ptag">E-COMMERCE</span><span class="ptag">3D UI</span></div>
+        <div class="proj-name">Maasai Craft Store</div>
+        <div class="proj-desc">3D-animated e-commerce interface for a Maasai market craft business featuring immersive product views and M-Pesa checkout.</div>
+        <div class="proj-stack"><span class="pstk">React</span><span class="pstk">·</span><span class="pstk">Three.js</span><span class="pstk">·</span><span class="pstk">Framer Motion</span></div>
+        <div class="proj-link"><i class="ti ti-arrow-up-right" aria-hidden="true"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ ABOUT -->
+  <div class="page" id="page-about">
+    <div class="about-grid">
+      <div class="about-left">
+        <div class="sec-eyebrow">ABOUT ME</div>
+        <div class="sec-title">Dev who designs.<br>Designer who ships.</div>
+        <p class="about-p">I'm Joshua Mwendwa — a full-stack developer and UI/UX designer based in Nairobi, Kenya. I build digital products that are fast, beautiful, and actually useful.</p>
+        <p class="about-p">Founder of Lumyn Technologies, a digital engineering company operating globally. Moringa School certified engineer, currently pursuing a Diploma in Software Engineering at Zetech University.</p>
+        <p class="about-p">I specialize in React/Next.js frontends, Django and Laravel backends, and Kenya-specific integrations like M-Pesa Daraja. I care deeply about design systems, product thinking, and code quality.</p>
+        <div class="about-vals">
+          <div class="aval">
+            <i class="ti ti-code" class="aval-icon" style="color:var(--gold3);font-size:18px;flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>
+            <div><div class="aval-title">Clean code</div><div class="aval-desc">Readable, maintainable, and well-documented. Always.</div></div>
+          </div>
+          <div class="aval">
+            <i class="ti ti-layout" class="aval-icon" style="color:var(--gold3);font-size:18px;flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>
+            <div><div class="aval-title">Design-first thinking</div><div class="aval-desc">I design before I code. UX is not an afterthought.</div></div>
+          </div>
+          <div class="aval">
+            <i class="ti ti-rocket" class="aval-icon" style="color:var(--gold3);font-size:18px;flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>
+            <div><div class="aval-title">Ship it</div><div class="aval-desc">I build MVPs fast and iterate with real users in mind.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="sec-eyebrow">EXPERIENCE</div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-yr">2024</div><div><div class="tl-title">Founder — Lumyn Technologies</div><div class="tl-sub">Digital engineering & design · Global</div></div></div>
+          <div class="tl-item"><div class="tl-yr">2024</div><div><div class="tl-title">Freelance Full-Stack Developer</div><div class="tl-sub">Real estate, e-commerce, SaaS clients</div></div></div>
+          <div class="tl-item"><div class="tl-yr">2023</div><div><div class="tl-title">Moringa School — Certified Engineer</div><div class="tl-sub">Software Engineering · Nairobi</div></div></div>
+          <div class="tl-item"><div class="tl-yr">2023</div><div><div class="tl-title">Zetech University</div><div class="tl-sub">Diploma in Software Engineering · In progress</div></div></div>
+          <div class="tl-item"><div class="tl-yr">2022</div><div><div class="tl-title">UI/UX & Frontend Development</div><div class="tl-sub">Independent projects · Kenya</div></div></div>
+        </div>
+        <div style="margin-top:28px;">
+          <div class="sec-eyebrow" style="margin-bottom:12px;">CURRENTLY BUILDING</div>
+          <div style="background:var(--ink2);border:0.5px solid var(--goldb);padding:16px;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream);margin-bottom:4px;">Lumyn Studio</div>
+            <div style="font-size:12px;color:var(--cream4);line-height:1.7;">Premium Next.js + Framer Motion UI template marketplace — scroll-animated, production-ready, built for developers who care about design.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ SKILLS -->
+  <div class="page" id="page-skills">
+    <div class="skills-wrap">
+      <div class="sec-eyebrow">EXPERTISE</div>
+      <div class="sec-title" style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--cream);margin-bottom:24px;">Stack & tools</div>
+      <div class="skills-grid">
+        <div class="skill-cat">
+          <div class="sc-title">FRONTEND</div>
+          <div class="skill-list">
+            <div class="skill-item"><div class="skill-name">React / Next.js <span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+            <div class="skill-item"><div class="skill-name">TypeScript <span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+            <div class="skill-item"><div class="skill-name">Tailwind CSS <span class="skill-pct">92%</span></div><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+            <div class="skill-item"><div class="skill-name">Framer Motion <span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="sc-title">BACKEND</div>
+          <div class="skill-list">
+            <div class="skill-item"><div class="skill-name">Node.js <span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+            <div class="skill-item"><div class="skill-name">Django / Python <span class="skill-pct">82%</span></div><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+            <div class="skill-item"><div class="skill-name">Laravel / PHP <span class="skill-pct">78%</span></div><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+            <div class="skill-item"><div class="skill-name">PostgreSQL <span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="sc-title">DESIGN & OTHER</div>
+          <div class="skill-list">
+            <div class="skill-item"><div class="skill-name">UI/UX Design <span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+            <div class="skill-item"><div class="skill-name">Figma <span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+            <div class="skill-item"><div class="skill-name">M-Pesa Daraja API <span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+            <div class="skill-item"><div class="skill-name">REST / GraphQL APIs <span class="skill-pct">87%</span></div><div class="skill-bar"><div class="skill-fill" style="width:87%"></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="sec-eyebrow" style="margin-top:32px;margin-bottom:0;">TOOLS I USE DAILY</div>
+      <div class="tools-grid">
+        <div class="tool-chip"><div class="tool-icon"><i class="ti ti-brand-github" aria-hidden="true"></i></div><div class="tool-name">GIT / GITHUB</div></div>
+        <div class="tool-chip"><div class="tool-icon"><i class="ti ti-database" aria-hidden="true"></i></div><div class="tool-name">POSTGRESQL</div></div>
+        <div class="tool-chip"><div class="tool-icon"><i class="ti ti-cloud" aria-hidden="true"></i></div><div class="tool-name">VERCEL</div></div>
+        <div class="tool-chip"><div class="tool-icon"><i class="ti ti-box" aria-hidden="true"></i></div><div class="tool-name">DOCKER</div></div>
+        <div class="tool-chip"><div class="tool-icon"><i class="ti ti-brand-figma" aria-hidden="true"></i></div><div class="tool-name">FIGMA</div></div>
+        <div class="tool-chip"><div class="tool-icon"><i class="ti ti-api" aria-hidden="true"></i></div><div class="tool-name">REST APIS</div></div>
+        <div class="tool-chip"><div class="tool-icon"><i class="ti ti-device-mobile" aria-hidden="true"></i></div><div class="tool-name">M-PESA</div></div>
+        <div class="tool-chip"><div class="tool-icon"><i class="ti ti-terminal" aria-hidden="true"></i></div><div class="tool-name">LINUX / CLI</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ BLOG -->
+  <div class="page" id="page-blog">
+    <div style="padding:32px 32px 20px;">
+      <div class="sec-eyebrow">WRITING</div>
+      <div class="sec-title" style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--cream);">Thoughts on code & craft</div>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-vis"><i class="ti ti-brand-react" aria-hidden="true"></i></div>
+        <div class="blog-cat">NEXT.JS · ARCHITECTURE</div>
+        <div class="blog-title">Why I use Next.js App Router for every new project</div>
+        <div class="blog-excerpt">Server components changed how I think about data fetching. Here's my mental model after building 6 production apps with the App Router.</div>
+        <div class="blog-meta"><span>June 2025</span><span>5 min read</span></div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-vis"><i class="ti ti-device-mobile" aria-hidden="true"></i></div>
+        <div class="blog-cat">M-PESA · PAYMENTS</div>
+        <div class="blog-title">M-Pesa Daraja API: the complete integration guide for 2025</div>
+        <div class="blog-excerpt">STK push, B2C, C2B — I've done them all. A no-nonsense guide to integrating M-Pesa into your Next.js or Node app without losing your mind.</div>
+        <div class="blog-meta"><span>May 2025</span><span>8 min read</span></div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-vis"><i class="ti ti-palette" aria-hidden="true"></i></div>
+        <div class="blog-cat">DESIGN · UI/UX</div>
+        <div class="blog-title">Design systems for solo devs — what to steal, what to skip</div>
+        <div class="blog-excerpt">You don't need Storybook and 40 tokens to have a design system. Here's the lightweight setup I use across all Lumyn products.</div>
+        <div class="blog-meta"><span>April 2025</span><span>6 min read</span></div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-vis"><i class="ti ti-building" aria-hidden="true"></i></div>
+        <div class="blog-cat">FREELANCE · KENYA</div>
+        <div class="blog-title">How I landed my first real estate client in Nairobi</div>
+        <div class="blog-excerpt">From a cold DM to a full website pitch. The exact message I sent, the mockup that closed the deal, and what I'd do differently.</div>
+        <div class="blog-meta"><span>March 2025</span><span>4 min read</span></div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-vis"><i class="ti ti-tournament" aria-hidden="true"></i></div>
+        <div class="blog-cat">BACKEND · DJANGO</div>
+        <div class="blog-title">Django vs Laravel for African SaaS products — a real comparison</div>
+        <div class="blog-excerpt">I've shipped production apps in both. Here's where each one wins, and why I reach for Django when I need to move fast.</div>
+        <div class="blog-meta"><span>Feb 2025</span><span>7 min read</span></div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-vis"><i class="ti ti-rocket" aria-hidden="true"></i></div>
+        <div class="blog-cat">STARTUP · LUMYN</div>
+        <div class="blog-title">Building Lumyn Technologies from a laptop in Nairobi</div>
+        <div class="blog-excerpt">No co-founder, no funding, no office. How I bootstrapped a global digital engineering company from scratch while still in school.</div>
+        <div class="blog-meta"><span>Jan 2025</span><span>9 min read</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ CONTACT -->
+  <div class="page" id="page-contact">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="sec-eyebrow">GET IN TOUCH</div>
+        <div class="sec-title">Let's build<br>something great.</div>
+        <p class="about-p" style="margin-top:8px;">Whether you need a website, a web app, a design system, or a full product — I'm available for freelance projects, full-time roles, and collaborations.</p>
+        <div class="avail-badge"><span class="avail-dot"></span>Available for new projects</div>
+        <div class="c-info-rows">
+          <div class="c-row">
+            <i class="ti ti-mail c-icon" style="color:var(--gold3);font-size:18px;width:32px;text-align:center;flex-shrink:0;" aria-hidden="true"></i>
+            <div><div class="c-label">EMAIL</div><div class="c-val">hello@lumyn.co.ke</div></div>
+          </div>
+          <div class="c-row">
+            <i class="ti ti-map-pin c-icon" style="color:var(--gold3);font-size:18px;width:32px;text-align:center;flex-shrink:0;" aria-hidden="true"></i>
+            <div><div class="c-label">LOCATION</div><div class="c-val">Nairobi, Kenya · Available remotely</div></div>
+          </div>
+          <div class="c-row">
+            <i class="ti ti-globe c-icon" style="color:var(--gold3);font-size:18px;width:32px;text-align:center;flex-shrink:0;" aria-hidden="true"></i>
+            <div><div class="c-label">WEBSITE</div><div class="c-val">lumyn.co.ke</div></div>
+          </div>
+        </div>
+        <div class="social-row">
+          <div class="soc-btn" title="GitHub"><i class="ti ti-brand-github" aria-hidden="true"></i></div>
+          <div class="soc-btn" title="LinkedIn"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></div>
+          <div class="soc-btn" title="Twitter/X"><i class="ti ti-brand-x" aria-hidden="true"></i></div>
+          <div class="soc-btn" title="WhatsApp"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></div>
+        </div>
+      </div>
+      <div class="contact-right">
+        <div class="sec-eyebrow" style="margin-bottom:16px;">SEND A MESSAGE</div>
+        <div class="form-row">
+          <div class="form-group"><div class="f-label">YOUR NAME</div><input class="f-input" type="text" placeholder="John Doe" /></div>
+          <div class="form-group"><div class="f-label">EMAIL</div><input class="f-input" type="email" placeholder="you@example.com" /></div>
+        </div>
+        <div class="form-group"><div class="f-label">SUBJECT</div>
+          <select class="f-input" style="appearance:none;cursor:pointer;">
+            <option value="" disabled selected>What's this about?</option>
+            <option>Freelance project</option>
+            <option>Full-time opportunity</option>
+            <option>Collaboration</option>
+            <option>UI template purchase</option>
+            <option>General enquiry</option>
+          </select>
+        </div>
+        <div class="form-group"><div class="f-label">BUDGET (OPTIONAL)</div>
+          <select class="f-input" style="appearance:none;cursor:pointer;">
+            <option value="" disabled selected>Project budget range</option>
+            <option>Under $500</option>
+            <option>$500 – $2,000</option>
+            <option>$2,000 – $5,000</option>
+            <option>$5,000+</option>
+          </select>
+        </div>
+        <div class="form-group"><div class="f-label">MESSAGE</div><textarea class="f-input" rows="4" placeholder="Tell me about your project..." style="resize:none;"></textarea></div>
+        <button class="submit-btn" onclick="this.innerHTML='<i class=\'ti ti-check\' aria-hidden=\'true\'></i>&nbsp; Message sent!'">
+          <i class="ti ti-send" aria-hidden="true"></i>
+          SEND MESSAGE
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">J·M</div>
+    <div class="footer-copy">© 2025 JOSHUA MWENDWA · LUMYN TECHNOLOGIES</div>
+    <div style="font-size:11px;color:var(--cream4);cursor:pointer;" onclick="goPage('hero')">BACK TO TOP ↑</div>
+  </div>
+</div>
+
+<script>
+function goPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('on'));
+  document.getElementById('page-'+name).classList.add('on');
+  const pages=['hero','work','about','skills','blog','contact'];
+  const idx=pages.indexOf(name);
+  if(idx>=0){
+    document.querySelectorAll('.ptab')[idx].classList.add('on');
+    document.querySelectorAll('.nav-link')[idx].classList.add('on');
+  }
+}
+document.querySelectorAll('.wpill').forEach(b=>{
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.wpill').forEach(x=>x.classList.remove('on'));
+    this.classList.add('on');
+  });
+});
+</script>

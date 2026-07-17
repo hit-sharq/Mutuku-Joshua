@@ -1,4 +1,4 @@
-/* PremiumButton.module.css */
+/* PremiumButton.module.css - Luxury Gold/Cream */
 
 .button {
   display: inline-flex;
@@ -13,6 +13,9 @@
   text-decoration: none;
   font-family: inherit;
   white-space: nowrap;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.6875rem;
 }
 
 .button:disabled {
@@ -31,48 +34,37 @@
   align-items: center;
 }
 
-/* ============================================
-   VARIANT: Primary (default)
-   Background: var(--primary)
-   Text: var(--primary-foreground)
-   Hover: slight glow + lift
-============================================ */
+/* VARIANT: Primary (gold) */
 .primary {
   background: var(--primary);
   color: var(--primary-foreground);
-  box-shadow: 0 4px 14px rgba(109, 129, 150, 0.3);
+  box-shadow: 0 4px 14px rgba(184, 150, 12, 0.35);
 }
 
 .primary:hover:not(:disabled) {
-  box-shadow: 0 6px 20px rgba(109, 129, 150, 0.4);
-  background: linear-gradient(135deg, #7a92a8 0%, #6d8196 100%);
+  box-shadow: 0 6px 20px rgba(184, 150, 12, 0.45);
+  background: linear-gradient(135deg, #e8c840 0%, #c8a820 100%);
 }
 
 .primary:active:not(:disabled) {
-  box-shadow: 0 2px 8px rgba(109, 129, 150, 0.3);
+  box-shadow: 0 2px 8px rgba(184, 150, 12, 0.35);
 }
 
-/* ============================================
-   VARIANT: Secondary (outlined)
-   Transparent bg, border, foreground text
-============================================ */
+/* VARIANT: Secondary (outlined gold) */
 .secondary {
   background: transparent;
   color: var(--foreground);
-  border: 1.5px solid var(--border);
+  border: 1px solid var(--goldb);
 }
 
 .secondary:hover:not(:disabled) {
   border-color: var(--primary);
   color: var(--primary);
-  background: rgba(109, 129, 150, 0.08);
-  box-shadow: 0 0 20px rgba(109, 129, 150, 0.15);
+  background: rgba(184, 150, 12, 0.08);
+  box-shadow: 0 0 20px rgba(184, 150, 12, 0.15);
 }
 
-/* ============================================
-   VARIANT: Ghost (minimal)
-   Transparent, primary color text
-============================================ */
+/* VARIANT: Ghost */
 .ghost {
   background: transparent;
   color: var(--primary);
@@ -81,63 +73,51 @@
 
 .ghost:hover:not(:disabled) {
   background: var(--secondary);
-  border-color: rgba(109, 129, 150, 0.2);
+  border-color: rgba(184, 150, 12, 0.2);
 }
 
-/* ============================================
-   SIZES
-============================================ */
-
-/* Small */
+/* SIZES */
 .sm {
   padding: 8px 16px;
-  font-size: 0.875rem;
+  font-size: 0.625rem;
   min-height: 36px;
   border-radius: calc(var(--radius) * 0.75);
 }
 
-/* Medium (default) */
 .md {
   padding: 12px 24px;
-  font-size: 1rem;
+  font-size: 0.6875rem;
   min-height: 44px;
 }
 
-/* Large */
 .lg {
-  padding: 16px 32px;
-  font-size: 1.125rem;
+  padding: 14px 32px;
+  font-size: 0.75rem;
   font-weight: 700;
   min-height: 52px;
   border-radius: calc(var(--radius) * 1.1);
 }
 
-/* ============================================
-   LINK WRAPPER (for href prop)
-============================================ */
 .linkWrapper {
   text-decoration: none;
   display: inline-flex;
 }
 
-/* ============================================
-   RESPONSIVE ADJUSTMENTS
-============================================ */
 @media (max-width: 768px) {
   .lg {
     padding: 14px 24px;
-    font-size: 1rem;
+    font-size: 0.6875rem;
     min-height: 48px;
   }
-  
+
   .md {
     padding: 10px 20px;
     min-height: 40px;
   }
-  
+
   .sm {
     padding: 6px 12px;
-    font-size: 0.8125rem;
+    font-size: 0.625rem;
     min-height: 32px;
   }
 }
@@ -146,7 +126,7 @@
   .button {
     width: 100%;
   }
-  
+
   .lg {
     padding: 12px 20px;
   }

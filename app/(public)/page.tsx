@@ -7,8 +7,6 @@ import PremiumButton from '@/components/PremiumButton'
 import BlogCard from '@/components/BlogCard'
 import NewsCard from '@/components/NewsCard'
 import ProjectCard from '@/components/ProjectCard'
-import Image from 'next/image'
-import Link from 'next/link'
 import styles from './page.module.css'
 
 type Project = {
@@ -143,87 +141,89 @@ export default function HomePage() {
     <div className={styles.page}>
       {/* HERO SECTION */}
       <section className={styles.hero}>
-        {/* Background orbs */}
-        <div className={styles.heroBg}>
-          <div className={`${styles.floatingCode} ${styles.code1}`}>{'{ }'}</div>
-          <div className={`${styles.floatingCode} ${styles.code2}`}>{"<code>"}</div>
-          <div className={`${styles.floatingCode} ${styles.code3}`}>{"</div>"}</div>
-          <div className={`${styles.floatingCode} ${styles.code4}`}>{"const"}</div>
-          <div className={`${styles.floatingCode} ${styles.code5}`}>{"return"}</div>
-        </div>
-
-        <div className={styles.heroContent}>
+        <div className={styles.heroLeft}>
           <motion.span
-            className={styles.heroBadge}
+            className={styles.heroTag}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Fullstack Developer & Entrepreneur
+            FULL-STACK DEVELOPER & DESIGNER
           </motion.span>
 
           <motion.h1
-            className={styles.heroTitle}
+            className={styles.heroH}
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            Mutuku Joshua
+            I build things<br />that <em>work</em><br />and look good.
           </motion.h1>
 
           <motion.p
-            className={styles.heroSubtitle}
+            className={styles.heroP}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            Founder of Lumyn Technologies
-          </motion.p>
-
-          <motion.p
-            className={styles.heroDescription}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            Passionate fullstack developer committed to building scalable web applications
-            and digital solutions with clean, efficient code and modern technologies.
+            React · Next.js · Node · Django · Laravel. Based in Nairobi — building for the world. Founder of Lumyn Technologies.
           </motion.p>
 
           <motion.div
-            className={styles.heroButtons}
+            className={styles.heroBtns}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
             <PremiumButton href="/projects" size="lg">
-              View My Work
+              VIEW MY WORK
             </PremiumButton>
             <PremiumButton href="/contact" variant="secondary" size="lg">
-              Get In Touch
+              LET&apos;S TALK
             </PremiumButton>
+          </motion.div>
+
+          <motion.div
+            className={styles.stackRow}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            <span className={styles.stk}>REACT</span>
+            <span className={styles.stk}>NEXT.JS</span>
+            <span className={styles.stk}>NODE</span>
+            <span className={styles.stk}>DJANGO</span>
+            <span className={styles.stk}>LARAVEL</span>
+            <span className={styles.stk}>TYPESCRIPT</span>
+            <span className={styles.stk}>POSTGRES</span>
+            <span className={styles.stk}>M-PESA</span>
           </motion.div>
         </div>
 
-        {/* Hero Image */}
-        <motion.div
-          className={styles.heroImage}
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, duration: 1 }}
-        >
-          <div className={styles.heroImageWrapper}>
-            <div className={styles.heroImageGlow} />
-            <Image
-              src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif"
-              alt="Mutuku Joshua - Fullstack Developer"
-              fill
-              className={styles.heroImage}
-              priority
-            />
+        <div className={styles.heroRight}>
+          <div style={{ textAlign: "center" }}>
+            <div className={styles.heroAv}>
+              JM
+              <div className={styles.heroAvBadge}>AVAILABLE</div>
+            </div>
+            <div style={{ fontSize: 11, color: "var(--cream4)", marginTop: 16, letterSpacing: "1.5px" }}>MUTUKU JOSHUA</div>
+            <div style={{ fontSize: 11, color: "var(--primary)", marginTop: 4, letterSpacing: "1px" }}>NAIROBI, KENYA</div>
           </div>
-        </motion.div>
+        </div>
       </section>
+
+      {/* STATS STRIP */}
+      <div className={styles.heroScroll}>
+        {stats.map((stat, index) => (
+          <div key={stat.label} className={styles.heroStat}>
+            <div className={styles.hStatN}>
+              <Counter to={stat.number} suffix={stat.suffix} />
+            </div>
+            <div className={styles.hStatL}>{stat.label}</div>
+            {index < stats.length - 1 && <div className={styles.hStatSep} />}
+          </div>
+        ))}
+      </div>
 
       {/* STATS SECTION */}
       <section

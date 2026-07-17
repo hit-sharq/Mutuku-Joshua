@@ -1,136 +1,99 @@
-/* Navbar Styles - Lumyn Premium Design System */
-/* Note: globals.css is already imported at app level, providing CSS variables */
+/* Navbar Styles - Luxury Gold/Cream (template design) */
 
 .header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  transition: all 0.3s ease;
-}
-
-.header.scrolled {
-  background: rgba(10, 10, 10, 0.95);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  background: rgba(15, 15, 15, 0.97);
+  border-bottom: 0.5px solid rgba(184, 150, 12, 0.2);
 }
 
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
-  height: 80px;
-}
-
-@media (max-width: 768px) {
-  .nav {
-    height: 70px;
-    gap: 1rem;
-  }
+  gap: 1.5rem;
+  height: 56px;
+  padding: 0 32px;
+  max-width: 1320px;
+  margin: 0 auto;
 }
 
 .logo {
-  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--foreground);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--cream, #faf7f2);
   text-decoration: none;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -0.02em;
-  transition: opacity 0.2s ease;
+  cursor: pointer;
 }
 
-.logo:hover {
-  opacity: 0.8;
+.logo em {
+  font-style: italic;
+  color: var(--primary, #c8a820);
 }
 
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-@media (max-width: 768px) {
-  .navLinks {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    flex-direction: column;
-    padding: 1rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    transform: translateY(-10px);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    gap: 0;
-  }
-
-  .navLinks.mobileOpen {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .navLinks li {
-    width: 100%;
-  }
-
-  .navLinks a {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 1rem;
-    border-bottom: 1px solid var(--border);
-    border-radius: 0;
-  }
-
-  .navLinks li:last-child a {
-    border-bottom: none;
-  }
-}
-
 .navLinks a {
   display: flex;
   align-items: center;
-  padding: 0.75rem 1rem;
-  color: var(--muted-foreground);
-  font-weight: 500;
-  font-size: 0.95rem;
+  height: 56px;
+  padding: 0 14px;
+  color: var(--cream4, rgba(240, 232, 212, 0.3));
+  font-size: 10px;
+  letter-spacing: 2px;
   text-decoration: none;
-  border-radius: var(--radius);
-  transition: all 0.2s ease;
-  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
 }
 
 .navLinks a:hover {
-  color: var(--foreground);
-  background: var(--secondary);
+  color: var(--cream2, #f0e8d4);
+}
+
+.navLinks a.active {
+  color: var(--primary, #c8a820);
+  border-bottom-color: var(--primary, #c8a820);
 }
 
 .adminLink {
-  background: var(--gradient-primary) !important;
-  color: var(--primary-foreground) !important;
-  font-weight: 700;
-  box-shadow: 0 4px 15px rgba(109, 129, 150, 0.3);
+  color: var(--primary, #c8a820) !important;
+  border: 0.5px solid rgba(184, 150, 12, 0.3) !important;
+  height: auto !important;
+  padding: 6px 12px !important;
+  border-radius: 0 !important;
 }
 
-.adminLink:hover {
-  background: linear-gradient(135deg, #7a92a8 0%, #6d8196 100%) !important;
-  color: var(--primary-foreground) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(109, 129, 150, 0.4);
+.navCta {
+  background: var(--primary, #c8a820);
+  color: var(--ink, #0f0f0f);
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.navCta:hover {
+  background: var(--gold3, #e8c840);
+}
+
+.searchBarContainer {
+  display: flex;
+  align-items: center;
 }
 
 .mobileMenuBtn {
@@ -138,36 +101,50 @@
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: var(--foreground);
+  color: var(--cream, #faf7f2);
   cursor: pointer;
   padding: 0.5rem;
-  border-radius: var(--radius);
-  transition: all 0.2s ease;
 }
 
-.mobileMenuBtn:hover {
-  background: var(--secondary);
+.clerk-user-button {
+  color: var(--cream, #faf7f2) !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 980px) {
+  .navLinks,
+  .searchBarContainer {
+    display: none;
+  }
+  .nav {
+    padding: 0 20px;
+  }
   .mobileMenuBtn {
     display: block;
   }
 }
 
-/* Clerk UserButton styling adjustments */
-.clerk-user-button {
-  color: var(--foreground) !important;
-}
-
-/* Search bar container */
-.searchBarContainer {
-  display: flex;
-  align-items: center;
-}
-
-@media (max-width: 768px) {
-  .searchBarContainer {
-    display: none;
+/* Mobile dropdown menu */
+@media (max-width: 980px) {
+  .navLinks.mobileOpen {
+    display: flex;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: rgba(20, 20, 20, 0.98);
+    border-bottom: 0.5px solid rgba(184, 150, 12, 0.2);
+    padding: 1rem;
+    gap: 0;
+  }
+  .navLinks.mobileOpen a {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    border-bottom: 0.5px solid rgba(184, 150, 12, 0.12);
+    font-size: 12px;
+  }
+  .navLinks.mobileOpen li:last-child a {
+    border-bottom: none;
   }
 }

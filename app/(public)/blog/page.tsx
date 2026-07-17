@@ -58,20 +58,17 @@ export default function BlogPage() {
   return (
     <div className={styles.page}>
       {/* HERO */}
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <AnimatedSection>
-            <h1 className={styles.sectionTitle}>Tech Blog</h1>
-            <p className={styles.sectionSubtitle}>
-              Stay updated with my latest articles on programming, web development, technology trends, and coding best practices.
-            </p>
-          </AnimatedSection>
-        </div>
-      </section>
+      <div className={styles.blogHeader}>
+        <div className={styles.secEyebrow}>WRITING</div>
+        <div className={styles.secTitle}>Thoughts on code &amp; craft</div>
+        <p className={styles.sectionSubtitle}>
+          Stay updated with my latest articles on programming, web development, technology trends, and coding best practices.
+        </p>
+      </div>
 
       {/* BLOG CONTENT */}
       <section className={styles.section}>
-        <div className={styles.container}>
+        <div className="container">
           {posts.length === 0 ? (
             <div className={styles.emptyState}>
               <span className={styles.emptyStateIcon}>✍️</span>
@@ -80,7 +77,6 @@ export default function BlogPage() {
             </div>
           ) : (
             <>
-              {/* Posts Grid */}
               <div className={styles.blogGrid}>
                 {currentPosts.map((post, index) => (
                   <AnimatedSection key={post.id} delay={index * 0.05}>
@@ -89,7 +85,6 @@ export default function BlogPage() {
                 ))}
               </div>
 
-              {/* Pagination */}
               {totalPages > 1 && (
                 <div className={styles.pagination}>
                   <button
@@ -125,13 +120,11 @@ export default function BlogPage() {
       {/* NEWSLETTER CTA */}
       {posts.length > 0 && (
         <section className={styles.newsletterSection}>
-          <div className={styles.container}>
+          <div className="container">
             <div className={styles.newsletterCta}>
               <h3>Stay Updated</h3>
               <p>Subscribe to my newsletter to receive the latest tech articles and coding tips directly in your inbox.</p>
-              <PremiumButton href="/contact" size="lg">
-                Get in Touch
-              </PremiumButton>
+              <PremiumButton href="/contact" size="lg">Get in Touch</PremiumButton>
             </div>
           </div>
         </section>

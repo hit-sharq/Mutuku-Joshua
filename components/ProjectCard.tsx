@@ -184,7 +184,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           }
 
           .project-card-title {
-            font-size: 0.9rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
             margin-bottom: 0.75rem;
             line-height: 1.3;
             color: var(--foreground);
@@ -200,7 +201,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             border: none;
             padding: 0.4rem 0.75rem;
             border-radius: 6px;
-            font-size: 0.75rem;
+            font-size: 0.625rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -208,7 +211,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
           .read-more-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(109, 129, 150, 0.4);
+            box-shadow: 0 4px 12px rgba(184, 150, 12, 0.4);
           }
 
           .project-tech-list {

@@ -1,15 +1,15 @@
-/* Footer Styles - Lumyn Premium Design System */
+/* Footer Styles - Luxury Gold/Cream Theme */
 
 .footer {
-  background: linear-gradient(180deg, var(--background) 0%, rgba(20, 20, 20, 0.95) 100%);
-  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, #0f0f0f 0%, #1c1c1c 100%);
+  border-top: 0.5px solid rgba(184, 150, 12, 0.2);
   padding: 50px 24px 20px;
   margin-top: 80px;
   position: relative;
   overflow: hidden;
 }
 
-/* Subtle top gradient line */
+/* Subtle gold top gradient line */
 .footer::before {
   content: '';
   position: absolute;
@@ -17,13 +17,13 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    var(--primary) 20%, 
-    var(--brand-light) 50%, 
-    var(--primary) 80%, 
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--primary) 20%,
+    var(--gold3) 50%,
+    var(--primary) 80%,
     transparent 100%);
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .container {
@@ -63,22 +63,20 @@
 
 /* Brand section styling */
 .footerTitle {
-  font-size: 1.25rem;
-  font-weight: 800;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
   margin: 0 0 4px 0;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--brand-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -0.02em;
+  color: var(--gold3);
+  letter-spacing: 1px;
 }
 
 .footerText {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   color: var(--primary);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   margin-bottom: 8px;
 }
 
@@ -102,8 +100,8 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: var(--secondary);
-  border: 1px solid var(--border);
+  background: rgba(184, 150, 12, 0.08);
+  border: 0.5px solid var(--goldb);
   border-radius: 8px;
   font-size: 1rem;
   text-decoration: none;
@@ -119,7 +117,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--brand-light));
+  background: linear-gradient(90deg, var(--primary), var(--gold3));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
@@ -129,7 +127,7 @@
   background: var(--primary);
   border-color: var(--primary);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(109, 129, 150, 0.3);
+  box-shadow: 0 4px 12px rgba(184, 150, 12, 0.3);
 }
 
 .socialLink:hover::before {
@@ -138,12 +136,13 @@
 
 /* Section headings */
 .footerHeading {
-  font-size: 0.875rem;
-  font-weight: 700;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 500;
   margin: 0 0 10px 0;
   color: var(--foreground);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   position: relative;
   padding-bottom: 6px;
 }
@@ -187,7 +186,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--brand-light));
+  background: linear-gradient(90deg, var(--primary), var(--gold3));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
@@ -227,8 +226,8 @@
 
 .techBadge {
   padding: 3px 6px;
-  background: var(--secondary);
-  border: 1px solid var(--border);
+  background: rgba(184, 150, 12, 0.06);
+  border: 0.5px solid var(--goldb);
   border-radius: 6px;
   font-size: 0.6875rem;
   color: var(--muted-foreground);
@@ -250,7 +249,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--brand-light));
+  background: linear-gradient(90deg, var(--primary), var(--gold3));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
@@ -259,21 +258,20 @@
 .techBadge:hover {
   border-color: var(--primary);
   color: var(--primary);
-  background: rgba(109, 129, 150, 0.08);
+  background: rgba(184, 150, 12, 0.1);
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(109, 129, 150, 0.12);
+  box-shadow: 0 2px 8px rgba(184, 150, 12, 0.12);
 }
 
 .techBadge:hover::before {
   transform: scaleX(1);
 }
 
-/* Bottom copyright section */
 /* Bottom copyright section - below all columns */
 .footerBottom {
   padding-top: 20px;
   margin-top: 8px;
-  border-top: 1px solid var(--border);
+  border-top: 0.5px solid rgba(184, 150, 12, 0.18);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -304,7 +302,7 @@
 }
 
 .managedLink:hover {
-  color: var(--brand-light);
+  color: var(--gold3);
   background: var(--secondary);
   transform: translateY(-1px);
 }
@@ -340,65 +338,5 @@
 
 .legalDivider {
   opacity: 0.3;
-  font-size: 0.625rem;
-}
-
-@media (max-width: 640px) {
-  .footerBottom {
-    text-align: center;
-  }
-}
-
-.managedBy {
-  font-size: 0.75rem;
-  color: var(--muted-foreground);
-  margin: 0;
-  font-weight: 500;
-}
-
-.managedLink {
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.managedLink:hover {
-  color: var(--brand-light);
-  background: var(--secondary);
-}
-
-.footerBottom p {
-  font-size: 0.75rem;
-  color: var(--muted-foreground);
-  margin: 0;
-  font-weight: 500;
-}
-
-.footerLegal {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  font-size: 0.6875rem;
-  color: var(--muted-foreground);
-}
-
-.footerLegal a {
-  color: var(--muted-foreground);
-  text-decoration: none;
-  transition: color 0.2s ease;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-.footerLegal a:hover {
-  color: var(--primary);
-  background: var(--secondary);
-}
-
-.footerLegal span {
-  opacity: 0.4;
   font-size: 0.625rem;
 }

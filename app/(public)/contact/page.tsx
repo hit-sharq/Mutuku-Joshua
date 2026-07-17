@@ -1,8 +1,6 @@
 'use client'
 
 import { useState } from "react"
-import AnimatedSection from "@/components/AnimatedSection"
-import PremiumButton from "@/components/PremiumButton"
 import styles from "./contact.module.css"
 
 export default function ContactPage() {
@@ -59,376 +57,137 @@ export default function ContactPage() {
 
   return (
     <div className={styles.page}>
-      {/* HERO SECTION */}
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <AnimatedSection>
-            <div className={styles.heroIcon}>💻</div>
-          </AnimatedSection>
+      <div className={styles.contactGrid}>
+        {/* LEFT: info */}
+        <div className={styles.contactLeft}>
+          <div className={styles.secEyebrow}>GET IN TOUCH</div>
+          <div className={styles.secTitle}>Let&apos;s build<br />something great.</div>
+          <p className={styles.aboutP} style={{ marginTop: 8 }}>
+            Whether you need a website, a web app, a design system, or a full product — I&apos;m available for freelance projects, full-time roles, and collaborations.
+          </p>
+          <div className={styles.availBadge}><span className={styles.availDot}></span>Available for new projects</div>
 
-          <AnimatedSection delay={0.1}>
-            <h1 className={styles.heroTitle}>Get In Touch</h1>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.2}>
-            <p className={styles.heroSubtitle}>
-              Ready to start your next project? Let's discuss your development needs.
-            </p>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.3}>
-            <div className={styles.heroBadges}>
-              <span className={styles.heroBadge}>🚀 Fast Response</span>
-              <span className={styles.heroBadge}>💼 Professional Service</span>
-              <span className={styles.heroBadge}>✅ Quality Guaranteed</span>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* MAIN CONTENT */}
-      <section className={styles.section}>
-        <div className="container">
-          <div className={styles.contactLayout}>
-            {/* Contact Form */}
-            <AnimatedSection delay={0.2}>
-              <div className={styles.formCard}>
-                <div className={styles.formHeader}>
-                  <div className={styles.formIcon}>📨</div>
-                  <h3>Send a Message</h3>
-                  <p>Fill out the form below and I'll get back to you within 24 hours.</p>
-                </div>
-
-                {submitStatus === "success" && (
-                  <div className={styles.successMessage}>
-                    <h4>Message Sent Successfully!</h4>
-                    <p>Thank you for reaching out. I'll review your message and respond within 24 hours.</p>
-                  </div>
-                )}
-
-                {submitStatus === "error" && (
-                  <div className={styles.errorMessage}>
-                    <h4>Error Sending Message</h4>
-                    <p>{errorMessage || "There was an error. Please try again or contact me directly."}</p>
-                  </div>
-                )}
-
-                <form onSubmit={handleSubmit}>
-                  <div className={styles.formGrid}>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="name" className={styles.formLabel}>
-                        Full Name <span style={{ color: "#ef4444" }}>*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        placeholder="Mutuku Joshua"
-                        disabled={isSubmitting}
-                        className={styles.formInput}
-                      />
-                    </div>
-
-                    <div className={styles.formGroup}>
-                      <label htmlFor="email" className={styles.formLabel}>
-                        Email Address <span style={{ color: "#ef4444" }}>*</span>
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        placeholder="officialjoshuamwendwa@gmail.com"
-                        disabled={isSubmitting}
-                        className={styles.formInput}
-                      />
-                    </div>
-                  </div>
-
-                  <div className={styles.formGrid}>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="phone" className={styles.formLabel}>
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="+254 700 000 000"
-                        disabled={isSubmitting}
-                        className={styles.formInput}
-                      />
-                    </div>
-
-                    <div className={styles.formGroup}>
-                      <label htmlFor="company" className={styles.formLabel}>
-                        Company/Organization
-                      </label>
-                      <input
-                        type="text"
-                        id="company"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        placeholder="Your company (optional)"
-                        disabled={isSubmitting}
-                        className={styles.formInput}
-                      />
-                    </div>
-                  </div>
-
-                  <div className={styles.formGroup}>
-                    <label htmlFor="subject" className={styles.formLabel}>
-                      Project Type <span style={{ color: "#ef4444" }}>*</span>
-                    </label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      disabled={isSubmitting}
-                      className={styles.formSelect}
-                    >
-                      <option value="">Select your project type</option>
-                      <option value="Web Development">🌐 Web Development</option>
-                      <option value="Mobile App">📱 Mobile App</option>
-                      <option value="API Development">🔌 API Development</option>
-                      <option value="Database Design">🗄️ Database Design</option>
-                      <option value="E-commerce">🛒 E-commerce</option>
-                      <option value="SaaS Application">☁️ SaaS Application</option>
-                      <option value="Consulting">💡 Technical Consulting</option>
-                      <option value="Maintenance">🔧 App Maintenance</option>
-                      <option value="Other">📋 Other Project</option>
-                    </select>
-                  </div>
-
-                  <div className={styles.formGroup}>
-                    <label htmlFor="message" className={styles.formLabel}>
-                      Message <span style={{ color: "#ef4444" }}>*</span>
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      placeholder="Please describe your project requirements in detail..."
-                      rows={6}
-                      disabled={isSubmitting}
-                      className={styles.formTextarea}
-                    />
-                  </div>
-
-                  <PremiumButton
-                    type="submit"
-                    size="lg"
-                    className={styles.submitButton}
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? 'Sending...' : '🚀 Send Message'}
-                  </PremiumButton>
-
-                  <div className={styles.securityNotice}>
-                    <span>🔒</span>
-                    <span>Your information is secure. I respect your privacy and will never share your details.</span>
-                  </div>
-                </form>
+          <div className={styles.cInfoRows}>
+            <div className={styles.cRow}>
+              <div className={styles.cIcon}>✉</div>
+              <div>
+                <div className={styles.cLabel}>EMAIL</div>
+                <div className={styles.cVal}>officialjoshuamwendwa@gmail.com</div>
               </div>
-            </AnimatedSection>
-
-            {/* Sidebar */}
-            <div className={styles.sidebar}>
-              {/* Contact Info */}
-              <AnimatedSection delay={0.3}>
-                <div className={styles.infoCard}>
-                  <div className={styles.infoHeader}>
-                    <div className={styles.infoIcon}>📬</div>
-                    <h3>Get in Touch</h3>
-                  </div>
-
-                  <div className={styles.infoItems}>
-                    <div className={styles.infoItem}>
-                      <div className={styles.infoIconBox}>📧</div>
-                      <div className={styles.infoContent}>
-                        <h4>Email</h4>
-                        <p><a href="mailto:officialjoshuamwendwa@gmail.com">officialjoshuamwendwa@gmail.com</a></p>
-                        <span style={{ fontSize: "0.8125rem", color: "var(--muted-foreground)" }}>Response within 24 hours</span>
-                      </div>
-                    </div>
-
-                    <div className={styles.infoItem}>
-                      <div className={styles.infoIconBox}>📞</div>
-                      <div className={styles.infoContent}>
-                        <h4>Phone</h4>
-                        <p><a href="tel:+254794773452">+254 794 773 452</a></p>
-                        <span style={{ fontSize: "0.8125rem", color: "var(--muted-foreground)" }}>Mon-Sat, 9AM-7PM</span>
-                      </div>
-                    </div>
-
-                    <div className={styles.infoItem}>
-                      <div className={styles.infoIconBox}>📍</div>
-                      <div className={styles.infoContent}>
-                        <h4>Location</h4>
-                        <p>Nairobi, Kenya<br />
-                        <span style={{ fontSize: "0.8125rem", color: "var(--muted-foreground)" }}>Available for remote work worldwide</span></p>
-                      </div>
-                    </div>
-
-                    <div className={styles.infoItem}>
-                      <div className={styles.infoIconBox}>🕒</div>
-                      <div className={styles.infoContent}>
-                        <h4>Availability</h4>
-                        <p style={{ fontSize: "0.9375rem", lineHeight: "1.5" }}>
-                          Mon – Sat: 9:00 AM – 7:00 PM EAT<br />
-                          Sun: By appointment
-                        </p>
-                        <div className={styles.availabilityStatus}>
-                          <span style={{ fontSize: "1.1rem" }}>✅</span>
-                          Open for freelance projects
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </AnimatedSection>
-
-              {/* Social Links */}
-              <AnimatedSection delay={0.4}>
-                <div className={styles.socialCard}>
-                  <div className={styles.socialHeader}>
-                    <div className={styles.socialIcon}>🔗</div>
-                    <h3>Connect With Me</h3>
-                  </div>
-
-                  <div className={styles.socialLinks}>
-                    <a
-                      href="https://github.com/hit-sharq"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.socialLink}
-                      style={{ background: "#1e293b" }}
-                    >
-                      🐙 GitHub
-                    </a>
-                    <a
-                      href="https://www.linkedin.com/in/joshua-mwendwa-b183b5287/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.socialLink}
-                      style={{ background: "#0077b5" }}
-                    >
-                      💼 LinkedIn
-                    </a>
-                    <a
-                      href="https://www.instagram.com/j_lee087"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.socialLink}
-                      style={{ background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)" }}
-                    >
-                      📷 Instagram
-                    </a>
-                    <a
-                      href="https://wa.me/+25492687584"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.socialLink}
-                      style={{ background: "#25d366" }}
-                    >
-                      💬 WhatsApp
-                    </a>
-                  </div>
-                </div>
-              </AnimatedSection>
+            </div>
+            <div className={styles.cRow}>
+              <div className={styles.cIcon}>⚲</div>
+              <div>
+                <div className={styles.cLabel}>LOCATION</div>
+                <div className={styles.cVal}>Nairobi, Kenya · Available remotely</div>
+              </div>
+            </div>
+            <div className={styles.cRow}>
+              <div className={styles.cIcon}>◍</div>
+              <div>
+                <div className={styles.cLabel}>WEBSITE</div>
+                <div className={styles.cVal}>lumyn.co.ke</div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* URGENT CTA */}
-      <section className={styles.urgentCta}>
-        <div className="container">
-          <AnimatedSection>
-            <div className={styles.urgentContent}>
-              <div className={styles.urgentIcon}>⚡</div>
-              <h3>Have an Urgent Project?</h3>
-              <p>Got a tight deadline? I specialize in delivering quality work on time. Reach out and let's discuss your timeline.</p>
-              <div className={styles.urgentButtons}>
-                <PremiumButton
-                  href="tel:+254794773452"
-                  className={styles.urgentButtonWhite}
-                  size="lg"
-                >
-                  📞 Call: +254 794 773 452
-                </PremiumButton>
-                <PremiumButton
-                  href="mailto:officialjoshuamwendwa@gmail.com"
-                  variant="secondary"
-                  className={styles.urgentButtonOutline}
-                  size="lg"
-                >
-                  📧 Quick Email
-                </PremiumButton>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* FAQ SECTION */}
-      <section className={styles.faqSection}>
-        <div className="container">
-          <AnimatedSection>
-            <div className={styles.faqHeader}>
-              <div className={styles.faqIcon}>❓</div>
-              <h2>Frequently Asked Questions</h2>
-              <p>Quick answers to common questions</p>
-            </div>
-          </AnimatedSection>
-
-          <div className={styles.faqGrid}>
-            <AnimatedSection delay={0.1}>
-              <div className={styles.faqCard}>
-                <div className={styles.faqIconCard}>⏱️</div>
-                <h4>How quickly can you start on my project?</h4>
-                <p>I can typically begin within 1-2 days of project confirmation. For urgent projects, I can start immediately upon discussion.</p>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.2}>
-              <div className={styles.faqCard}>
-                <div className={styles.faqIconCard}>🌍</div>
-                <h4>Do you work with international clients?</h4>
-                <p>Absolutely! I work with clients worldwide remotely. I'm comfortable with different time zones and communication preferences.</p>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.3}>
-              <div className={styles.faqCard}>
-                <div className={styles.faqIconCard}>📅</div>
-                <h4>What is your typical project timeline?</h4>
-                <p>Project timelines vary based on complexity. Simple websites take 1-2 weeks, while complex applications may take 1-3 months.</p>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.4}>
-              <div className={styles.faqCard}>
-                <div className={styles.faqIconCard}>🔧</div>
-                <h4>Do you offer post-development support?</h4>
-                <p>Yes! I offer ongoing maintenance and support packages to ensure your application runs smoothly after launch.</p>
-              </div>
-            </AnimatedSection>
+          <div className={styles.socialRow}>
+            <a href="https://github.com/hit-sharq" target="_blank" rel="noopener noreferrer" className={styles.socBtn} title="GitHub">⌥</a>
+            <a href="https://www.linkedin.com/in/joshua-mwendwa-b183b5287/" target="_blank" rel="noopener noreferrer" className={styles.socBtn} title="LinkedIn">in</a>
+            <a href="https://www.instagram.com/j_lee087" target="_blank" rel="noopener noreferrer" className={styles.socBtn} title="Instagram">◎</a>
+            <a href="https://wa.me/+25492687584" target="_blank" rel="noopener noreferrer" className={styles.socBtn} title="WhatsApp">✆</a>
           </div>
         </div>
-      </section>
+
+        {/* RIGHT: form */}
+        <div className={styles.contactRight}>
+          <div className={styles.secEyebrow} style={{ marginBottom: 16 }}>SEND A MESSAGE</div>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.formRow}>
+              <div className={styles.formGroup}>
+                <label htmlFor="name" className={styles.fLabel}>YOUR NAME</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="Mutuku Joshua"
+                  disabled={isSubmitting}
+                  className={styles.fInput}
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="email" className={styles.fLabel}>EMAIL</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="officialjoshuamwendwa@gmail.com"
+                  disabled={isSubmitting}
+                  className={styles.fInput}
+                />
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="subject" className={styles.fLabel}>SUBJECT</label>
+              <select
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                disabled={isSubmitting}
+                className={styles.fInput}
+                style={{ appearance: "none", cursor: "pointer" }}
+              >
+                <option value="">What&apos;s this about?</option>
+                <option value="Web Development">🌐 Web Development</option>
+                <option value="Mobile App">📱 Mobile App</option>
+                <option value="API Development">🔌 API Development</option>
+                <option value="Database Design">🗄️ Database Design</option>
+                <option value="E-commerce">🛒 E-commerce</option>
+                <option value="SaaS Application">☁️ SaaS Application</option>
+                <option value="Consulting">💡 Technical Consulting</option>
+                <option value="Maintenance">🔧 App Maintenance</option>
+                <option value="Other">📋 Other Project</option>
+              </select>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="message" className={styles.fLabel}>MESSAGE</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                placeholder="Tell me about your project..."
+                rows={5}
+                disabled={isSubmitting}
+                className={styles.fInput}
+                style={{ resize: "none" }}
+              />
+            </div>
+
+            {submitStatus === "success" && (
+              <div className={styles.successMessage}>✓ Message sent! I&apos;ll get back to you within 24 hours.</div>
+            )}
+            {submitStatus === "error" && (
+              <div className={styles.errorMessage}>✕ {errorMessage || "Something went wrong. Please try again."}</div>
+            )}
+
+            <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
+              {isSubmitting ? "SENDING…" : "SEND MESSAGE →"}
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

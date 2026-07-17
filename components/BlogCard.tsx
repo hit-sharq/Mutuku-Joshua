@@ -153,33 +153,36 @@ export default function BlogCard({ post }: BlogCardProps) {
            letter-spacing: 0.05em;
          }
 
-         .blog-card-title {
-           font-size: 0.9rem;
-           margin-bottom: 0.75rem;
-           line-height: 1.3;
-           color: var(--foreground);
-           display: -webkit-box;
-           -webkit-line-clamp: 2;
-           -webkit-box-orient: vertical;
-           overflow: hidden;
-         }
+          .blog-card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+            color: var(--foreground);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
 
-         .read-more-btn {
-           background: var(--primary);
-           color: var(--primary-foreground);
-           border: none;
-           padding: 0.4rem 0.75rem;
-           border-radius: 6px;
-           font-size: 0.75rem;
-           font-weight: 600;
-           cursor: pointer;
-           transition: all 0.2s ease;
-         }
+          .read-more-btn {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            border: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.625rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+          }
 
-         .read-more-btn:hover {
-           transform: translateY(-2px);
-           box-shadow: 0 4px 12px rgba(109, 129, 150, 0.4);
-         }
+          .read-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(184, 150, 12, 0.4);
+          }
 
          /* Slide Panel Styles */
          .slide-panel {

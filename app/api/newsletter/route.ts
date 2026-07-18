@@ -25,31 +25,41 @@ export async function POST(request: NextRequest) {
     }
 
     const confirmationHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <div style="background: #1a365d; color: white; padding: 2rem; text-align: center;">
-          <h2>💻 Mutuku Joshua</h2>
-          <h3>Welcome to the Newsletter</h3>
-          <p>You&apos;ve been successfully subscribed to our newsletter</p>
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; border: 0.5px solid rgba(184, 150, 12, 0.2);">
+        <div style="background: #0f0f0f; border-bottom: 0.5px solid rgba(184, 150, 12, 0.2); padding: 2rem; text-align: center;">
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 400; color: #c8a820; letter-spacing: 0.1em; margin-bottom: 0.5rem;">MUTUKU JOSHUA</div>
+          <div style="font-size: 0.75rem; color: rgba(240, 232, 212, 0.5); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem;">Fullstack Developer</div>
+          <div style="font-size: 0.875rem; color: #5dcaa5; letter-spacing: 0.05em;">✓ Welcome to the Newsletter</div>
         </div>
         
-        <div style="padding: 2rem; background: #f7fafc;">
-          <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            <p>Thank you for subscribing!</p>
+        <div style="padding: 2rem; background: #0a0a0a;">
+          <div style="background: #141414; border: 0.5px solid rgba(184, 150, 12, 0.12); padding: 2rem;">
+            <p style="color: rgba(240, 232, 212, 0.8); font-size: 0.9375rem; line-height: 1.7; margin: 0 0 1.5rem 0;">Thank you for subscribing!</p>
             
-            <p>You&apos;ll receive updates about:</p>
-            <ul>
-              <li>Latest blog posts and tutorials</li>
-              <li>Project showcases and case studies</li>
-              <li>Industry insights and best practices</li>
-              <li>Exclusive tips and resources</li>
-            </ul>
+            <p style="color: rgba(240, 232, 212, 0.7); font-size: 0.9375rem; line-height: 1.7; margin: 0 0 1rem 0;">You&apos;ll receive updates about:</p>
             
-            <p>We respect your privacy and won&apos;t spam you. Unsubscribe anytime.</p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem; color: rgba(240, 232, 212, 0.75); font-size: 0.875rem;">
+                <span style="color: #c8a820;">→</span> Latest blog posts and tutorials
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem; color: rgba(240, 232, 212, 0.75); font-size: 0.875rem;">
+                <span style="color: #c8a820;">→</span> Project showcases and case studies
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem; color: rgba(240, 232, 212, 0.75); font-size: 0.875rem;">
+                <span style="color: #c8a820;">→</span> Industry insights and best practices
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem; color: rgba(240, 232, 212, 0.75); font-size: 0.875rem;">
+                <span style="color: #c8a820;">→</span> Exclusive tips and resources
+              </div>
+            </div>
+            
+            <p style="color: rgba(240, 232, 212, 0.5); font-size: 0.8125rem; line-height: 1.6; margin: 0;">We respect your privacy and won&apos;t spam you. Unsubscribe anytime.</p>
           </div>
         </div>
         
-        <div style="background: #1a365d; color: white; padding: 1rem; text-align: center;">
-          <p style="margin: 0;">📧 joshua@lumyn.co.ke | 📞 +254 794 773 452</p>
+        <div style="background: #0f0f0f; border-top: 0.5px solid rgba(184, 150, 12, 0.2); padding: 1.5rem; text-align: center;">
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.125rem; font-weight: 400; color: #c8a820; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Mutuku Joshua</div>
+          <div style="color: rgba(240, 232, 212, 0.4); font-size: 0.75rem; letter-spacing: 0.05em;">📧 joshua@lumyn.co.ke · 📞 +254 794 773 452 · 📍 Nairobi, Kenya</div>
         </div>
       </div>
     `

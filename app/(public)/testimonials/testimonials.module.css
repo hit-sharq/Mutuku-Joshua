@@ -1,0 +1,224 @@
+.page {
+  min-height: 100vh;
+  background: var(--ink, #0a0a0a);
+  padding: 6rem 0 4rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--primary, #c8a820);
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  color: var(--cream, #faf7f2);
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.subtitle {
+  color: rgba(240, 232, 212, 0.6);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.filterBtn {
+  padding: 0.625rem 1.5rem;
+  background: transparent;
+  border: 0.5px solid rgba(184, 150, 12, 0.2);
+  color: rgba(240, 232, 212, 0.6);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterBtn:hover {
+  border-color: rgba(184, 150, 12, 0.5);
+  color: var(--cream, #faf7f2);
+}
+
+.filterBtn.active {
+  background: var(--primary, #c8a820);
+  color: var(--ink, #0f0f0f);
+  border-color: var(--primary, #c8a820);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.card {
+  background: var(--card-bg, #141414);
+  border: 0.5px solid rgba(184, 150, 12, 0.12);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.card:hover {
+  border-color: rgba(184, 150, 12, 0.35);
+  transform: translateY(-2px);
+}
+
+.card.featured {
+  border-color: rgba(212, 175, 55, 0.4);
+  background: rgba(212, 175, 55, 0.04);
+}
+
+.featuredBadge {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background: #d4af37;
+  color: #0f0f0f;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.stars {
+  color: #ffd700;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+}
+
+.quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.125rem;
+  font-style: italic;
+  color: rgba(240, 232, 212, 0.8);
+  line-height: 1.7;
+  margin: 0 0 1.5rem 0;
+  border-left: 2px solid var(--primary, #c8a820);
+  padding-left: 1.25rem;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.5px solid rgba(184, 150, 12, 0.2);
+}
+
+.avatarPlaceholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary, #c8a820);
+  color: var(--ink, #0f0f0f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.name {
+  font-weight: 600;
+  color: var(--cream, #faf7f2);
+  font-size: 0.9375rem;
+}
+
+.title {
+  font-size: 0.8125rem;
+  color: rgba(240, 232, 212, 0.5);
+  margin-top: 0.125rem;
+}
+
+.cta {
+  text-align: center;
+  padding: 3rem;
+  background: var(--card-bg, #141414);
+  border: 0.5px solid rgba(184, 150, 12, 0.12);
+}
+
+.cta h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--cream, #faf7f2);
+  margin: 0 0 0.75rem 0;
+}
+
+.cta p {
+  color: rgba(240, 232, 212, 0.6);
+  margin: 0 0 1.5rem 0;
+  font-size: 0.9375rem;
+}
+
+.ctaBtn {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  background: var(--primary, #c8a820);
+  color: var(--ink, #0f0f0f);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.ctaBtn:hover {
+  background: var(--gold3, #e8c840);
+}
+
+.loading {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: rgba(240, 232, 212, 0.5);
+}
+
+.empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: rgba(240, 232, 212, 0.5);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

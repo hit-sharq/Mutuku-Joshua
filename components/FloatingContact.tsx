@@ -53,7 +53,7 @@ export default function FloatingContact() {
 
             <div className="space-y-4">
               <a
-                href="mailto:officialjoshuamwendwa@gmail.com"
+                href="mailto:joshua@lumyn.co.ke"
                 className="flex items-center gap-3 p-3 rounded-lg transition-colors"
                 style={{
                   background: 'var(--secondary)',

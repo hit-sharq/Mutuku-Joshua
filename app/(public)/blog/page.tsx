@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import AnimatedSection from '@/components/AnimatedSection'
 import BlogCard from '@/components/BlogCard'
 import PremiumButton from '@/components/PremiumButton'
+import NewsletterSignup from '@/components/NewsletterSignup'
 import styles from './blog.module.css'
 
 type BlogPost = {
@@ -117,15 +118,11 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* NEWSLETTER CTA */}
+      {/* NEWSLETTER */}
       {posts.length > 0 && (
         <section className={styles.newsletterSection}>
           <div className="container">
-            <div className={styles.newsletterCta}>
-              <h3>Stay Updated</h3>
-              <p>Subscribe to my newsletter to receive the latest tech articles and coding tips directly in your inbox.</p>
-              <PremiumButton href="/contact" size="lg">Get in Touch</PremiumButton>
-            </div>
+            <NewsletterSignup />
           </div>
         </section>
       )}

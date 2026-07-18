@@ -2,7 +2,6 @@ import { type NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import nodemailer from "nodemailer"
 
-// Create email transporter
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: Number.parseInt(process.env.SMTP_PORT || "587"),
@@ -13,16 +12,63 @@ const transporter = nodemailer.createTransport({
   },
 })
 
+interface RateLimitEntry {
+  count: number
+  firstAttempt: number
+}
+
+const rateLimitMap = new Map<string, RateLimitEntry>()
+const RATE_LIMIT_WINDOW = 60 * 1000
+const RATE_LIMIT_MAX = 5
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now()
+  const entry = rateLimitMap.get(ip)
+
+  if (!entry) {
+    rateLimitMap.set(ip, { count: 1, firstAttempt: now })
+    return true
+  }
+
+  if (now - entry.firstAttempt > RATE_LIMIT_WINDOW) {
+    rateLimitMap.set(ip, { count: 1, firstAttempt: now })
+    return true
+  }
+
+  if (entry.count >= RATE_LIMIT_MAX) {
+    return false
+  }
+
+  entry.count++
+  return true
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, phone, company, subject, message } = await request.json()
+    const ip = request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "unknown"
+    const { name, email, phone, company, subject, message, website } = await request.json()
 
-    // Validate required fields
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 })
+    }
+
+    if (website && website.trim() !== "") {
+      return NextResponse.json({ error: "Spam detected." }, { status: 400 })
+    }
+
     if (!name || !email || !subject || !message) {
       return NextResponse.json({ error: "All required fields must be filled" }, { status: 400 })
     }
 
-    // Save to database (with fallback for database issues)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return NextResponse.json({ error: "Please enter a valid email address" }, { status: 400 })
+    }
+
+    if (message.length < 10) {
+      return NextResponse.json({ error: "Message must be at least 10 characters" }, { status: 400 })
+    }
+
     let contactRequest
     try {
       contactRequest = await prisma.contactRequest.create({
@@ -37,7 +83,6 @@ export async function POST(request: NextRequest) {
       })
     } catch (dbError) {
       console.warn("Database save failed, proceeding with email only:", dbError)
-      // Create a mock contact request object for email purposes
       contactRequest = {
         id: `temp-${Date.now()}`,
         name,
@@ -50,7 +95,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Send email to Musa Mutuku
     const emailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background: #1a365d; color: white; padding: 2rem; text-align: center;">
@@ -126,7 +170,6 @@ export async function POST(request: NextRequest) {
       </div>
     `
 
-    // Send email
     await transporter.sendMail({
       from: `"${name}" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
       to: process.env.CONTACT_EMAIL || "officialmutuku@gmail.com",
@@ -135,7 +178,6 @@ export async function POST(request: NextRequest) {
       replyTo: email,
     })
 
-    // Send confirmation email to client
     const confirmationHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background: linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%); color: white; padding: 2rem; text-align: center;">
@@ -167,7 +209,7 @@ export async function POST(request: NextRequest) {
         </div>
         
         <div style="background: #1a365d; color: white; padding: 1rem; text-align: center;">
-          <p style="margin: 0;">📧 officialjoshuamwendwa@gmail.com | 📞 +254 794 773 452 | 📍 Nairobi, Kenya</p>
+          <p style="margin: 0;">📧 joshua@lumyn.co.ke | 📞 +254 794 773 452 | 📍 Nairobi, Kenya</p>
         </div>
       </div>
     `
@@ -200,7 +242,7 @@ export async function GET() {
   try {
     const contacts = await prisma.contactRequest.findMany({
       orderBy: { createdAt: "desc" },
-      take: 50, // Limit to last 50 requests
+      take: 50,
     })
 
     return NextResponse.json(contacts)

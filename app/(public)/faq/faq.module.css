@@ -1,0 +1,157 @@
+.page {
+  min-height: 100vh;
+  background: var(--ink, #0a0a0a);
+  padding: 6rem 0 4rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--primary, #c8a820);
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  color: var(--cream, #faf7f2);
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.subtitle {
+  color: rgba(240, 232, 212, 0.6);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 4rem;
+}
+
+.faqItem {
+  background: var(--card-bg, #141414);
+  border: 0.5px solid rgba(184, 150, 12, 0.12);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faqItem:hover {
+  border-color: rgba(184, 150, 12, 0.3);
+}
+
+.faqItem.open {
+  border-color: var(--primary, #c8a820);
+  background: rgba(184, 150, 12, 0.04);
+}
+
+.faqQuestion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--cream, #faf7f2);
+  letter-spacing: -0.01em;
+}
+
+.faqIcon {
+  font-size: 1.5rem;
+  color: var(--primary, #c8a820);
+  font-weight: 300;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.faqAnswer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.faqItem.open .faqAnswer {
+  max-height: 500px;
+  padding-top: 1.25rem;
+}
+
+.faqAnswer p {
+  color: rgba(240, 232, 212, 0.65);
+  line-height: 1.7;
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.cta {
+  text-align: center;
+  padding: 3rem;
+  background: var(--card-bg, #141414);
+  border: 0.5px solid rgba(184, 150, 12, 0.12);
+}
+
+.cta h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--cream, #faf7f2);
+  margin: 0 0 0.75rem 0;
+}
+
+.cta p {
+  color: rgba(240, 232, 212, 0.6);
+  margin: 0 0 1.5rem 0;
+  font-size: 0.9375rem;
+}
+
+.ctaBtn {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  background: var(--primary, #c8a820);
+  color: var(--ink, #0f0f0f);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.ctaBtn:hover {
+  background: var(--gold3, #e8c840);
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 5rem 0 3rem;
+  }
+
+  .faqItem {
+    padding: 1.25rem;
+  }
+
+  .faqQuestion {
+    font-size: 0.9375rem;
+  }
+}

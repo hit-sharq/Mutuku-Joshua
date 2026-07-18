@@ -1,6 +1,20 @@
 import { prisma } from "@/lib/prisma"
 import Link from "next/link"
 
+export const metadata = {
+  title: 'Practice Areas - Mutuku Joshua | Lumyn Technologies',
+  description: 'Explore our core practice areas: web development, mobile apps, API design, UI/UX, and digital strategy.',
+  keywords: 'Practice Areas, Web Development, Mobile Apps, APIs, UI/UX, Fullstack Developer, Lumyn Technologies',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://www.lumyn.co.ke/practice-areas',
+    title: 'Practice Areas - Mutuku Joshua',
+    description: 'Explore our core practice areas.',
+    siteName: 'Lumyn Technologies',
+  },
+}
+
 type PracticeAreaType = {
   id: string
   title: string

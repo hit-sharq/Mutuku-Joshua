@@ -5,6 +5,20 @@ import AnimatedSection from "@/components/AnimatedSection"
 import PremiumButton from "@/components/PremiumButton"
 import styles from "./about.module.css"
 
+export const metadata = {
+  title: 'About - Mutuku Joshua | Lumyn Technologies',
+  description: 'Learn about Mutuku Joshua, a passionate fullstack developer specializing in modern web technologies. Discover the story behind Lumyn Technologies.',
+  keywords: 'About Mutuku Joshua, Fullstack Developer, Lumyn Technologies, Web Developer Kenya, Software Engineer',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://www.lumyn.co.ke/about',
+    title: 'About - Mutuku Joshua',
+    description: 'Learn about Mutuku Joshua, a passionate fullstack developer.',
+    siteName: 'Lumyn Technologies',
+  },
+}
+
 type UserType = {
   id: string
   name: string | null
@@ -223,7 +237,7 @@ export default async function AboutPage() {
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.3}>
-            <PremiumButton href="https://lumyn-tech.vercel.app/" target="_blank" rel="noopener noreferrer" size="lg">
+            <PremiumButton href="https://www.lumyn.co.ke/" target="_blank" rel="noopener noreferrer" size="lg">
               Visit Lumyn Website →
             </PremiumButton>
           </AnimatedSection>
@@ -261,7 +275,7 @@ export default async function AboutPage() {
                       <div className={styles.memberSocial}>
                         <a href="https://www.linkedin.com/in/joshua-mwendwa-b183b5287/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>💼</a>
                         <a href="https://github.com/hit-sharq" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>🐙</a>
-                        <a href="mailto:officialjoshuamwendwa@gmail.com" className={styles.socialLink}>📧</a>
+                        <a href="mailto:joshua@lumyn.co.ke" className={styles.socialLink}>📧</a>
                       </div>
                     </div>
                   </div>

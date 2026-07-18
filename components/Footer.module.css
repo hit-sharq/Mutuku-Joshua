@@ -269,30 +269,35 @@
 
 /* Bottom copyright section - below all columns */
 .footerBottom {
-  padding-top: 20px;
-  margin-top: 8px;
-  border-top: 0.5px solid rgba(184, 150, 12, 0.18);
+  padding-top: 24px;
+  margin-top: 32px;
+  border-top: 0.5px solid rgba(184, 150, 12, 0.12);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 640px) {
   .footerBottom {
+    flex-direction: column;
     text-align: center;
+    gap: 12px;
   }
 }
 
 .managedBy {
   font-size: 0.8125rem;
-  color: var(--muted-foreground);
+  color: rgba(240, 232, 212, 0.5);
   margin: 0;
   font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .managedLink {
-  color: var(--primary);
+  color: var(--primary, #c8a820);
   text-decoration: none;
   font-weight: 600;
   transition: all 0.2s ease;
@@ -302,41 +307,41 @@
 }
 
 .managedLink:hover {
-  color: var(--gold3);
-  background: var(--secondary);
-  transform: translateY(-1px);
+  color: var(--gold3, #e8c840);
+  background: rgba(184, 150, 12, 0.08);
 }
 
 .copyright {
   font-size: 0.8125rem;
-  color: var(--muted-foreground);
+  color: rgba(240, 232, 212, 0.4);
   margin: 0;
   font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .footerLegal {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
   font-size: 0.75rem;
-  color: var(--muted-foreground);
 }
 
 .legalLink {
-  color: var(--muted-foreground);
+  color: rgba(240, 232, 212, 0.5);
   text-decoration: none;
   transition: all 0.2s ease;
-  padding: 2px 6px;
+  padding: 4px 8px;
   border-radius: 4px;
   position: relative;
+  font-weight: 500;
 }
 
 .legalLink:hover {
-  color: var(--primary);
-  background: var(--secondary);
+  color: var(--primary, #c8a820);
+  background: rgba(184, 150, 12, 0.08);
 }
 
 .legalDivider {
-  opacity: 0.3;
+  color: rgba(184, 150, 12, 0.2);
   font-size: 0.625rem;
 }

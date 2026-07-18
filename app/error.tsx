@@ -54,7 +54,7 @@ export default function Error({
               <a href="tel:+254794773452" className="btn btn-primary">
                 📞 Call Now: +254 794 773 452
               </a>
-              <a href="mailto:officialjoshuamwendwa@gmail.com" className="btn btn-secondary">
+              <a href="mailto:joshua@lumyn.co.ke" className="btn btn-secondary">
                 📧 Email Us
               </a>
             </div>

@@ -24,7 +24,7 @@
   font-size: 10px;
   letter-spacing: 4px;
   color: var(--primary, #c8a820);
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   text-transform: uppercase;
 }
 
@@ -154,6 +154,9 @@
   outline: none;
   transition: border-color 0.15s;
   width: 100%;
+  appearance: none;
+  cursor: pointer;
+  border-radius: 0;
 }
 
 .fInput:focus {
@@ -162,6 +165,10 @@
 
 .fInput::placeholder {
   color: var(--cream4, rgba(240, 232, 212, 0.3));
+}
+
+textarea.fInput {
+  resize: none;
 }
 
 .submitBtn {

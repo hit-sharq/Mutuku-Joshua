@@ -17,13 +17,31 @@ type BlogPostType = {
   updatedAt: Date
 }
 
-async function getBlogPost(slug: string): Promise<BlogPostType | null> {
+export async function getBlogPost(slug: string): Promise<BlogPostType | null> {
   return await prisma.blogPost.findUnique({
     where: {
       slug,
       published: true,
     },
   })
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const post = await getBlogPost(params.slug)
+  if (!post) return { title: 'Blog Post Not Found' }
+  return {
+    title: `${post.title} - Mutuku Joshua | Lumyn Technologies`,
+    description: post.summary || post.content.slice(0, 160).replace(/<[^>]*>/g, ''),
+    keywords: 'Blog, Web Development, React, Next.js, Node.js, Tutorials, Lumyn Technologies',
+    openGraph: {
+      type: 'article',
+      locale: 'en_US',
+      url: `https://www.lumyn.co.ke/blog/${params.slug}`,
+      title: post.title,
+      description: post.summary || post.content.slice(0, 160).replace(/<[^>]*>/g, ''),
+      siteName: 'Lumyn Technologies',
+    },
+  }
 }
 
 export default async function BlogPostPage({

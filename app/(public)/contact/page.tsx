@@ -11,6 +11,7 @@ export default function ContactPage() {
     company: "",
     subject: "",
     message: "",
+    website: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
@@ -62,7 +63,7 @@ export default function ContactPage() {
         <div className={styles.contactLeft}>
         <div className={styles.secEyebrow}>ENGAGE</div>
         <div className={styles.secTitle}>Let&apos;s build something<br />that outlasts us.</div>
-          <p className={styles.aboutP} style={{ marginTop: 8 }}>
+          <p className={styles.aboutP}>
             Whether you need a website, a web app, a design system, or a full product — I&apos;m available for freelance projects, full-time roles, and collaborations.
           </p>
           <div className={styles.availBadge}><span className={styles.availDot}></span>Accepting engagements</div>
@@ -72,7 +73,7 @@ export default function ContactPage() {
               <div className={styles.cIcon}>✉</div>
               <div>
                 <div className={styles.cLabel}>DIRECT LINE</div>
-                <div className={styles.cVal}>officialjoshuamwendwa@gmail.com</div>
+                <div className={styles.cVal}>joshua@lumyn.co.ke</div>
               </div>
             </div>
             <div className={styles.cRow}>
@@ -101,7 +102,7 @@ export default function ContactPage() {
 
         {/* RIGHT: form */}
         <div className={styles.contactRight}>
-          <div className={styles.secEyebrow} style={{ marginBottom: 16 }}>TRANSMIT</div>
+          <div className={styles.secEyebrow}>TRANSMIT</div>
           <form onSubmit={handleSubmit}>
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
@@ -127,7 +128,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="officialjoshuamwendwa@gmail.com"
+                  placeholder="joshua@lumyn.co.ke"
                   disabled={isSubmitting}
                   className={styles.fInput}
                 />
@@ -144,7 +145,6 @@ export default function ContactPage() {
                 required
                 disabled={isSubmitting}
                 className={styles.fInput}
-                style={{ appearance: "none", cursor: "pointer" }}
               >
                 <option value="">What&apos;s this about?</option>
                 <option value="Web Development">🌐 Web Development</option>
@@ -159,33 +159,45 @@ export default function ContactPage() {
               </select>
             </div>
 
-                  <div className={styles.formGroup}>
-                    <label htmlFor="message" className={styles.fLabel}>BRIEF</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      placeholder="Tell me about your project..."
-                      rows={5}
-                      disabled={isSubmitting}
-                      className={styles.fInput}
-                      style={{ resize: "none" }}
-                    />
-                  </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="message" className={styles.fLabel}>BRIEF</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                placeholder="Tell me about your project..."
+                rows={5}
+                disabled={isSubmitting}
+                className={styles.fInput}
+              />
+            </div>
 
-                  {submitStatus === "success" && (
-                    <div className={styles.successMessage}>✓ Message received. I&apos;ll respond within 24 hours.</div>
-                  )}
-                  {submitStatus === "error" && (
-                    <div className={styles.errorMessage}>✕ {errorMessage || "Something went wrong. Please try again."}</div>
-                  )}
+            <div style={{ display: "none" }} aria-hidden="true">
+              <label htmlFor="website">Website</label>
+              <input
+                type="text"
+                id="website"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={formData.website}
+                onChange={(e) => setFormData((prev) => ({ ...prev, website: e.target.value }))}
+              />
+            </div>
 
-                  <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
-                    {isSubmitting ? "TRANSMITTING…" : "TRANSMIT →"}
-                  </button>
-          </form>
+            {submitStatus === "success" && (
+              <div className={styles.successMessage}>✓ Message received. I&apos;ll respond within 24 hours.</div>
+            )}
+            {submitStatus === "error" && (
+              <div className={styles.errorMessage}>✕ {errorMessage || "Something went wrong. Please try again."}</div>
+            )}
+
+            <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
+              {isSubmitting ? "TRANSMITTING…" : "TRANSMIT →"}
+            </button>
+        </form>
         </div>
       </div>
     </div>

@@ -1,6 +1,20 @@
 import { prisma } from "@/lib/prisma"
 import GalleryGrid from "@/components/GalleryGrid"
 
+export const metadata = {
+  title: 'Gallery - Mutuku Joshua | Lumyn Technologies',
+  description: 'Browse our project gallery showcasing web applications, mobile apps, and digital solutions built by Lumyn Technologies.',
+  keywords: 'Gallery, Projects, Portfolio, Web Development, Mobile Apps, Lumyn Technologies',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://www.lumyn.co.ke/gallery',
+    title: 'Gallery - Lumyn Technologies',
+    description: 'Browse our project gallery.',
+    siteName: 'Lumyn Technologies',
+  },
+}
+
 async function getGalleryImages() {
   return await prisma.galleryImage.findMany({
     orderBy: { order: "asc" },

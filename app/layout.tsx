@@ -5,6 +5,9 @@ import "./globals.css"
 import DbKeepAlive from "@/components/DbKeepAlive"
 import FloatingContact from "@/components/FloatingContact"
 import NoiseOverlay from "@/components/NoiseOverlay"
+import CookieConsent from "@/components/CookieConsent"
+import BackToTop from "@/components/BackToTop"
+import SchemaScripts from "@/components/SchemaScripts"
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -21,7 +24,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://lumyn-tech.vercel.app",
+    url: "https://www.lumyn.co.ke",
     title: "Mutuku Joshua - Fullstack Developer",
     description: "Professional fullstack development services with modern technologies.",
     siteName: "Lumyn Technologies",
@@ -50,6 +53,9 @@ export default function RootLayout({
           <NoiseOverlay />
           {children}
           <FloatingContact />
+          <CookieConsent />
+          <BackToTop />
+          <SchemaScripts />
         </ClerkProvider>
         <DbKeepAlive />
       </body>

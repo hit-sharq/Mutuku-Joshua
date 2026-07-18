@@ -14,7 +14,7 @@ export default function Footer() {
               Crafting Code That Works. Building scalable web applications and digital solutions with modern technologies.
             </p>
             <div className={styles.socialLinks}>
-              <a href="mailto:officialjoshuamwendwa@gmail.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink} title="Email">
+              <a href="mailto:joshua@lumyn.co.ke" target="_blank" rel="noopener noreferrer" className={styles.socialLink} title="Email">
                 📧
               </a>
               <a href="https://www.linkedin.com/in/joshua-mwendwa-b183b5287/" target="_blank" rel="noopener noreferrer" className={styles.socialLink} title="LinkedIn">
@@ -89,7 +89,7 @@ export default function Footer() {
         {/* Footer Bottom - Under All Columns */}
         <div className={styles.footerBottom}>
           <p className={styles.managedBy}>
-            System managed by <a href="https://lumyn-tech.vercel.app/" target="_blank" rel="noopener noreferrer" className={styles.managedLink}>Lumyn Technologies</a>
+            System managed by <a href="https://www.lumyn.co.ke/" target="_blank" rel="noopener noreferrer" className={styles.managedLink}>Lumyn Technologies</a>
           </p>
           <p className={styles.copyright}>© 2025 Mutuku Joshua. All rights reserved.</p>
           <div className={styles.footerLegal}>

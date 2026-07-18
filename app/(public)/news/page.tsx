@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import AnimatedSection from '@/components/AnimatedSection'
 import NewsCard from '@/components/NewsCard'
-import PremiumButton from '@/components/PremiumButton'
+import NewsletterSignup from '@/components/NewsletterSignup'
 import styles from './news.module.css'
 
 type NewsItem = {
@@ -125,17 +125,11 @@ export default function NewsPage() {
         </div>
       </section>
 
-      {/* NEWSLETTER CTA */}
+      {/* NEWSLETTER */}
       {newsItems.length > 0 && (
         <section className={styles.newsletterSection}>
-          <div className={styles.container}>
-            <div className={styles.newsletterCta}>
-              <h3>Stay Updated</h3>
-              <p>Subscribe to my newsletter to receive the latest news and updates directly in your inbox.</p>
-              <PremiumButton href="/contact" size="lg">
-                Get in Touch
-              </PremiumButton>
-            </div>
+          <div className="container">
+            <NewsletterSignup />
           </div>
         </section>
       )}

@@ -2,6 +2,20 @@ import { prisma } from "@/lib/prisma"
 import Link from "next/link"
 import Image from "next/image"
 
+export const metadata = {
+  title: 'Services - Mutuku Joshua | Lumyn Technologies',
+  description: 'Professional fullstack development services including web applications, mobile apps, APIs, UI/UX design, and digital solutions.',
+  keywords: 'Services, Web Development, Mobile Apps, APIs, UI/UX, Fullstack Developer, Lumyn Technologies',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://www.lumyn.co.ke/services',
+    title: 'Services - Mutuku Joshua',
+    description: 'Professional fullstack development services.',
+    siteName: 'Lumyn Technologies',
+  },
+}
+
 type ServiceType = {
   id: string
   title: string

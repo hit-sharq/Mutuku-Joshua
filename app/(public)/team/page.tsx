@@ -1,6 +1,20 @@
 import Image from "next/image"
 import { prisma } from "@/lib/prisma"
 
+export const metadata = {
+  title: 'Team - Mutuku Joshua | Lumyn Technologies',
+  description: 'Meet the team behind Lumyn Technologies. Skilled developers, designers, and strategists delivering exceptional digital solutions.',
+  keywords: 'Team, Developers, Designers, Lumyn Technologies, Fullstack Developer, Web Development Team',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://www.lumyn.co.ke/team',
+    title: 'Team - Lumyn Technologies',
+    description: 'Meet the team behind Lumyn Technologies.',
+    siteName: 'Lumyn Technologies',
+  },
+}
+
 async function getTeamMembers() {
   return await prisma.teamMember.findMany({
     orderBy: { order: "asc" },

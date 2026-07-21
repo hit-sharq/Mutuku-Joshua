@@ -65,6 +65,8 @@ const TIMELINE = [
   { yr: "2024", title: "Independent Operator", sub: "Real estate, e-commerce, SaaS clients" },
   { yr: "2023", title: "Moringa School — Engineering Certification", sub: "Software Engineering · Nairobi" },
   { yr: "2023", title: "Zetech University — Software Engineering", sub: "Diploma program · In progress" },
+  { yr: "2024", title: "Power Learn Project — AI for Software Engineering", sub: "Certificate · AI/ML Integration" },
+  { yr: "2024", title: "Cisco — Ethical Hacking", sub: "Certification · Cybersecurity" },
   { yr: "2022", title: "Design & Frontend Practice", sub: "Independent projects · Kenya" },
 ]
 
@@ -165,7 +167,8 @@ export default async function AboutPage() {
           </p>
           <p className={styles.aboutP}>
             Founder of Lumyn Technologies, a digital engineering company operating globally. Moringa School
-            certified engineer, currently pursuing a Diploma in Software Engineering at Zetech University.
+            certified engineer, Power Learn Project AI for Software Engineering certified, and Cisco Ethical Hacking certified.
+            Currently pursuing a Diploma in Software Engineering at Zetech University.
           </p>
           <p className={styles.aboutP}>
             I specialize in React/Next.js frontends, Django and Laravel backends, and Kenya-specific integrations like M-Pesa Daraja. I care deeply about design systems, product thinking, and code quality.

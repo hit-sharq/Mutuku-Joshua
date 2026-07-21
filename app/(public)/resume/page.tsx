@@ -223,7 +223,23 @@ export default function ResumePage() {
               </div>
             </AnimatedSection>
 
-            <AnimatedSection delay={0.3}>
+            <AnimatedSection delay={0.25}>
+              <div className={styles.sidebarSection}>
+                <h3>CERTIFICATIONS</h3>
+                <div className={styles.eduItem}>
+                  <div className={styles.eduYear}>2024</div>
+                  <div className={styles.eduDegree}>AI for Software Engineering</div>
+                  <div className={styles.eduSchool}>Power Learn Project</div>
+                </div>
+                <div className={styles.eduItem}>
+                  <div className={styles.eduYear}>2024</div>
+                  <div className={styles.eduDegree}>Ethical Hacking</div>
+                  <div className={styles.eduSchool}>Cisco</div>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.35}>
               <div className={styles.sidebarSection}>
                 <h3>LEADERSHIP</h3>
                 <p className={styles.leadershipText}>

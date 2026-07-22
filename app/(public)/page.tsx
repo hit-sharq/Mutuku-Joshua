@@ -203,7 +203,11 @@ export default function HomePage() {
         <div className={styles.heroRight}>
           <div style={{ textAlign: "center" }}>
             <div className={styles.heroAv}>
-              JM
+              <img
+                src="/Mutuku.JPG"
+                alt="Mutuku Joshua"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
               <div className={styles.heroAvBadge}>AVAILABLE</div>
             </div>
             <div style={{ fontSize: 11, color: "var(--cream4)", marginTop: 16, letterSpacing: "1.5px" }}>MUTUKU JOSHUA</div>

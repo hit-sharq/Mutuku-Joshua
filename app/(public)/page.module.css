@@ -101,10 +101,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 72px;
-  color: var(--primary, #c8a820);
   position: relative;
+  overflow: hidden;
+}
+
+.heroAv img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
 }
 
 .heroAvBadge {

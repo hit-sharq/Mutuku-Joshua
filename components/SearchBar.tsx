@@ -145,7 +145,7 @@ export default function SearchBar() {
       <div style={{ position: "relative" }}>
         <input
           type="text"
-          placeholder="Search our website..."
+          placeholder="Search my website..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={(e) => {

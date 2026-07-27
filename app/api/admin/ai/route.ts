@@ -33,38 +33,60 @@ export async function POST(request: Request) {
       )
     }
 
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                { text: `${SYSTEM_PROMPT}\n\nUser question: ${message}` },
-              ],
-            },
-          ],
-          generationConfig: {
-            temperature: 0.7,
-            topP: 0.9,
-            maxOutputTokens: 2048,
-          },
-        }),
-      }
-    )
+    let geminiResponse
+    let geminiError = ""
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}))
-      console.error("Gemini API error:", errorData)
+    try {
+      geminiResponse = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  { text: `${SYSTEM_PROMPT}\n\nUser question: ${message}` },
+                ],
+              },
+            ],
+            generationConfig: {
+              temperature: 0.7,
+              topP: 0.9,
+              maxOutputTokens: 2048,
+            },
+          }),
+        }
+      )
+    } catch (fetchError) {
+      console.error("Gemini fetch error:", fetchError)
       return NextResponse.json(
-        { reply: "I encountered an error while processing your request. Please try again." },
+        { reply: "Unable to connect to the AI service. Please check your network configuration." },
         { status: 200 }
       )
     }
 
-    const data = await response.json()
+    if (!geminiResponse.ok) {
+      try {
+        const errorBody = await geminiResponse.json()
+        const errorDetails = errorBody.error?.message || geminiResponse.statusText
+        geminiError = errorDetails
+        console.error("Gemini API error:", geminiResponse.status, errorDetails)
+      } catch {
+        geminiError = geminiResponse.statusText
+        console.error("Gemini API error:", geminiResponse.status)
+      }
+
+      const userMessage = geminiResponse.status === 401
+        ? "AI service authentication failed. Please check the GEMINI_API_KEY configuration."
+        : geminiResponse.status === 403
+        ? "AI service access denied. Please check the GEMINI_API_KEY permissions."
+        : `AI service error (${geminiResponse.status}). Please try again later.`
+
+      return NextResponse.json({ reply: userMessage }, { status: 200 })
+    }
+
+    const data = await geminiResponse.json()
 
     const reply =
       data.candidates?.[0]?.content?.parts?.[0]?.text ||

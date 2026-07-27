@@ -1707,6 +1707,16 @@ select.form-input {
   animation: spin 0.6s linear infinite;
 }
 
+.admin-ai-cooldown-icon {
+  font-size: 14px;
+  animation: ai-cooldown-pulse 1s ease-in-out infinite;
+}
+
+@keyframes ai-cooldown-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
 @media (max-width: 768px) {
   .admin-ai-chat {
     height: calc(100vh - 160px);

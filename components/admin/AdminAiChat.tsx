@@ -25,6 +25,7 @@ export default function AdminAiChat({
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
   const [loading, setLoading] = useState(false)
+  const [cooldown, setCooldown] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -42,7 +43,7 @@ export default function AdminAiChat({
 
   const sendMessage = async () => {
     const trimmed = input.trim()
-    if (!trimmed || loading) return
+    if (!trimmed || loading || cooldown) return
 
     const userMessage: Message = {
       role: "user",
@@ -53,6 +54,7 @@ export default function AdminAiChat({
     setMessages((prev) => [...prev, userMessage])
     setInput("")
     setLoading(true)
+    setCooldown(true)
 
     try {
       const response = await fetch(apiUrl, {
@@ -84,6 +86,7 @@ export default function AdminAiChat({
       setMessages((prev) => [...prev, errorMessage])
     } finally {
       setLoading(false)
+      setTimeout(() => setCooldown(false), 3000)
       inputRef.current?.focus()
     }
   }
@@ -167,10 +170,12 @@ export default function AdminAiChat({
           variant="primary"
           size="sm"
           onClick={sendMessage}
-          disabled={loading || !input.trim()}
+          disabled={loading || cooldown || !input.trim()}
           icon={
             loading ? (
               <span className="admin-ai-send-spinner" />
+            ) : cooldown ? (
+              <span className="admin-ai-cooldown-icon">⏳</span>
             ) : (
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="22" y1="2" x2="11" y2="13" />
@@ -179,7 +184,7 @@ export default function AdminAiChat({
             )
           }
         >
-          Send
+          {cooldown ? "Wait" : "Send"}
         </AdminButton>
       </div>
     </div>

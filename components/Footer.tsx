@@ -14,7 +14,7 @@ export default function Footer() {
               Crafting Code That Works. Building scalable web applications and digital solutions with modern technologies.
             </p>
             <div className={styles.socialLinks}>
-              <a href="mailto:joshua@lumyn.co.ke" target="_blank" rel="noopener noreferrer" className={styles.socialLink} title="Email">
+              <a href="mailto:officialjoshua@lumyn.co.ke" target="_blank" rel="noopener noreferrer" className={styles.socialLink} title="Email">
                 📧
               </a>
               <a href="https://www.linkedin.com/in/joshua-mwendwa-b183b5287/" target="_blank" rel="noopener noreferrer" className={styles.socialLink} title="LinkedIn">

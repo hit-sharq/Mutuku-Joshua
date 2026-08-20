@@ -278,7 +278,7 @@ export default async function AboutPage() {
                       <div className={styles.memberSocial}>
                         <a href="https://www.linkedin.com/in/joshua-mwendwa-b183b5287/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>💼</a>
                         <a href="https://github.com/hit-sharq" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>🐙</a>
-                        <a href="mailto:joshua@lumyn.co.ke" className={styles.socialLink}>📧</a>
+                        <a href="mailto:officialjoshua@lumyn.co.ke" className={styles.socialLink}>📧</a>
                       </div>
                     </div>
                   </div>

@@ -73,7 +73,7 @@ export default function ContactPage() {
               <div className={styles.cIcon}>✉</div>
               <div>
                 <div className={styles.cLabel}>DIRECT LINE</div>
-                <div className={styles.cVal}>joshua@lumyn.co.ke</div>
+                <div className={styles.cVal}>officialjoshua@lumyn.co.ke</div>
               </div>
             </div>
             <div className={styles.cRow}>
@@ -128,7 +128,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="joshua@lumyn.co.ke"
+                  placeholder="officialjoshua@lumyn.co.ke"
                   disabled={isSubmitting}
                   className={styles.fInput}
                 />

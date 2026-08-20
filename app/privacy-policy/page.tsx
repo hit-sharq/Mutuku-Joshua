@@ -138,7 +138,7 @@ export default function PrivacyPolicyPage() {
                 <p className="text-gray-700">
                   <strong>Mutuku Joshua</strong>
                 </p>
-                <p className="text-gray-700">Email: joshua@lumyn.co.ke</p>
+                <p className="text-gray-700">Email: officialjoshua@lumyn.co.ke</p>
                 <p className="text-gray-700">Phone: +254 794 773 452</p>
                 <p className="text-gray-700">Location: Nairobi, Kenya</p>
               </div>

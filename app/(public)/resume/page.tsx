@@ -20,7 +20,7 @@ export default function ResumePage() {
             <div className={styles.contactRow}>
               <a href="tel:+254794773452">+254 794 773 452</a>
               <span>·</span>
-              <a href="mailto:joshua@lumyn.co.ke">joshua@lumyn.co.ke</a>
+              <a href="mailto:officialjoshua@lumyn.co.ke">officialjoshua@lumyn.co.ke</a>
               <span>·</span>
               <span>Nairobi, Kenya</span>
               <span>·</span>

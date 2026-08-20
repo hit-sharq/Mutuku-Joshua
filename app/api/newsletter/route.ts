@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
         
         <div style="background: #0f0f0f; border-top: 0.5px solid rgba(184, 150, 12, 0.2); padding: 1.5rem; text-align: center;">
           <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.125rem; font-weight: 400; color: #c8a820; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Mutuku Joshua</div>
-          <div style="color: rgba(240, 232, 212, 0.4); font-size: 0.75rem; letter-spacing: 0.05em;">📧 joshua@lumyn.co.ke · 📞 +254 794 773 452 · 📍 Nairobi, Kenya</div>
+          <div style="color: rgba(240, 232, 212, 0.4); font-size: 0.75rem; letter-spacing: 0.05em;">📧 officialjoshua@lumyn.co.ke · 📞 +254 794 773 452 · 📍 Nairobi, Kenya</div>
         </div>
       </div>
     `

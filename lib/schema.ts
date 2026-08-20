@@ -39,7 +39,7 @@ export const organizationSchema = {
   },
   "contactPoint": {
     "@type": "ContactPoint",
-    "email": "joshua@lumyn.co.ke",
+    "email": "officialjoshua@lumyn.co.ke",
     "telephone": "+254794773452",
     "contactType": "customer service"
   },

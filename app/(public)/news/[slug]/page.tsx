@@ -1,16 +1,14 @@
+import { prisma } from "@/lib/prisma"
+import { redirect, notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
-import { prisma } from "@/lib/prisma"
-import { notFound } from "next/navigation"
 import AnimatedSection from "@/components/AnimatedSection"
 
 export const dynamic = "force-dynamic"
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const news = await prisma.news.findUnique({
-    where: { slug: params.slug },
-  })
-
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const news = await getNews(slug)
   if (!news) {
     return { title: 'News Not Found' }
   }
@@ -22,7 +20,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     openGraph: {
       type: 'article',
       locale: 'en_US',
-      url: `https://www.lumyn.co.ke/news/${params.slug}`,
+      url: `https://www.lumyn.co.ke/news/${news.slug}`,
       title: news.title,
       description: news.excerpt || news.content.slice(0, 160),
       siteName: 'Lumyn Technologies',
@@ -30,13 +28,28 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default async function NewsDetailPage({ params }: { params: { slug: string } }) {
-  const news = await prisma.news.findUnique({
-    where: { slug: params.slug },
+async function getNews(slug: string) {
+  const numericId = Number(slug)
+  if (Number.isInteger(numericId)) {
+    return await prisma.news.findUnique({
+      where: { id: String(numericId) },
+    })
+  }
+  return await prisma.news.findUnique({
+    where: { slug },
   })
+}
+
+export default async function NewsDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const news = await getNews(slug)
 
   if (!news) {
     notFound()
+  }
+
+  if (news.slug !== slug) {
+    redirect(`/news/${news.slug}`)
   }
 
   return (

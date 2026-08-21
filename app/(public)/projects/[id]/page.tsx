@@ -7,9 +7,10 @@ import PremiumButton from "@/components/PremiumButton"
 
 export const dynamic = "force-dynamic"
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   const project = await prisma.project.findUnique({
-    where: { id: params.id },
+    where: { id },
   })
 
   if (!project) {
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
     openGraph: {
       type: 'website',
       locale: 'en_US',
-      url: `https://www.lumyn.co.ke/projects/${params.id}`,
+      url: `https://www.lumyn.co.ke/projects/${id}`,
       title: project.title,
       description: project.description.slice(0, 160),
       siteName: 'Lumyn Technologies',
@@ -31,9 +32,10 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   }
 }
 
-export default async function ProjectDetailPage({ params }: { params: { id: string } }) {
+export default async function ProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   const project = await prisma.project.findUnique({
-    where: { id: params.id },
+    where: { id },
   })
 
   if (!project) {

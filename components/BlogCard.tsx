@@ -27,7 +27,7 @@ export default function BlogCard({ post }: BlogCardProps) {
   }
 
   return (
-    <Link href={`/blog/${post.slug}`} className="card blog-card-small">
+    <Link href={`/blog/${post.slug}`} className="card blog-card-small blog-card">
       <div className="blog-card-image-wrapper">
         <Image
           src={post.image || "/placeholder.svg?height=150&width=200"}
@@ -40,6 +40,9 @@ export default function BlogCard({ post }: BlogCardProps) {
       <div className="blog-card-content">
         <div className="blog-meta">{formatDate(post.createdAt)}</div>
         <h3 className="blog-card-title">{post.title}</h3>
+        {post.summary && (
+          <p className="blog-card-excerpt">{post.summary}</p>
+        )}
         <span className="read-more-btn">Read More</span>
       </div>
     </Link>

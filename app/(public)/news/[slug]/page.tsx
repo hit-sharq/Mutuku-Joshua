@@ -3,6 +3,7 @@ import { redirect, notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import AnimatedSection from "@/components/AnimatedSection"
+import ContentRenderer from "@/components/public/ContentRenderer"
 
 export const dynamic = "force-dynamic"
 
@@ -104,10 +105,9 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ slu
                 fontSize: "1.125rem",
                 lineHeight: "1.8",
                 color: "#333",
-                whiteSpace: "pre-wrap",
               }}
             >
-              {news.content}
+              <ContentRenderer content={news.content} />
             </div>
             {news.link && (
               <div style={{ marginTop: "2rem" }}>

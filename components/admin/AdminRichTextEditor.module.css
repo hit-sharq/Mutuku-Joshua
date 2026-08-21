@@ -1,0 +1,174 @@
+.editorWrapper {
+  border: 0.5px solid var(--admin-card-border);
+  background: var(--ink, #0f0f0f);
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 8px 10px;
+  background: var(--ink2, #1c1c1c);
+  border-bottom: 0.5px solid var(--admin-card-border);
+}
+
+.toolbarGroup {
+  display: flex;
+  gap: 2px;
+}
+
+.toolbarDivider {
+  width: 1px;
+  background: var(--admin-card-border);
+  margin: 0 6px;
+}
+
+.toolbar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  background: transparent;
+  border: none;
+  color: var(--admin-text-secondary);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 0;
+}
+
+.toolbar button:hover {
+  background: var(--admin-sidebar-hover);
+  color: var(--admin-text-primary);
+}
+
+.toolbar button.active {
+  background: var(--admin-sidebar-active);
+  color: var(--primary);
+}
+
+.editorContent {
+  padding: 1rem;
+  min-height: 200px;
+  max-height: 500px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+}
+
+.editorContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.editorContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.editorContent::-webkit-scrollbar-thumb {
+  background: rgba(184, 150, 12, 0.3);
+  border-radius: 0;
+}
+
+.editorContent::-webkit-scrollbar-thumb:hover {
+  background: var(--primary, #c8a820);
+}
+
+.editorContent .tiptap {
+  outline: none;
+  color: var(--admin-text-primary);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.editorContent .tiptap p {
+  margin: 0 0 1em 0;
+}
+
+.editorContent .tiptap p:last-child {
+  margin-bottom: 0;
+}
+
+.editorContent .tiptap h1,
+.editorContent .tiptap h2,
+.editorContent .tiptap h3 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--admin-text-primary);
+  margin: 1.5em 0 0.5em 0;
+  line-height: 1.2;
+}
+
+.editorContent .tiptap h1:first-child,
+.editorContent .tiptap h2:first-child,
+.editorContent .tiptap h3:first-child {
+  margin-top: 0;
+}
+
+.editorContent .tiptap h1 {
+  font-size: 1.75rem;
+}
+
+.editorContent .tiptap h2 {
+  font-size: 1.5rem;
+}
+
+.editorContent .tiptap h3 {
+  font-size: 1.25rem;
+}
+
+.editorContent .tiptap ul,
+.editorContent .tiptap ol {
+  padding-left: 1.5rem;
+  margin: 0 0 1em 0;
+}
+
+.editorContent .tiptap li {
+  margin-bottom: 0.25rem;
+}
+
+.editorContent .tiptap blockquote {
+  border-left: 3px solid var(--primary);
+  padding-left: 1rem;
+  margin: 1em 0;
+  color: var(--admin-text-secondary);
+  font-style: italic;
+}
+
+.editorContent .tiptap pre {
+  background: var(--ink3, #2a2a2a);
+  border: 0.5px solid var(--admin-card-border);
+  padding: 1rem;
+  border-radius: 0;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.editorContent .tiptap code {
+  background: var(--ink3, #2a2a2a);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.875rem;
+}
+
+.editorContent .tiptap a {
+  color: var(--primary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.editorContent .tiptap hr {
+  border: none;
+  border-top: 1px solid var(--admin-card-border);
+  margin: 1.5em 0;
+}
+
+.editorContent .tiptap mark {
+  background: rgba(184, 150, 12, 0.2);
+  color: var(--admin-text-primary);
+  padding: 0.1rem 0;
+}

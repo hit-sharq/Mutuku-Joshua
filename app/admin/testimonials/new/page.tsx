@@ -2,8 +2,9 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import AdminRichTextEditor from "@/components/admin/AdminRichTextEditor"
 
 export default function NewTestimonial() {
   const router = useRouter()
@@ -77,6 +78,10 @@ export default function NewTestimonial() {
     }
   }
 
+  const handleContentChange = (html: string) => {
+    setFormData((prev) => ({ ...prev, content: html }))
+  }
+
   return (
     <div>
       <div className="admin-header">
@@ -120,14 +125,10 @@ export default function NewTestimonial() {
             <label htmlFor="content" className="form-label">
               Testimonial Content *
             </label>
-            <textarea
-              id="content"
+            <AdminRichTextEditor
               value={formData.content}
-              onChange={(e) => setFormData((prev) => ({ ...prev, content: e.target.value }))}
-              required
-              className="form-textarea"
+              onChange={handleContentChange}
               placeholder="Enter the client's testimonial..."
-              rows={6}
             />
           </div>
 

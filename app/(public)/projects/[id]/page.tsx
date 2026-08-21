@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma"
 import { notFound } from "next/navigation"
 import AnimatedSection from "@/components/AnimatedSection"
 import PremiumButton from "@/components/PremiumButton"
+import ContentRenderer from "@/components/public/ContentRenderer"
 
 export const dynamic = "force-dynamic"
 
@@ -70,9 +71,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               <h1 style={{ fontSize: "2.5rem", marginBottom: "1rem", color: "#1a365d", lineHeight: "1.2" }}>
                 {project.title}
               </h1>
-              <p style={{ fontSize: "1.1rem", color: "#666", lineHeight: "1.7", marginBottom: "1.5rem" }}>
-                {project.description}
-              </p>
+              <ContentRenderer content={project.description} />
 
               {technologies.length > 0 && (
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.5rem" }}>

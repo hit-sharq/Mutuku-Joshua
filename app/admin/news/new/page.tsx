@@ -2,8 +2,9 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import AdminRichTextEditor from "@/components/admin/AdminRichTextEditor"
 
 export default function NewNewsItem() {
   const router = useRouter()
@@ -90,6 +91,10 @@ export default function NewNewsItem() {
     }
   }
 
+  const handleContentChange = (html: string) => {
+    setFormData((prev) => ({ ...prev, content: html }))
+  }
+
   return (
     <div>
       <div className="admin-header">
@@ -173,14 +178,10 @@ export default function NewNewsItem() {
             <label htmlFor="content" className="form-label">
               Content *
             </label>
-            <textarea
-              id="content"
+            <AdminRichTextEditor
               value={formData.content}
-              onChange={(e) => setFormData((prev) => ({ ...prev, content: e.target.value }))}
-              required
-              className="form-textarea"
+              onChange={handleContentChange}
               placeholder="Write your news content here..."
-              rows={10}
             />
           </div>
 

@@ -5,6 +5,7 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useUser } from "@clerk/nextjs"
+import AdminRichTextEditor from "@/components/admin/AdminRichTextEditor"
 
 interface UserProfile {
   id: string
@@ -134,6 +135,10 @@ export default function ProfileSettings() {
     }
   }
 
+  const handleBioChange = (html: string) => {
+    setFormData((prev) => ({ ...prev, bio: html }))
+  }
+
   if (isLoading) {
     return (
       <div>
@@ -175,13 +180,10 @@ export default function ProfileSettings() {
               <label htmlFor="bio" className="form-label">
                 Bio
               </label>
-              <textarea
-                id="bio"
+              <AdminRichTextEditor
                 value={formData.bio || ""}
-                onChange={(e) => setFormData((prev) => ({ ...prev, bio: e.target.value }))}
-                className="form-textarea"
+                onChange={handleBioChange}
                 placeholder="Write a brief bio about yourself..."
-                rows={6}
               />
               <small style={{ color: "#666", marginTop: "0.5rem", display: "block" }}>
                 This bio will be displayed on the About page.

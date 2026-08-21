@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma"
 import ShareButton from "@/components/ShareButton"
 import BlogCard from "@/components/BlogCard"
 import AnimatedSection from "@/components/AnimatedSection"
+import ContentRenderer from "@/components/public/ContentRenderer"
 import styles from "../blog.module.css"
 import detailStyles from "../blog-detail.module.css"
 
@@ -60,16 +61,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const post = await getBlogPost(slug)
   if (!post) return { title: 'Blog Post Not Found' }
+  const plainText = post.content.replace(/<[^>]*>/g, '').slice(0, 160)
   return {
     title: `${post.title} - Mutuku Joshua | Lumyn Technologies`,
-    description: post.summary || post.content.slice(0, 160).replace(/<[^>]*>/g, ''),
+    description: post.summary || plainText,
     keywords: 'Blog, Web Development, React, Next.js, Node.js, Tutorials, Lumyn Technologies',
     openGraph: {
       type: 'article',
       locale: 'en_US',
       url: `https://www.lumyn.co.ke/blog/${slug}`,
       title: post.title,
-      description: post.summary || post.content.slice(0, 160).replace(/<[^>]*>/g, ''),
+      description: post.summary || plainText,
       siteName: 'Lumyn Technologies',
     },
   }
@@ -116,9 +118,7 @@ export default async function BlogPostPage({
                 })}
               </div>
               <div className={detailStyles.blogDetailContent}>
-                {post.content.split("\n").map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
+                <ContentRenderer content={post.content} />
               </div>
             </div>
 

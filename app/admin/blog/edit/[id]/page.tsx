@@ -4,6 +4,7 @@ import type React from "react"
 
 import { use, useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import AdminRichTextEditor from "@/components/admin/AdminRichTextEditor"
 
 export default function EditBlogPost({
   params,
@@ -106,6 +107,10 @@ export default function EditBlogPost({
     }
   }
 
+  const handleContentChange = (html: string) => {
+    setFormData((prev) => ({ ...prev, content: html }))
+  }
+
   if (isLoading) {
     return (
       <div>
@@ -188,14 +193,10 @@ export default function EditBlogPost({
             <label htmlFor="content" className="form-label">
               Content *
             </label>
-            <textarea
-              id="content"
+            <AdminRichTextEditor
               value={formData.content}
-              onChange={(e) => setFormData((prev) => ({ ...prev, content: e.target.value }))}
-              required
-              className="form-textarea"
+              onChange={handleContentChange}
               placeholder="Write your blog post content here..."
-              rows={15}
             />
           </div>
 

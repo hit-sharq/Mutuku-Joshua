@@ -9,6 +9,7 @@ export default function NewNewsItem() {
   const router = useRouter()
   const [formData, setFormData] = useState({
     title: "",
+    slug: "",
     content: "",
     excerpt: "",
     link: "",
@@ -37,6 +38,16 @@ export default function NewNewsItem() {
     const data = await response.json()
     return data.imageUrl
   }
+
+  useEffect(() => {
+    if (formData.title) {
+      const slug = formData.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "")
+      setFormData(prev => ({ ...prev, slug }))
+    }
+  }, [formData.title])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -99,6 +110,20 @@ export default function NewNewsItem() {
               required
               className="form-input"
               placeholder="Enter news title"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="slug" className="form-label">
+              Slug
+            </label>
+            <input
+              type="text"
+              id="slug"
+              value={formData.slug}
+              onChange={(e) => setFormData((prev) => ({ ...prev, slug: e.target.value }))}
+              className="form-input"
+              placeholder="url-friendly-slug"
             />
           </div>
 

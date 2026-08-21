@@ -54,6 +54,7 @@ export default function Footer() {
               <Link href="/blog" className={styles.navLink}>Blog</Link>
               <Link href="/news" className={styles.navLink}>News</Link>
               <Link href="/contact" className={styles.navLink}>Contact</Link>
+              <a href="https://mutukujoshua.lumyn.co.ke" target="_blank" rel="noopener noreferrer" className={styles.navLink}>Portfolio</a>
             </nav>
           </div>
 

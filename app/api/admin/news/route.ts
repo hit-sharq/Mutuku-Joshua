@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { requireAdmin } from "@/lib/auth"
+import { generateSlug, ensureUniqueSlug } from "@/lib/slug"
 
 export async function GET() {
   try {
@@ -20,18 +21,15 @@ export async function POST(request: NextRequest) {
   try {
     await requireAdmin()
 
-    const { title, content, excerpt, image, link, featured, published, order } = await request.json()
+    const { title, content, excerpt, image, link, featured, published, order, slug } = await request.json()
 
-    // Generate slug from title
-    const slug = title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "")
+    const baseSlug = slug && slug.trim() ? slug.trim() : generateSlug(title)
+    const finalSlug = await ensureUniqueSlug(baseSlug, "news")
 
     const newsItem = await prisma.news.create({
       data: {
         title,
-        slug,
+        slug: finalSlug,
         content,
         excerpt,
         image,

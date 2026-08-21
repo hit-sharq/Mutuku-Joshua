@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { requireAdmin } from "@/lib/auth"
+import { ensureUniqueSlug } from "@/lib/slug"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
@@ -29,19 +30,26 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
     const unwrappedParams = await params
 
-    const { title, content, summary, image, published } = await request.json()
+    const { title, content, summary, image, published, slug } = await request.json()
 
-    // Generate slug from title
-    const slug = title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "")
+    const existing = await prisma.blogPost.findUnique({
+      where: { id: unwrappedParams.id },
+      select: { slug: true },
+    })
+
+    if (!existing) {
+      return NextResponse.json({ error: "Blog post not found" }, { status: 404 })
+    }
+
+    const finalSlug = slug
+      ? await ensureUniqueSlug(slug, "blogPost", unwrappedParams.id)
+      : existing.slug
 
     const post = await prisma.blogPost.update({
       where: { id: unwrappedParams.id },
       data: {
         title,
-        slug,
+        slug: finalSlug,
         content,
         summary,
         image,

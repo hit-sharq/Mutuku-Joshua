@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { requireAdmin } from "@/lib/auth"
+import { ensureUniqueSlug } from "@/lib/slug"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
@@ -29,19 +30,26 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
     const unwrappedParams = await params
 
-    const { title, content, excerpt, image, link, featured, published, order } = await request.json()
+    const { title, content, excerpt, image, link, featured, published, order, slug } = await request.json()
 
-    // Generate slug from title
-    const slug = title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "")
+    const existing = await prisma.news.findUnique({
+      where: { id: unwrappedParams.id },
+      select: { slug: true },
+    })
+
+    if (!existing) {
+      return NextResponse.json({ error: "News item not found" }, { status: 404 })
+    }
+
+    const finalSlug = slug
+      ? await ensureUniqueSlug(slug, "news", unwrappedParams.id)
+      : existing.slug
 
     const newsItem = await prisma.news.update({
       where: { id: unwrappedParams.id },
       data: {
         title,
-        slug,
+        slug: finalSlug,
         content,
         excerpt,
         image,

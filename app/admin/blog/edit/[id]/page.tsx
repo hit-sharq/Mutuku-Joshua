@@ -14,6 +14,7 @@ export default function EditBlogPost({
   const router = useRouter()
   const [formData, setFormData] = useState({
     title: "",
+    slug: "",
     content: "",
     summary: "",
     published: false,
@@ -31,6 +32,7 @@ export default function EditBlogPost({
           const post = await response.json()
           setFormData({
             title: post.title,
+            slug: post.slug,
             content: post.content,
             summary: post.summary || "",
             published: post.published,
@@ -137,6 +139,20 @@ export default function EditBlogPost({
               required
               className="form-input"
               placeholder="Enter blog post title"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="slug" className="form-label">
+              Slug
+            </label>
+            <input
+              type="text"
+              id="slug"
+              value={formData.slug}
+              onChange={(e) => setFormData((prev) => ({ ...prev, slug: e.target.value }))}
+              className="form-input"
+              placeholder="url-friendly-slug"
             />
           </div>
 

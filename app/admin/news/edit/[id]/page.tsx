@@ -14,6 +14,7 @@ export default function EditNewsItem({
   const router = useRouter()
   const [formData, setFormData] = useState({
     title: "",
+    slug: "",
     content: "",
     excerpt: "",
     link: "",
@@ -34,6 +35,7 @@ export default function EditNewsItem({
           const newsItem = await response.json()
           setFormData({
             title: newsItem.title,
+            slug: newsItem.slug,
             content: newsItem.content,
             excerpt: newsItem.excerpt || "",
             link: newsItem.link || "",
@@ -143,6 +145,20 @@ export default function EditNewsItem({
               required
               className="form-input"
               placeholder="Enter news title"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="slug" className="form-label">
+              Slug
+            </label>
+            <input
+              type="text"
+              id="slug"
+              value={formData.slug}
+              onChange={(e) => setFormData((prev) => ({ ...prev, slug: e.target.value }))}
+              className="form-input"
+              placeholder="url-friendly-slug"
             />
           </div>
 

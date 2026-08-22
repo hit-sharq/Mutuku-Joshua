@@ -1,7 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { requireAdmin } from "@/lib/auth"
-import { generateSlug, ensureUniqueSlug } from "@/lib/slug"
 import nodemailer from "nodemailer"
 
 const transporter = nodemailer.createTransport({
@@ -77,15 +76,25 @@ async function sendBlogNotification(post: { title: string; slug: string; summary
   await Promise.all(sendPromises)
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     await requireAdmin()
 
-    const posts = await prisma.blogPost.findMany({
+    const { searchParams } = new URL(request.url)
+    const limit = Number.parseInt(searchParams.get("limit") || "10")
+
+    const subscribers = await prisma.newsletterSubscriber.findMany({
+      where: { active: true },
+      select: { id: true, email: true, createdAt: true },
       orderBy: { createdAt: "desc" },
+      take: limit,
     })
 
-    return NextResponse.json(posts)
+    const total = await prisma.newsletterSubscriber.count({
+      where: { active: true },
+    })
+
+    return NextResponse.json({ subscribers, total })
   } catch (error) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
@@ -94,34 +103,28 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     await requireAdmin()
+    const { title, postUrl } = await request.json()
 
-    const { title, content, summary, image, published, slug } = await request.json()
-
-    const baseSlug = slug && slug.trim() ? slug.trim() : generateSlug(title)
-    const finalSlug = await ensureUniqueSlug(baseSlug, "blogPost")
-
-    const post = await prisma.blogPost.create({
-      data: {
-        title,
-        slug: finalSlug,
-        content,
-        summary,
-        image,
-        published: published || false,
-      },
-    })
-
-    if (post.published) {
-      try {
-        await sendBlogNotification(post)
-      } catch (notificationError) {
-        console.error("Newsletter notification error:", notificationError)
-      }
+    if (!title || !postUrl) {
+      return NextResponse.json(
+        { error: "Title and postUrl are required" },
+        { status: 400 }
+      )
     }
 
-    return NextResponse.json(post, { status: 201 })
+    const post = { title, slug: postUrl.split("/blog/").pop() || postUrl, summary: null }
+
+    await sendBlogNotification(post)
+
+    return NextResponse.json(
+      { message: "Newsletter sent successfully" },
+      { status: 200 }
+    )
   } catch (error) {
-    console.error("Error creating blog post:", error)
-    return NextResponse.json({ error: "Failed to create blog post" }, { status: 500 })
+    console.error("Error sending newsletter:", error)
+    return NextResponse.json(
+      { error: "Failed to send newsletter" },
+      { status: 500 }
+    )
   }
 }

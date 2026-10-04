@@ -39,7 +39,7 @@ export default function BlogListingClient({ initialPosts }: { initialPosts: Blog
       {/* HERO */}
       <div className={styles.blogHeader}>
         <div className={styles.secEyebrow}>JOURNAL</div>
-        <div className={styles.secTitle}>Dispatches from the lab</div>
+        <h1 className={styles.secTitle}>Dispatches from the lab</h1>
         <p className={styles.sectionSubtitle}>
           Stay updated with my latest articles on programming, web development, technology trends, and coding best practices.
         </p>

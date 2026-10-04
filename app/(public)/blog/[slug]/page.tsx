@@ -1,7 +1,11 @@
 import Image from "next/image"
 import Link from "next/link"
+import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { prisma } from "@/lib/prisma"
+import JsonLd from "@/components/JsonLd"
+import { breadcrumbSchema, blogPostingSchema } from "@/lib/schema"
+import { SITE_NAME, truncate } from "@/lib/site-config"
 
 export const dynamic = "force-dynamic"
 
@@ -26,20 +30,56 @@ export async function getBlogPost(slug: string): Promise<BlogPostType | null> {
   })
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = await getBlogPost(params.slug)
-  if (!post) return { title: 'Blog Post Not Found' }
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const post = await getBlogPost(slug)
+  if (!post) {
+    return { title: "Blog Post Not Found", robots: { index: false, follow: false } }
+  }
+
+  const description = truncate(post.summary || post.content)
+  const path = `/blog/${post.slug}`
+
   return {
-    title: `${post.title} - Mutuku Joshua | Lumyn Technologies`,
-    description: post.summary || post.content.slice(0, 160).replace(/<[^>]*>/g, ''),
-    keywords: 'Blog, Web Development, React, Next.js, Node.js, Tutorials, Lumyn Technologies',
+    title: post.title,
+    description,
+    keywords: [
+      "Mutuku Joshua",
+      "web development blog",
+      "React",
+      "Next.js",
+      "Node.js",
+      "software engineering",
+      "Kenya",
+    ],
+    alternates: { canonical: path },
+    authors: [{ name: SITE_NAME, url: "/" }],
     openGraph: {
-      type: 'article',
-      locale: 'en_US',
-      url: `https://www.lumyn.co.ke/blog/${params.slug}`,
+      type: "article",
+      url: path,
       title: post.title,
-      description: post.summary || post.content.slice(0, 160).replace(/<[^>]*>/g, ''),
-      siteName: 'Lumyn Technologies',
+      description,
+      siteName: SITE_NAME,
+      publishedTime: new Date(post.createdAt).toISOString(),
+      modifiedTime: new Date(post.updatedAt).toISOString(),
+      images: [
+        {
+          url: post.image || "/og-image.png",
+          width: post.image ? 1200 : 1200,
+          height: post.image ? 630 : 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+      images: [post.image || "/og-image.png"],
     },
   }
 }
@@ -47,16 +87,37 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const post = await getBlogPost(params.slug)
+  const { slug } = await params
+  const post = await getBlogPost(slug)
 
   if (!post) {
     notFound()
   }
 
+  const description = truncate(post.summary || post.content)
+  const path = `/blog/${post.slug}`
+
   return (
     <div className="section">
+      <JsonLd
+        data={[
+          blogPostingSchema({
+            title: post.title,
+            description,
+            path,
+            image: post.image,
+            createdAt: post.createdAt,
+            updatedAt: post.updatedAt,
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path },
+          ]),
+        ]}
+      />
       <div className="container">
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
           <Link href="/blog" className="btn btn-secondary" style={{ marginBottom: "2rem" }}>

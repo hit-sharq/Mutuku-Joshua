@@ -1,17 +1,36 @@
+import type { Metadata } from "next"
 import { prisma } from "@/lib/prisma"
+import { OG_IMAGE, SITE_URL } from "@/lib/site-config"
 import BlogListingClient from "./BlogListingClient"
 
-export const metadata = {
-  title: 'Blog - Mutuku Joshua | Lumyn Technologies',
-  description: 'Articles on programming, web development, technology trends, and coding best practices by Mutuku Joshua.',
-  keywords: 'Blog, Web Development, React, Next.js, Node.js, Tutorials, Lumyn Technologies, Programming',
+const TITLE = "Blog"
+const DESCRIPTION =
+  "Articles on programming, web development, technology trends and engineering practice by Mutuku Joshua, covering React, Next.js, Node.js, Django and building software that holds up in production."
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/blog" },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://www.lumyn.co.ke/blog',
-    title: 'Blog - Mutuku Joshua',
-    description: 'Articles on programming, web development, technology trends, and coding best practices.',
-    siteName: 'Lumyn Technologies',
+    type: "website",
+    url: `${SITE_URL}/blog`,
+    title: `${TITLE} | Mutuku Joshua`,
+    description: DESCRIPTION,
+    siteName: "Mutuku Joshua",
+    images: [
+      {
+        url: OG_IMAGE.url,
+        width: OG_IMAGE.width,
+        height: OG_IMAGE.height,
+        alt: OG_IMAGE.alt,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${TITLE} | Mutuku Joshua`,
+    description: DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
 }
 

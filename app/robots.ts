@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { SITE_URL } from "@/lib/site-config"
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,9 +7,16 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin', '/api/admin'],
+        disallow: [
+          '/admin/',
+          '/api/',
+          '/_next/',
+          '/sign-in',
+          '/sign-up',
+        ],
       },
     ],
-    sitemap: 'https://www.lumyn.co.ke/sitemap.xml',
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   }
 }

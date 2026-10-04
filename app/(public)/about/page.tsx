@@ -1,21 +1,40 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import { prisma } from "@/lib/prisma"
 import Link from "next/link"
 import AnimatedSection from "@/components/AnimatedSection"
 import PremiumButton from "@/components/PremiumButton"
+import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config"
 import styles from "./about.module.css"
 
-export const metadata = {
-  title: 'About - Mutuku Joshua | Lumyn Technologies',
-  description: 'Learn about Mutuku Joshua, a passionate fullstack developer specializing in modern web technologies. Discover the story behind Lumyn Technologies.',
-  keywords: 'About Mutuku Joshua, Fullstack Developer, Lumyn Technologies, Web Developer Kenya, Software Engineer',
+const TITLE = "About"
+const DESCRIPTION =
+  "Meet Mutuku Joshua, a fullstack developer in Nairobi, Kenya who builds fast, scalable web applications with React, Next.js, Node.js, Django and PostgreSQL. Founder of Lumyn Technologies."
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/about" },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://www.lumyn.co.ke/about',
-    title: 'About - Mutuku Joshua',
-    description: 'Learn about Mutuku Joshua, a passionate fullstack developer.',
-    siteName: 'Lumyn Technologies',
+    type: "profile",
+    url: `${SITE_URL}/about`,
+    title: `${TITLE} | ${SITE_NAME}`,
+    description: DESCRIPTION,
+    siteName: SITE_NAME,
+    images: [
+      {
+        url: OG_IMAGE.url,
+        width: OG_IMAGE.width,
+        height: OG_IMAGE.height,
+        alt: OG_IMAGE.alt,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${TITLE} | ${SITE_NAME}`,
+    description: DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
 }
 

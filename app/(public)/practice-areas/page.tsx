@@ -1,17 +1,36 @@
+import type { Metadata } from "next"
 import { prisma } from "@/lib/prisma"
 import Link from "next/link"
+import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config"
 
-export const metadata = {
-  title: 'Practice Areas - Mutuku Joshua | Lumyn Technologies',
-  description: 'Explore our core practice areas: web development, mobile apps, API design, UI/UX, and digital strategy.',
-  keywords: 'Practice Areas, Web Development, Mobile Apps, APIs, UI/UX, Fullstack Developer, Lumyn Technologies',
+const TITLE = "Practice Areas"
+const DESCRIPTION =
+  "Core practice areas of Mutuku Joshua: web engineering, mobile systems, API architecture, database engineering and digital strategy."
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/practice-areas" },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://www.lumyn.co.ke/practice-areas',
-    title: 'Practice Areas - Mutuku Joshua',
-    description: 'Explore our core practice areas.',
-    siteName: 'Lumyn Technologies',
+    type: "website",
+    url: `${SITE_URL}/practice-areas`,
+    title: `${TITLE} | ${SITE_NAME}`,
+    description: DESCRIPTION,
+    siteName: SITE_NAME,
+    images: [
+      {
+        url: OG_IMAGE.url,
+        width: OG_IMAGE.width,
+        height: OG_IMAGE.height,
+        alt: OG_IMAGE.alt,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${TITLE} | ${SITE_NAME}`,
+    description: DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
 }
 

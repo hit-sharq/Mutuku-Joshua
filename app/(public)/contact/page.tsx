@@ -62,7 +62,7 @@ export default function ContactPage() {
         {/* LEFT: info */}
         <div className={styles.contactLeft}>
         <div className={styles.secEyebrow}>ENGAGE</div>
-        <div className={styles.secTitle}>Let&apos;s build something<br />that outlasts us.</div>
+        <h1 className={styles.secTitle}>Let&apos;s build something<br />that outlasts us.</h1>
           <p className={styles.aboutP}>
             Whether you need a website, a web app, a design system, or a full product — I&apos;m available for freelance projects, full-time roles, and collaborations.
           </p>

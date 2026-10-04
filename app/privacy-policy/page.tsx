@@ -1,8 +1,26 @@
 import type { Metadata } from "next"
+import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Mutuku Joshua - Fullstack Developer",
+  title: "Privacy Policy",
   description: "Privacy Policy for Mutuku Joshua - How I collect, use, and protect your personal information.",
+  alternates: { canonical: "/privacy-policy" },
+  openGraph: {
+    type: "website",
+    url: `${SITE_URL}/privacy-policy`,
+    siteName: SITE_NAME,
+    title: `Privacy Policy | ${SITE_NAME}`,
+    description:
+      "Privacy Policy for Mutuku Joshua - How I collect, use, and protect your personal information.",
+    images: [
+      {
+        url: OG_IMAGE.url,
+        width: OG_IMAGE.width,
+        height: OG_IMAGE.height,
+        alt: OG_IMAGE.alt,
+      },
+    ],
+  },
 }
 
 export default function PrivacyPolicyPage() {

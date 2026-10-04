@@ -1,17 +1,36 @@
+import type { Metadata } from "next"
 import { prisma } from "@/lib/prisma"
 import GalleryGrid from "@/components/GalleryGrid"
+import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config"
 
-export const metadata = {
-  title: 'Gallery - Mutuku Joshua | Lumyn Technologies',
-  description: 'Browse our project gallery showcasing web applications, mobile apps, and digital solutions built by Lumyn Technologies.',
-  keywords: 'Gallery, Projects, Portfolio, Web Development, Mobile Apps, Lumyn Technologies',
+const TITLE = "Gallery"
+const DESCRIPTION =
+  "A visual gallery of web applications, mobile apps and digital products designed and built by Mutuku Joshua."
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/gallery" },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://www.lumyn.co.ke/gallery',
-    title: 'Gallery - Lumyn Technologies',
-    description: 'Browse our project gallery.',
-    siteName: 'Lumyn Technologies',
+    type: "website",
+    url: `${SITE_URL}/gallery`,
+    title: `${TITLE} | ${SITE_NAME}`,
+    description: DESCRIPTION,
+    siteName: SITE_NAME,
+    images: [
+      {
+        url: OG_IMAGE.url,
+        width: OG_IMAGE.width,
+        height: OG_IMAGE.height,
+        alt: OG_IMAGE.alt,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${TITLE} | ${SITE_NAME}`,
+    description: DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
 }
 

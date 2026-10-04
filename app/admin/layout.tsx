@@ -1,7 +1,22 @@
 import type React from "react"
+import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { auth } from "@clerk/nextjs/server"
 import AdminSidebar from "@/components/admin/AdminSidebar"
+
+export const metadata: Metadata = {
+  title: "Admin",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+}
 
 export default async function AdminLayout({
   children,

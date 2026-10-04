@@ -77,7 +77,7 @@ export default function ProjectsPage() {
       <div className={styles.page}>
       <section className={styles.workHeader}>
         <div className={styles.secEyebrow}>CURATED WORK</div>
-        <div className={styles.secTitle}>Work that moved the needle</div>
+        <h1 className={styles.secTitle}>Work that moved the needle</h1>
         <div className={styles.workPills}>
           {FILTERS.map((f) => (
             <button key={f} className={`${styles.wpill} ${f === "ALL" ? styles.on : ""}`}>{f}</button>
@@ -102,7 +102,7 @@ export default function ProjectsPage() {
       <div className={styles.page}>
         <section className={styles.workHeader}>
           <div className={styles.secEyebrow}>SELECTED WORK</div>
-          <div className={styles.secTitle}>Projects that shipped</div>
+          <h1 className={styles.secTitle}>Projects that shipped</h1>
         </section>
 
         <div className={styles.emptyState}>

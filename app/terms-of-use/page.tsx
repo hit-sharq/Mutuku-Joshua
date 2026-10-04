@@ -1,8 +1,26 @@
 import type { Metadata } from "next"
+import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config"
 
 export const metadata: Metadata = {
-  title: "Terms of Use | Mutuku Joshua - Fullstack Developer",
+  title: "Terms of Use",
   description: "Terms of Use for Mutuku Joshua portfolio website and development services.",
+  alternates: { canonical: "/terms-of-use" },
+  openGraph: {
+    type: "website",
+    url: `${SITE_URL}/terms-of-use`,
+    siteName: SITE_NAME,
+    title: `Terms of Use | ${SITE_NAME}`,
+    description:
+      "Terms of Use for Mutuku Joshua portfolio website and development services.",
+    images: [
+      {
+        url: OG_IMAGE.url,
+        width: OG_IMAGE.width,
+        height: OG_IMAGE.height,
+        alt: OG_IMAGE.alt,
+      },
+    ],
+  },
 }
 
 export default function TermsOfUsePage() {

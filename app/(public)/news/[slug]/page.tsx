@@ -1,46 +1,123 @@
 import Image from "next/image"
 import Link from "next/link"
+import type { Metadata } from "next"
 import { prisma } from "@/lib/prisma"
-import { notFound } from "next/navigation"
+import { notFound, permanentRedirect } from "next/navigation"
 import AnimatedSection from "@/components/AnimatedSection"
+import JsonLd from "@/components/JsonLd"
+import { breadcrumbSchema, newsArticleSchema } from "@/lib/schema"
+import { SITE_NAME, truncate } from "@/lib/site-config"
 
 export const dynamic = "force-dynamic"
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+/**
+ * Legacy `/news/<id>` URLs resolve here too: cuid ids no longer match a slug,
+ * so they are permanently redirected to the canonical slug URL.
+ */
+async function getNews(slug: string) {
+  const bySlug = await prisma.news.findUnique({
+    where: { slug, published: true },
+  })
+  if (bySlug) return bySlug
+
+  const byId = await prisma.news.findFirst({
+    where: { id: slug, published: true },
+    select: { slug: true },
+  })
+  if (byId) permanentRedirect(`/news/${byId.slug}`)
+
+  return null
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
   const news = await prisma.news.findUnique({
-    where: { slug: params.slug },
+    where: { slug, published: true },
   })
 
   if (!news) {
-    return { title: 'News Not Found' }
+    return { title: "News Not Found", robots: { index: false, follow: false } }
   }
 
+  const description = truncate(news.excerpt || news.content)
+  const path = `/news/${news.slug}`
+
   return {
-    title: `${news.title} - News | Mutuku Joshua`,
-    description: news.excerpt || news.content.slice(0, 160),
-    keywords: 'News, Updates, Announcements, Fullstack Developer, Lumyn Technologies',
+    title: news.title,
+    description,
+    keywords: [
+      "Mutuku Joshua",
+      "Lumyn Technologies",
+      "announcement",
+      "web development Kenya",
+      "digital agency news",
+    ],
+    alternates: { canonical: path },
+    authors: [{ name: SITE_NAME, url: "/" }],
     openGraph: {
-      type: 'article',
-      locale: 'en_US',
-      url: `https://www.lumyn.co.ke/news/${params.slug}`,
+      type: "article",
+      url: path,
       title: news.title,
-      description: news.excerpt || news.content.slice(0, 160),
-      siteName: 'Lumyn Technologies',
+      description,
+      siteName: SITE_NAME,
+      publishedTime: new Date(news.createdAt).toISOString(),
+      modifiedTime: new Date(news.updatedAt).toISOString(),
+      images: [
+        {
+          url: news.image || "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: news.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: news.title,
+      description,
+      images: [news.image || "/og-image.png"],
     },
   }
 }
 
-export default async function NewsDetailPage({ params }: { params: { slug: string } }) {
-  const news = await prisma.news.findUnique({
-    where: { slug: params.slug },
-  })
+export default async function NewsDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const news = await getNews(slug)
 
   if (!news) {
     notFound()
   }
 
+  const description = truncate(news.excerpt || news.content)
+  const path = `/news/${news.slug}`
+
   return (
     <div className="section">
+      <JsonLd
+        data={[
+          newsArticleSchema({
+            title: news.title,
+            description,
+            path,
+            image: news.image,
+            createdAt: news.createdAt,
+            updatedAt: news.updatedAt,
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "News", path: "/news" },
+            { name: news.title, path },
+          ]),
+        ]}
+      />
       <div className="container">
         <AnimatedSection>
           <Link href="/news" className="btn btn-secondary" style={{ marginBottom: "2rem", display: "inline-block" }}>

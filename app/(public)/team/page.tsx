@@ -1,17 +1,36 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import { prisma } from "@/lib/prisma"
+import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config"
 
-export const metadata = {
-  title: 'Team - Mutuku Joshua | Lumyn Technologies',
-  description: 'Meet the team behind Lumyn Technologies. Skilled developers, designers, and strategists delivering exceptional digital solutions.',
-  keywords: 'Team, Developers, Designers, Lumyn Technologies, Fullstack Developer, Web Development Team',
+const TITLE = "Team"
+const DESCRIPTION =
+  "The people behind Lumyn Technologies: developers, designers and strategists delivering digital products for clients in Kenya and worldwide."
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/team" },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://www.lumyn.co.ke/team',
-    title: 'Team - Lumyn Technologies',
-    description: 'Meet the team behind Lumyn Technologies.',
-    siteName: 'Lumyn Technologies',
+    type: "website",
+    url: `${SITE_URL}/team`,
+    title: `${TITLE} | ${SITE_NAME}`,
+    description: DESCRIPTION,
+    siteName: SITE_NAME,
+    images: [
+      {
+        url: OG_IMAGE.url,
+        width: OG_IMAGE.width,
+        height: OG_IMAGE.height,
+        alt: OG_IMAGE.alt,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${TITLE} | ${SITE_NAME}`,
+    description: DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
 }
 

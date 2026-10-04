@@ -1,49 +1,98 @@
 import Image from "next/image"
 import Link from "next/link"
+import type { Metadata } from "next"
 import { prisma } from "@/lib/prisma"
 import { notFound } from "next/navigation"
 import AnimatedSection from "@/components/AnimatedSection"
 import PremiumButton from "@/components/PremiumButton"
+import JsonLd from "@/components/JsonLd"
+import { breadcrumbSchema, webPageSchema } from "@/lib/schema"
+import { SITE_NAME, truncate } from "@/lib/site-config"
 
 export const dynamic = "force-dynamic"
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}): Promise<Metadata> {
+  const { id } = await params
   const project = await prisma.project.findUnique({
-    where: { id: params.id },
+    where: { id },
   })
 
   if (!project) {
-    return { title: 'Project Not Found' }
+    return { title: "Project Not Found", robots: { index: false, follow: false } }
   }
 
+  const description = truncate(project.description)
+  const path = `/projects/${project.id}`
+
   return {
-    title: `${project.title} - Projects | Mutuku Joshua`,
-    description: project.description.slice(0, 160),
-    keywords: 'Projects, Web Development, Portfolio, Lumyn Technologies',
+    title: project.title,
+    description,
+    keywords: [
+      project.title,
+      "portfolio project",
+      "web development",
+      ...(project.technologies?.split(",").map((t) => t.trim()) || []),
+    ],
+    alternates: { canonical: path },
     openGraph: {
-      type: 'website',
-      locale: 'en_US',
-      url: `https://www.lumyn.co.ke/projects/${params.id}`,
+      type: "website",
+      url: path,
       title: project.title,
-      description: project.description.slice(0, 160),
-      siteName: 'Lumyn Technologies',
+      description,
+      siteName: SITE_NAME,
+      images: [
+        {
+          url: project.imageUrl || "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: project.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.title,
+      description,
+      images: [project.imageUrl || "/og-image.png"],
     },
   }
 }
 
-export default async function ProjectDetailPage({ params }: { params: { id: string } }) {
+export default async function ProjectDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
   const project = await prisma.project.findUnique({
-    where: { id: params.id },
+    where: { id },
   })
 
   if (!project) {
     notFound()
   }
 
+  const description = truncate(project.description)
+  const path = `/projects/${project.id}`
+
   const technologies = project.technologies?.split(",").map(t => t.trim()).filter(Boolean) || []
 
   return (
     <div className="section">
+      <JsonLd
+        data={[
+          webPageSchema(project.title, path, description),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Projects", path: "/projects" },
+            { name: project.title, path },
+          ]),
+        ]}
+      />
       <div className="container">
         <AnimatedSection>
           <Link href="/projects" className="btn btn-secondary" style={{ marginBottom: "2rem", display: "inline-block" }}>

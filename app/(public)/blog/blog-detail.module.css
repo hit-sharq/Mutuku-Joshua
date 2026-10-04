@@ -1,0 +1,122 @@
+.blogDetailCard {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--ink, #0f0f0f);
+  border: 0.5px solid rgba(184, 150, 12, 0.15);
+  overflow: hidden;
+}
+
+.blogDetailImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  overflow: hidden;
+  border-bottom: 0.5px solid rgba(184, 150, 12, 0.15);
+}
+
+.blogDetailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.blogDetailBody {
+  padding: 2.5rem 2.5rem 3rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary, #c8a820) transparent;
+}
+
+.blogDetailBody::-webkit-scrollbar {
+  width: 6px;
+}
+
+.blogDetailBody::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.blogDetailBody::-webkit-scrollbar-thumb {
+  background: rgba(184, 150, 12, 0.3);
+  border-radius: 0;
+}
+
+.blogDetailBody::-webkit-scrollbar-thumb:hover {
+  background: var(--primary, #c8a820);
+}
+
+.blogDetailTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 400;
+  color: var(--cream, #faf7f2);
+  line-height: 1.2;
+  margin: 0 0 0.75rem 0;
+}
+
+.blogDetailMeta {
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primary, #c8a820);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 0.5px solid rgba(184, 150, 12, 0.12);
+}
+
+.blogDetailContent {
+  font-size: 1.0625rem;
+  line-height: 1.9;
+  color: var(--muted-foreground);
+}
+
+.blogDetailContent p {
+  margin: 0 0 1.25rem 0;
+}
+
+.blogDetailContent p:last-child {
+  margin-bottom: 0;
+}
+
+.blogDetailActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2.5rem;
+  border-top: 0.5px solid rgba(184, 150, 12, 0.12);
+  background: rgba(184, 150, 12, 0.03);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--cream2, #f0e8d4);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: var(--primary, #c8a820);
+}
+
+@media (max-width: 768px) {
+  .blogDetailImageWrapper {
+    height: 240px;
+  }
+
+  .blogDetailBody {
+    padding: 1.75rem 1.5rem 2rem;
+    max-height: none;
+  }
+
+  .blogDetailActions {
+    padding: 1rem 1.5rem;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+}

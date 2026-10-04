@@ -1,9 +1,10 @@
-import Image from "next/image"
-import Link from "next/link"
 import type { Metadata } from "next"
 import { prisma } from "@/lib/prisma"
 import { notFound, permanentRedirect } from "next/navigation"
+import Image from "next/image"
+import Link from "next/link"
 import AnimatedSection from "@/components/AnimatedSection"
+import ContentRenderer from "@/components/public/ContentRenderer"
 import JsonLd from "@/components/JsonLd"
 import { breadcrumbSchema, newsArticleSchema } from "@/lib/schema"
 import { SITE_NAME, truncate } from "@/lib/site-config"
@@ -11,8 +12,8 @@ import { SITE_NAME, truncate } from "@/lib/site-config"
 export const dynamic = "force-dynamic"
 
 /**
- * Legacy `/news/<id>` URLs resolve here too: cuid ids no longer match a slug,
- * so they are permanently redirected to the canonical slug URL.
+ * Legacy `/news/<id>` URLs resolve here too: a cuid id no longer matches a
+ * slug, so it is permanently redirected to the canonical slug URL.
  */
 async function getNews(slug: string) {
   const bySlug = await prisma.news.findUnique({
@@ -20,11 +21,12 @@ async function getNews(slug: string) {
   })
   if (bySlug) return bySlug
 
-  const byId = await prisma.news.findFirst({
-    where: { id: slug, published: true },
-    select: { slug: true },
-  })
-  if (byId) permanentRedirect(`/news/${byId.slug}`)
+  const numericId = Number(slug)
+  if (Number.isInteger(numericId)) {
+    return await prisma.news.findUnique({
+      where: { id: String(numericId), published: true },
+    })
+  }
 
   return null
 }
@@ -35,9 +37,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const news = await prisma.news.findUnique({
-    where: { slug, published: true },
-  })
+  const news = await getNews(slug)
 
   if (!news) {
     return { title: "News Not Found", robots: { index: false, follow: false } }
@@ -94,6 +94,11 @@ export default async function NewsDetailPage({
 
   if (!news) {
     notFound()
+  }
+
+  // Permanent: the id form is retired in favour of the slug URL.
+  if (news.slug !== slug) {
+    permanentRedirect(`/news/${news.slug}`)
   }
 
   const description = truncate(news.excerpt || news.content)
@@ -168,10 +173,9 @@ export default async function NewsDetailPage({
                 fontSize: "1.125rem",
                 lineHeight: "1.8",
                 color: "#333",
-                whiteSpace: "pre-wrap",
               }}
             >
-              {news.content}
+              <ContentRenderer content={news.content} />
             </div>
             {news.link && (
               <div style={{ marginTop: "2rem" }}>

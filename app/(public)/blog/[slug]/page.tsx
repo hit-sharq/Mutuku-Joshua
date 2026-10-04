@@ -1,11 +1,17 @@
 import Image from "next/image"
 import Link from "next/link"
-import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { prisma } from "@/lib/prisma"
+import type { Metadata } from "next"
+import ShareButton from "@/components/ShareButton"
 import JsonLd from "@/components/JsonLd"
 import { breadcrumbSchema, blogPostingSchema } from "@/lib/schema"
 import { SITE_NAME, truncate } from "@/lib/site-config"
+import BlogCard from "@/components/BlogCard"
+import AnimatedSection from "@/components/AnimatedSection"
+import ContentRenderer from "@/components/public/ContentRenderer"
+import styles from "../blog.module.css"
+import detailStyles from "../blog-detail.module.css"
 
 export const dynamic = "force-dynamic"
 
@@ -26,6 +32,31 @@ export async function getBlogPost(slug: string): Promise<BlogPostType | null> {
     where: {
       slug,
       published: true,
+    },
+  })
+}
+
+export async function getRelatedPosts(slug: string, limit = 3): Promise<BlogPostType[]> {
+  const current = await getBlogPost(slug)
+  if (!current) return []
+
+  return await prisma.blogPost.findMany({
+    where: {
+      published: true,
+      slug: { not: slug },
+    },
+    orderBy: { createdAt: "desc" },
+    take: limit,
+    select: {
+      id: true,
+      title: true,
+      slug: true,
+      content: true,
+      summary: true,
+      image: true,
+      published: true,
+      createdAt: true,
+      updatedAt: true,
     },
   })
 }
@@ -69,8 +100,8 @@ export async function generateMetadata({
       images: [
         {
           url: post.image || "/og-image.png",
-          width: post.image ? 1200 : 1200,
-          height: post.image ? 630 : 630,
+          width: 1200,
+          height: 630,
           alt: post.title,
         },
       ],
@@ -91,6 +122,7 @@ export default async function BlogPostPage({
 }) {
   const { slug } = await params
   const post = await getBlogPost(slug)
+  const relatedPosts = await getRelatedPosts(slug)
 
   if (!post) {
     notFound()
@@ -120,30 +152,22 @@ export default async function BlogPostPage({
       />
       <div className="container">
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <Link href="/blog" className="btn btn-secondary" style={{ marginBottom: "2rem" }}>
-            ← Back to Blog
-          </Link>
+          <div className={detailStyles.blogDetailCard}>
+            <div className={detailStyles.blogDetailImageWrapper}>
+              {post.image && (
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  priority
+                  className={detailStyles.blogDetailImage}
+                />
+              )}
+            </div>
 
-          <article>
-            <header style={{ marginBottom: "3rem", textAlign: "center" }}>
-              <h1
-                style={{
-                  fontSize: "2.5rem",
-                  marginBottom: "1rem",
-                  color: "#1a365d",
-                  lineHeight: "1.2",
-                }}
-              >
-                {post.title}
-              </h1>
-
-              <div
-                style={{
-                  color: "#666",
-                  fontSize: "1.1rem",
-                  marginBottom: "2rem",
-                }}
-              >
+            <div className={detailStyles.blogDetailBody}>
+              <h1 className={detailStyles.blogDetailTitle}>{post.title}</h1>
+              <div className={detailStyles.blogDetailMeta}>
                 Published on{" "}
                 {new Date(post.createdAt).toLocaleDateString("en-US", {
                   year: "numeric",
@@ -151,55 +175,76 @@ export default async function BlogPostPage({
                   day: "numeric",
                 })}
               </div>
-
-              {post.image && (
-                <Image
-                  src={post.image || "/placeholder.svg"}
-                  alt={post.title}
-                  width={800}
-                  height={400}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    borderRadius: "10px",
-                    marginBottom: "2rem",
-                  }}
-                />
-              )}
-            </header>
-
-            <div
-              style={{
-                fontSize: "1.1rem",
-                lineHeight: "1.8",
-                color: "#333",
-              }}
-            >
-              {post.content.split("\n").map((paragraph, index) => (
-                <p key={index} style={{ marginBottom: "1.5rem" }}>
-                  {paragraph}
-                </p>
-              ))}
+              <div className={detailStyles.blogDetailContent}>
+                <ContentRenderer content={post.content} />
+              </div>
             </div>
-          </article>
+
+            <div className={detailStyles.blogDetailActions}>
+              <Link href="/blog" className={detailStyles.backLink}>
+                ← Back to Blog
+              </Link>
+              <ShareButton post={{ title: post.title, slug: post.slug, summary: post.summary }} />
+            </div>
+          </div>
 
           <div
             style={{
-              background: "#f7fafc",
+              background: "var(--ink2, #1c1c1c)",
+              border: "0.5px solid rgba(184, 150, 12, 0.15)",
               padding: "2rem",
-              borderRadius: "10px",
+              borderRadius: "0",
               marginTop: "3rem",
               textAlign: "center",
             }}
           >
-            <h3 style={{ color: "#1a365d", marginBottom: "1rem" }}>Have a Project in Mind?</h3>
-            <p style={{ marginBottom: "2rem", color: "#666" }}>
+            <h3 style={{ color: "var(--cream, #faf7f2)", marginBottom: "1rem", fontFamily: "'Cormorant Garamond', serif", fontSize: "1.5rem", fontWeight: 400 }}>
+              Have a Project in Mind?
+            </h3>
+            <p style={{ marginBottom: "2rem", color: "var(--muted-foreground)" }}>
               If you have questions about this topic or want to collaborate on a project, don't hesitate to reach out.
             </p>
             <Link href="/contact" className="btn btn-primary">
               Let's Collaborate
             </Link>
           </div>
+
+          {relatedPosts.length > 0 && (
+            <div style={{ marginTop: "4rem" }}>
+              <AnimatedSection>
+                <h2
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: "clamp(1.5rem, 3vw, 2rem)",
+                    fontWeight: 400,
+                    color: "var(--cream, #faf7f2)",
+                    marginBottom: "0.75rem",
+                    textAlign: "center",
+                  }}
+                >
+                  You May Also Be Interested In
+                </h2>
+                <p
+                  style={{
+                    color: "var(--muted-foreground)",
+                    textAlign: "center",
+                    marginBottom: "2.5rem",
+                    fontSize: "1rem",
+                  }}
+                >
+                  Continue exploring more insights and tutorials.
+                </p>
+              </AnimatedSection>
+
+              <div className={styles.blogGrid}>
+                {relatedPosts.map((relatedPost, index) => (
+                  <AnimatedSection key={relatedPost.id} delay={index * 0.1}>
+                    <BlogCard post={relatedPost} />
+                  </AnimatedSection>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import nodemailer from "nodemailer"
+import { prisma } from "@/lib/prisma"
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -24,6 +25,31 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Please enter a valid email address" }, { status: 400 })
     }
 
+    const existing = await prisma.newsletterSubscriber.findUnique({
+      where: { email },
+    })
+
+    if (existing) {
+      if (!existing.active) {
+        await prisma.newsletterSubscriber.update({
+          where: { email },
+          data: { active: true },
+        })
+        return NextResponse.json(
+          { message: "Welcome back! Your subscription has been reactivated." },
+          { status: 200 }
+        )
+      }
+      return NextResponse.json(
+        { message: "You're already subscribed! Watch for updates." },
+        { status: 200 }
+      )
+    }
+
+    await prisma.newsletterSubscriber.create({
+      data: { email },
+    })
+
     const confirmationHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; border: 0.5px solid rgba(184, 150, 12, 0.2);">
         <div style="background: #0f0f0f; border-bottom: 0.5px solid rgba(184, 150, 12, 0.2); padding: 2rem; text-align: center;">
@@ -36,7 +62,7 @@ export async function POST(request: NextRequest) {
           <div style="background: #141414; border: 0.5px solid rgba(184, 150, 12, 0.12); padding: 2rem;">
             <p style="color: rgba(240, 232, 212, 0.8); font-size: 0.9375rem; line-height: 1.7; margin: 0 0 1.5rem 0;">Thank you for subscribing!</p>
             
-            <p style="color: rgba(240, 232, 212, 0.7); font-size: 0.9375rem; line-height: 1.7; margin: 0 0 1rem 0;">You&apos;ll receive updates about:</p>
+            <p style="color: rgba(240, 232, 212, 0.7); font-size: 0.9375rem; line-height: 1.7; margin: 0 0 1rem 0;">You'll receive updates about:</p>
             
             <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem;">
               <div style="display: flex; align-items: center; gap: 0.75rem; color: rgba(240, 232, 212, 0.75); font-size: 0.875rem;">
@@ -53,7 +79,7 @@ export async function POST(request: NextRequest) {
               </div>
             </div>
             
-            <p style="color: rgba(240, 232, 212, 0.5); font-size: 0.8125rem; line-height: 1.6; margin: 0;">We respect your privacy and won&apos;t spam you. Unsubscribe anytime.</p>
+            <p style="color: rgba(240, 232, 212, 0.5); font-size: 0.8125rem; line-height: 1.6; margin: 0;">We respect your privacy and won't spam you. Unsubscribe anytime.</p>
           </div>
         </div>
         
@@ -79,6 +105,24 @@ export async function POST(request: NextRequest) {
     console.error("Newsletter subscription error:", error)
     return NextResponse.json(
       { error: "Failed to subscribe. Please try again." },
+      { status: 500 }
+    )
+  }
+}
+
+export async function GET() {
+  try {
+    const subscribers = await prisma.newsletterSubscriber.findMany({
+      where: { active: true },
+      select: { id: true, email: true, createdAt: true },
+      orderBy: { createdAt: "desc" },
+    })
+
+    return NextResponse.json({ subscribers })
+  } catch (error) {
+    console.error("Error fetching newsletter subscribers:", error)
+    return NextResponse.json(
+      { error: "Failed to fetch subscribers" },
       { status: 500 }
     )
   }

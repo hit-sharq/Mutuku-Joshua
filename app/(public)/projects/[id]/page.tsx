@@ -1,10 +1,11 @@
 import Image from "next/image"
 import Link from "next/link"
-import type { Metadata } from "next"
 import { prisma } from "@/lib/prisma"
 import { notFound } from "next/navigation"
 import AnimatedSection from "@/components/AnimatedSection"
 import PremiumButton from "@/components/PremiumButton"
+import ContentRenderer from "@/components/public/ContentRenderer"
+import type { Metadata } from "next"
 import JsonLd from "@/components/JsonLd"
 import { breadcrumbSchema, webPageSchema } from "@/lib/schema"
 import { SITE_NAME, truncate } from "@/lib/site-config"
@@ -62,11 +63,7 @@ export async function generateMetadata({
   }
 }
 
-export default async function ProjectDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>
-}) {
+export default async function ProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const project = await prisma.project.findUnique({
     where: { id },
@@ -76,10 +73,10 @@ export default async function ProjectDetailPage({
     notFound()
   }
 
+  const technologies = project.technologies?.split(",").map(t => t.trim()).filter(Boolean) || []
+
   const description = truncate(project.description)
   const path = `/projects/${project.id}`
-
-  const technologies = project.technologies?.split(",").map(t => t.trim()).filter(Boolean) || []
 
   return (
     <div className="section">
@@ -117,9 +114,7 @@ export default async function ProjectDetailPage({
               <h1 style={{ fontSize: "2.5rem", marginBottom: "1rem", color: "#1a365d", lineHeight: "1.2" }}>
                 {project.title}
               </h1>
-              <p style={{ fontSize: "1.1rem", color: "#666", lineHeight: "1.7", marginBottom: "1.5rem" }}>
-                {project.description}
-              </p>
+              <ContentRenderer content={project.description} />
 
               {technologies.length > 0 && (
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.5rem" }}>

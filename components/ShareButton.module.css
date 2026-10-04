@@ -1,0 +1,81 @@
+.shareButtonWrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.shareButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: rgba(184, 150, 12, 0.1);
+  border: 0.5px solid rgba(184, 150, 12, 0.3);
+  color: var(--cream, #faf7f2);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 0;
+}
+
+.shareButton:hover {
+  background: rgba(184, 150, 12, 0.2);
+  border-color: var(--primary, #c8a820);
+  color: var(--primary, #c8a820);
+}
+
+.shareDropdown {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  background: var(--ink2, #1c1c1c);
+  border: 0.5px solid rgba(184, 150, 12, 0.2);
+  padding: 0.5rem 0;
+  min-width: 200px;
+  z-index: 50;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.shareOption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.625rem 1rem;
+  background: transparent;
+  border: none;
+  color: var(--cream2, #f0e8d4);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+
+.shareOption:hover {
+  background: rgba(184, 150, 12, 0.1);
+  color: var(--primary, #c8a820);
+}
+
+.shareOption svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.shareOption:hover svg {
+  opacity: 1;
+}

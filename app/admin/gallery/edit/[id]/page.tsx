@@ -5,6 +5,7 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { use } from "react"
+import AdminRichTextEditor from "@/components/admin/AdminRichTextEditor"
 
 export default function EditGalleryImage({
   params,
@@ -107,6 +108,10 @@ export default function EditGalleryImage({
     }
   }
 
+  const handleDescriptionChange = (html: string) => {
+    setFormData((prev) => ({ ...prev, description: html }))
+  }
+
   if (isLoading) {
     return (
       <div>
@@ -147,13 +152,10 @@ export default function EditGalleryImage({
             <label htmlFor="description" className="form-label">
               Description
             </label>
-            <textarea
-              id="description"
+            <AdminRichTextEditor
               value={formData.description}
-              onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
-              className="form-textarea"
+              onChange={handleDescriptionChange}
               placeholder="Optional description for this image"
-              rows={3}
             />
           </div>
 

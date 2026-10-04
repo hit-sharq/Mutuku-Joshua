@@ -4,6 +4,7 @@ import type React from "react"
 
 import { use, useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import AdminRichTextEditor from "@/components/admin/AdminRichTextEditor"
 
 export default function EditTeamMember({
   params,
@@ -108,6 +109,10 @@ export default function EditTeamMember({
     }
   }
 
+  const handleBioChange = (html: string) => {
+    setFormData((prev) => ({ ...prev, bio: html }))
+  }
+
   if (isLoading) {
     return (
       <div>
@@ -177,14 +182,10 @@ export default function EditTeamMember({
             <label htmlFor="bio" className="form-label">
               Bio *
             </label>
-            <textarea
-              id="bio"
+            <AdminRichTextEditor
               value={formData.bio}
-              onChange={(e) => setFormData((prev) => ({ ...prev, bio: e.target.value }))}
-              required
-              className="form-textarea"
+              onChange={handleBioChange}
               placeholder="Write a brief bio for this team member..."
-              rows={8}
             />
           </div>
 

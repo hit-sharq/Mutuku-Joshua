@@ -2,8 +2,9 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import AdminRichTextEditor from "@/components/admin/AdminRichTextEditor"
 
 export default function NewProject() {
   const router = useRouter()
@@ -85,6 +86,10 @@ export default function NewProject() {
     }
   }
 
+  const handleDescriptionChange = (html: string) => {
+    setFormData((prev) => ({ ...prev, description: html }))
+  }
+
   return (
     <div>
       <div className="admin-header">
@@ -112,14 +117,10 @@ export default function NewProject() {
             <label htmlFor="description" className="form-label">
               Description *
             </label>
-            <textarea
-              id="description"
+            <AdminRichTextEditor
               value={formData.description}
-              onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
-              required
-              className="form-textarea"
+              onChange={handleDescriptionChange}
               placeholder="Describe your project..."
-              rows={5}
             />
           </div>
 

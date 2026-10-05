@@ -274,7 +274,7 @@ export default function ResumePage() {
 
         <AnimatedSection delay={0.5}>
           <div className={styles.footer}>
-            <p>Joshua Mwendwa · <a href="https://github.com/hit-sharq" target="_blank" rel="noopener noreferrer">github.com/hit-sharq</a> · <a href="https://mutuku-joshua.vercel.app" target="_blank" rel="noopener noreferrer">mutuku-joshua.vercel.app</a> · +254 794 773 452</p>
+            <p>Mutuku Joshua Mwendwa · <a href="https://github.com/hit-sharq" target="_blank" rel="noopener noreferrer">github.com/hit-sharq</a> · <a href="https://mutuku-joshua.vercel.app" target="_blank" rel="noopener noreferrer">mutuku-joshua.vercel.app</a> · +254 794 773 452</p>
           </div>
         </AnimatedSection>
       </div>

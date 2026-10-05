@@ -5,7 +5,7 @@ import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config"
 
 const TITLE = "Gallery"
 const DESCRIPTION =
-  "A visual gallery of web applications, mobile apps and digital products designed and built by Mutuku Joshua."
+  "A visual gallery of web applications, mobile apps and digital products designed and built by Mutuku Joshua Mwendwa."
 
 export const metadata: Metadata = {
   title: TITLE,

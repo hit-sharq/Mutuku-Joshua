@@ -5,7 +5,7 @@ import BlogListingClient from "./BlogListingClient"
 
 const TITLE = "Blog"
 const DESCRIPTION =
-  "Articles on programming, web development, technology trends and engineering practice by Mutuku Joshua, covering React, Next.js, Node.js, Django and building software that holds up in production."
+  "Articles on programming, web development, technology trends and engineering practice by Mutuku Joshua Mwendwa, covering React, Next.js, Node.js, Django and building software that holds up in production."
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -14,9 +14,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: `${SITE_URL}/blog`,
-    title: `${TITLE} | Mutuku Joshua`,
+    title: `${TITLE} | Mutuku Joshua Mwendwa`,
     description: DESCRIPTION,
-    siteName: "Mutuku Joshua",
+    siteName: "Mutuku Joshua Mwendwa",
     images: [
       {
         url: OG_IMAGE.url,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${TITLE} | Mutuku Joshua`,
+    title: `${TITLE} | Mutuku Joshua Mwendwa`,
     description: DESCRIPTION,
     images: [OG_IMAGE.url],
   },

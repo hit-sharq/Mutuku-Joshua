@@ -182,7 +182,7 @@ export default function HomeClient({
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="sr-only">
-              Mutuku Joshua is a fullstack developer in Nairobi, Kenya, building fast and
+              Mutuku Joshua Mwendwa is a fullstack developer in Nairobi, Kenya, building fast and
               scalable web applications with React, Next.js, Node.js, Django and Laravel.
             </span>
             I build things<br />that <em>work</em><br />and look good.
@@ -233,12 +233,12 @@ export default function HomeClient({
             <div className={styles.heroAv}>
               <img
                 src="/Mutuku.JPG"
-                alt="Mutuku Joshua"
+                alt="Mutuku Joshua Mwendwa"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
               <div className={styles.heroAvBadge}>AVAILABLE</div>
             </div>
-            <div style={{ fontSize: 11, color: "var(--cream4)", marginTop: 16, letterSpacing: "1.5px" }}>MUTUKU JOSHUA</div>
+            <div style={{ fontSize: 11, color: "var(--cream4)", marginTop: 16, letterSpacing: "1.5px" }}>MUTUKU JOSHUA MWENDWA</div>
             <div style={{ fontSize: 11, color: "var(--primary)", marginTop: 4, letterSpacing: "1px" }}>NAIROBI, KENYA</div>
           </div>
         </div>

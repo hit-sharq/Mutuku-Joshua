@@ -4,7 +4,7 @@ import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config"
 
 const TITLE = "News"
 const DESCRIPTION =
-  "Announcements and updates from Mutuku Joshua and Lumyn Technologies: launches, project releases and notes on shipping software."
+  "Announcements and updates from Mutuku Joshua Mwendwa and Lumyn Technologies: launches, project releases and notes on shipping software."
 
 export const metadata: Metadata = {
   title: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: `${SITE_URL}/news`,
-    title: `${TITLE} | Mutuku Joshua`,
+    title: `${TITLE} | Mutuku Joshua Mwendwa`,
     description: DESCRIPTION,
     images: [
       {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${TITLE} | Mutuku Joshua`,
+    title: `${TITLE} | Mutuku Joshua Mwendwa`,
     description: DESCRIPTION,
     images: [OG_IMAGE.url],
   },

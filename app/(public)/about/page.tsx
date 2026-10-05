@@ -9,7 +9,7 @@ import styles from "./about.module.css"
 
 const TITLE = "About"
 const DESCRIPTION =
-  "Meet Mutuku Joshua, a fullstack developer in Nairobi, Kenya who builds fast, scalable web applications with React, Next.js, Node.js, Django and PostgreSQL. Founder of Lumyn Technologies."
+  "Meet Mutuku Joshua Mwendwa, a fullstack developer in Nairobi, Kenya who builds fast, scalable web applications with React, Next.js, Node.js, Django and PostgreSQL. Founder of Lumyn Technologies."
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -163,14 +163,14 @@ export default async function AboutPage() {
           <div className={styles.heroAvatar}>
             <Image
               src="/jm.png"
-              alt="Mutuku Joshua - Fullstack Developer"
+              alt="Mutuku Joshua Mwendwa - Fullstack Developer"
               fill
               className={styles.heroAvatarImg}
               priority
             />
             <div className={styles.heroAvBadge}>AVAILABLE</div>
           </div>
-          <div className={styles.heroName}>MUTUKU JOSHUA</div>
+          <div className={styles.heroName}>MUTUKU JOSHUA MWENDWA</div>
           <div className={styles.heroLoc}>NAIROBI, KENYA</div>
         </div>
       </section>
@@ -181,7 +181,7 @@ export default async function AboutPage() {
           <div className={styles.secEyebrow}>ABOUT ME</div>
           <div className={styles.secTitle}>Dev who designs. Designer who ships.</div>
           <p className={styles.aboutP}>
-            I&apos;m Joshua Mwendwa — a full-stack developer and UI/UX designer based in Nairobi, Kenya.
+            I&apos;m Mutuku Joshua Mwendwa — a full-stack developer and UI/UX designer based in Nairobi, Kenya.
             I build digital products that are fast, beautiful, and actually useful.
           </p>
           <p className={styles.aboutP}>

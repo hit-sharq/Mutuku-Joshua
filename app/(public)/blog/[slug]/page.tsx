@@ -79,7 +79,7 @@ export async function generateMetadata({
     title: post.title,
     description,
     keywords: [
-      "Mutuku Joshua",
+      "Mutuku Joshua Mwendwa",
       "web development blog",
       "React",
       "Next.js",

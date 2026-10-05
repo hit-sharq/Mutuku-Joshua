@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: `${SITE_NAME} — ${SITE_TAGLINE}`,
     short_name: SITE_NAME,
     description:
-      "Portfolio of Mutuku Joshua, a fullstack developer in Nairobi, Kenya building fast, scalable web applications.",
+      "Portfolio of Mutuku Joshua Mwendwa, a fullstack developer in Nairobi, Kenya building fast, scalable web applications.",
     start_url: "/",
     scope: "/",
     display: "standalone",

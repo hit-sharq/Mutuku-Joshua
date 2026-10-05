@@ -134,7 +134,7 @@ export default function PremiumHero() {
               >
                 <Image
                   src="/Mutuku.JPG"
-                  alt="Mutuku Joshua - Fullstack Developer"
+                  alt="Mutuku Joshua Mwendwa - Fullstack Developer"
                   fill
                   className="object-cover"
                   priority

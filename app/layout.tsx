@@ -40,7 +40,9 @@ export const metadata: Metadata = {
   publisher: BRAND_NAME,
   category: "technology",
   keywords: [
-    "Mutuku Joshua",
+    "Mutuku Joshua Mwendwa",
+    "Joshua Mwendwa",
+    "Mutuku Joshua Mwendwa",
     "fullstack developer Kenya",
     "fullstack developer Nairobi",
     "React developer",

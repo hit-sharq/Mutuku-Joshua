@@ -5,7 +5,7 @@ import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config"
 
 const TITLE = "Practice Areas"
 const DESCRIPTION =
-  "Core practice areas of Mutuku Joshua: web engineering, mobile systems, API architecture, database engineering and digital strategy."
+  "Core practice areas of Mutuku Joshua Mwendwa: web engineering, mobile systems, API architecture, database engineering and digital strategy."
 
 export const metadata: Metadata = {
   title: TITLE,

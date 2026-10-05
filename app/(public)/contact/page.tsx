@@ -114,7 +114,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  placeholder="Mutuku Joshua"
+                  placeholder="Mutuku Joshua Mwendwa"
                   disabled={isSubmitting}
                   className={styles.fInput}
                 />

@@ -6,7 +6,7 @@ import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config"
 
 const TITLE = "Services"
 const DESCRIPTION =
-  "Fullstack development services from Mutuku Joshua: web applications, mobile apps, API design and integration, database engineering, UI/UX implementation and ongoing maintenance."
+  "Fullstack development services from Mutuku Joshua Mwendwa: web applications, mobile apps, API design and integration, database engineering, UI/UX implementation and ongoing maintenance."
 
 export const metadata: Metadata = {
   title: TITLE,

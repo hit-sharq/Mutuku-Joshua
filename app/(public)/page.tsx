@@ -2,7 +2,12 @@ import type { Metadata } from "next"
 import { prisma } from "@/lib/prisma"
 import JsonLd from "@/components/JsonLd"
 import { breadcrumbSchema, webPageSchema } from "@/lib/schema"
-import { DEFAULT_DESCRIPTION, OG_IMAGE, SITE_URL } from "@/lib/site-config"
+import {
+  DEFAULT_DESCRIPTION,
+  DEFAULT_TITLE,
+  OG_IMAGE,
+  SITE_URL,
+} from "@/lib/site-config"
 import HomeClient, {
   type BlogPost,
   type NewsItem,
@@ -13,8 +18,7 @@ export const revalidate = 300
 
 export const metadata: Metadata = {
   title: {
-    absolute:
-      "Mutuku Joshua | Fullstack Developer in Nairobi, Kenya",
+    absolute: DEFAULT_TITLE,
   },
   description: DEFAULT_DESCRIPTION,
   alternates: {
@@ -23,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: "Mutuku Joshua | Fullstack Developer in Nairobi, Kenya",
+    title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
     images: [
       {
@@ -36,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mutuku Joshua | Fullstack Developer in Nairobi, Kenya",
+    title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
     images: [OG_IMAGE.url],
   },
@@ -83,7 +87,7 @@ export default async function HomePage() {
       <JsonLd
         data={[
           webPageSchema(
-            "Mutuku Joshua | Fullstack Developer in Nairobi, Kenya",
+            DEFAULT_TITLE,
             "/",
             DEFAULT_DESCRIPTION,
           ),

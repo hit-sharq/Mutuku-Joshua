@@ -50,7 +50,7 @@ export async function generateMetadata({
     title: news.title,
     description,
     keywords: [
-      "Mutuku Joshua",
+      "Mutuku Joshua Mwendwa",
       "Lumyn Technologies",
       "announcement",
       "web development Kenya",

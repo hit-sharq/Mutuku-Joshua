@@ -8,7 +8,7 @@ export default function Footer() {
         <div className={styles.footerGrid}>
           {/* Brand Section */}
           <div className={styles.footerSection}>
-            <h3 className={styles.footerTitle}>Mutuku Joshua</h3>
+            <h3 className={styles.footerTitle}>Mutuku Joshua Mwendwa</h3>
             <p className={styles.footerText}>Fullstack Developer</p>
             <p className={styles.footerDesc}>
               Crafting Code That Works. Building scalable web applications and digital solutions with modern technologies.
@@ -92,7 +92,7 @@ export default function Footer() {
           <p className={styles.managedBy}>
             System managed by <a href="https://www.lumyn.co.ke/" target="_blank" rel="noopener noreferrer" className={styles.managedLink}>Lumyn Technologies</a>
           </p>
-          <p className={styles.copyright}>© 2025 Mutuku Joshua. All rights reserved.</p>
+          <p className={styles.copyright}>© 2025 Mutuku Joshua Mwendwa. All rights reserved.</p>
           <div className={styles.footerLegal}>
             <Link href="/privacy-policy" className={styles.legalLink}>Privacy Policy</Link>
             <span className={styles.legalDivider}>·</span>

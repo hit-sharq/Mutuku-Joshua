@@ -3,7 +3,7 @@ import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config"
 
 export const metadata: Metadata = {
   title: "Terms of Use",
-  description: "Terms of Use for Mutuku Joshua portfolio website and development services.",
+  description: "Terms of Use for Mutuku Joshua Mwendwa portfolio website and development services.",
   alternates: { canonical: "/terms-of-use" },
   openGraph: {
     type: "website",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `Terms of Use | ${SITE_NAME}`,
     description:
-      "Terms of Use for Mutuku Joshua portfolio website and development services.",
+      "Terms of Use for Mutuku Joshua Mwendwa portfolio website and development services.",
     images: [
       {
         url: OG_IMAGE.url,
@@ -38,7 +38,7 @@ export default function TermsOfUsePage() {
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">1. Acceptance of Terms</h2>
               <p className="text-gray-700 mb-4">
-                By accessing and using Mutuku Joshua&apos;s portfolio website ("Website"), you accept and agree to be bound
+                By accessing and using Mutuku Joshua Mwendwa&apos;s portfolio website ("Website"), you accept and agree to be bound
                 by these terms and conditions. If you do not agree to abide by these terms, please do not use this website.
               </p>
             </section>
@@ -118,7 +118,7 @@ export default function TermsOfUsePage() {
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">7. Intellectual Property</h2>
               <p className="text-gray-700 mb-4">
                 All content on this website, including code snippets, designs, graphics, project demonstrations,
-                and written content, are the intellectual property of Mutuku Joshua unless otherwise stated.
+                and written content, are the intellectual property of Mutuku Joshua Mwendwa unless otherwise stated.
               </p>
               <p className="text-gray-700 mb-4">
                 Portfolio projects may include work done for clients. Any client-specific code or information is 
@@ -130,7 +130,7 @@ export default function TermsOfUsePage() {
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">8. Limitation of Liability</h2>
               <p className="text-gray-700 mb-4">
-                In no event shall Mutuku Joshua be liable for any damages (including, without limitation, damages
+                In no event shall Mutuku Joshua Mwendwa be liable for any damages (including, without limitation, damages
                 for loss of data, profit, or business interruption) arising out of the use or inability to use
                 the materials on this website or related to any services showcased here.
               </p>
@@ -183,7 +183,7 @@ export default function TermsOfUsePage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700">
-                  <strong>Mutuku Joshua</strong>
+                  <strong>Mutuku Joshua Mwendwa</strong>
                 </p>
                 <p className="text-gray-700">Email: officialjoshua@lumyn.co.ke</p>
                 <p className="text-gray-700">Phone: +254 794 773 452</p>

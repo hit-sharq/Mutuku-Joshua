@@ -111,7 +111,7 @@ export default function HomeClient({
         // Fetch projects with full list to count
         const [projectsRes, blogRes, newsRes] = await Promise.all([
           // projects list is limited for the homepage, but projectsData.totalCount gives the full count
-          fetch('/api/projects?featured=true&limit=5'),
+          fetch('/api/projects?featured=true&limit=3'),
           fetch('/api/blog?limit=3'),
           fetch('/api/news?limit=3')
         ])

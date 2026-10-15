@@ -56,7 +56,7 @@ export default async function HomePage() {
   try {
     const [projectRows, blogRows, newsRows, projectTotal] = await Promise.all([
       prisma.project.findMany({
-        take: 5,
+        take: 3,
         orderBy: [{ featured: "desc" }, { order: "asc" }],
       }),
       prisma.blogPost.findMany({

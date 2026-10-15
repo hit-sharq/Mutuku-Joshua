@@ -53,7 +53,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <>
-      <div className="card project-card-small">
+      <div className="card project-card-small" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         <div className="blog-card-image-wrapper">
           <Image
             src={project.imageUrl || "/placeholder.svg?height=150&width=200"}
@@ -63,7 +63,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             className="blog-card-image"
           />
         </div>
-        <div className="blog-card-content">
+        <div className="blog-card-content" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <h3 className="project-card-title">{project.title}</h3>
           <button
             className="read-more-btn"

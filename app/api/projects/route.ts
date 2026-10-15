@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
     const [projects, totalCount] = await Promise.all([
       prisma.project.findMany({
         where: whereClause,
-        orderBy: featured ? { order: "desc" } : { createdAt: "desc" },
+        orderBy: featured ? { order: "asc" } : { createdAt: "desc" },
         take: limit,
         select: {
           id: true,

@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { requireAdmin } from "@/lib/auth"
 import { generateSlug, ensureUniqueSlug } from "@/lib/slug"
+import { revalidatePath } from "next/cache"
 
 export async function GET() {
   try {
@@ -39,6 +40,9 @@ export async function POST(request: NextRequest) {
         order: order || 0,
       },
     })
+
+    revalidatePath("/news")
+    revalidatePath("/")
 
     return NextResponse.json(newsItem, { status: 201 })
   } catch (error) {

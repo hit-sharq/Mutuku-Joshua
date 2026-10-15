@@ -28,3 +28,5 @@ next-env.d.ts
 /gitnode_modules/
 .env
 docs
+# clerk configuration (can include secrets)
+/.clerk/

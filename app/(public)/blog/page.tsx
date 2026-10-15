@@ -7,6 +7,8 @@ const TITLE = "Blog"
 const DESCRIPTION =
   "Articles on programming, web development, technology trends and engineering practice by Mutuku Joshua Mwendwa, covering React, Next.js, Node.js, Django and building software that holds up in production."
 
+export const revalidate = 0
+
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,

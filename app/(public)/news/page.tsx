@@ -3,7 +3,7 @@ import NewsListingClient, {
   type NewsListingItem,
 } from "../NewsListingClient"
 
-export const revalidate = 300
+export const revalidate = 0
 
 export default async function NewsPage() {
   let newsItems: NewsListingItem[] = []

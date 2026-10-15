@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { requireAdmin } from "@/lib/auth"
 import { generateSlug, ensureUniqueSlug } from "@/lib/slug"
+import { revalidatePath } from "next/cache"
 import nodemailer from "nodemailer"
 
 const transporter = nodemailer.createTransport({
@@ -118,6 +119,10 @@ export async function POST(request: NextRequest) {
         console.error("Newsletter notification error:", notificationError)
       }
     }
+
+    revalidatePath("/blog")
+    revalidatePath("/")
+    revalidatePath("/api/blog")
 
     return NextResponse.json(post, { status: 201 })
   } catch (error) {

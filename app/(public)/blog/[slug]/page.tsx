@@ -13,6 +13,8 @@ import ContentRenderer from "@/components/public/ContentRenderer"
 import styles from "../blog.module.css"
 import detailStyles from "../blog-detail.module.css"
 
+export const revalidate = 0
+
 export const dynamic = "force-dynamic"
 
 type BlogPostType = {

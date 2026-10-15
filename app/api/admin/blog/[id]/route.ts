@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { requireAdmin } from "@/lib/auth"
 import { ensureUniqueSlug } from "@/lib/slug"
+import { revalidatePath } from "next/cache"
 import nodemailer from "nodemailer"
 
 const transporter = nodemailer.createTransport({
@@ -139,6 +140,11 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       }
     }
 
+    revalidatePath("/blog")
+    revalidatePath(`/blog/${finalSlug}`)
+    revalidatePath("/")
+    revalidatePath("/api/blog")
+
     return NextResponse.json(post)
   } catch (error) {
     console.error("Error updating blog post:", error)
@@ -155,6 +161,10 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     await prisma.blogPost.delete({
       where: { id: unwrappedParams.id },
     })
+
+    revalidatePath("/blog")
+    revalidatePath("/")
+    revalidatePath("/api/blog")
 
     return NextResponse.json({ message: "Blog post deleted successfully" })
   } catch (error) {

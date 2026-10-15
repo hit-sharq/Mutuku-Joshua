@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { requireAdmin } from "@/lib/auth"
 import { ensureUniqueSlug } from "@/lib/slug"
+import { revalidatePath } from "next/cache"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
@@ -60,6 +61,10 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       },
     })
 
+    revalidatePath("/news")
+    revalidatePath(`/news/${finalSlug}`)
+    revalidatePath("/")
+
     return NextResponse.json(newsItem)
   } catch (error) {
     console.error("Error updating news item:", error)
@@ -76,6 +81,9 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     await prisma.news.delete({
       where: { id: unwrappedParams.id },
     })
+
+    revalidatePath("/news")
+    revalidatePath("/")
 
     return NextResponse.json({ message: "News item deleted successfully" })
   } catch (error) {

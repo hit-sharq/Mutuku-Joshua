@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 import type React from "react"
+import JsonLd from "@/components/JsonLd"
+import { breadcrumbSchema, profilePageSchema, webPageSchema } from "@/lib/schema"
 import { OG_IMAGE, SITE_URL } from "@/lib/site-config"
 
 const TITLE = "Resume"
@@ -37,5 +39,19 @@ export default function ResumeLayout({
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return (
+    <>
+      <JsonLd
+        data={[
+          profilePageSchema,
+          webPageSchema(TITLE, "/resume", DESCRIPTION),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Resume", path: "/resume" },
+          ]),
+        ]}
+      />
+      {children}
+    </>
+  )
 }

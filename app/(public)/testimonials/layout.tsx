@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 import type React from "react"
+import JsonLd from "@/components/JsonLd"
+import { breadcrumbSchema, webPageSchema } from "@/lib/schema"
 import { OG_IMAGE, SITE_URL } from "@/lib/site-config"
 
 const TITLE = "Testimonials"
@@ -37,5 +39,18 @@ export default function TestimonialsLayout({
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return (
+    <>
+      <JsonLd
+        data={[
+          webPageSchema(TITLE, "/testimonials", DESCRIPTION),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Testimonials", path: "/testimonials" },
+          ]),
+        ]}
+      />
+      {children}
+    </>
+  )
 }

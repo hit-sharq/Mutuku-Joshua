@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { prisma } from "@/lib/prisma"
 import { OG_IMAGE, SITE_URL } from "@/lib/site-config"
 import BlogListingClient from "./BlogListingClient"
+import JsonLd from "@/components/JsonLd"
+import { itemListSchema } from "@/lib/schema"
 
 const TITLE = "Blog"
 const DESCRIPTION =
@@ -65,5 +67,17 @@ export default async function BlogPage() {
     },
   })
 
-  return <BlogListingClient initialPosts={posts} />
+  const blogItems = posts.map((post) => ({
+    name: post.title,
+    path: `/blog/${post.slug}`,
+  }))
+
+  return (
+    <>
+      <JsonLd
+        data={itemListSchema("Blog Articles", "/blog", blogItems)}
+      />
+      <BlogListingClient initialPosts={posts} />
+    </>
+  )
 }

@@ -236,6 +236,30 @@ export const personalBrandSchema = {
   sameAs: [...SOCIAL_LINKS],
 }
 
+export const serviceSchema = (service: {
+  name: string
+  description: string
+  provider?: string
+  url?: string
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${absoluteUrl("/services")}#service-${service.name.replace(/\s+/g, "-").toLowerCase()}`,
+  name: service.name,
+  description: service.description,
+  provider: {
+    "@type": "Person",
+    "@id": personId,
+    name: PERSON.name,
+  },
+  serviceType: "Software Development",
+  areaServed: "Worldwide",
+  availableChannel: {
+    "@type": "ServiceChannel",
+    serviceUrl: service.url || absoluteUrl("/contact"),
+  },
+})
+
 export const baseSchemas = [
   personSchema,
   personalBrandSchema,

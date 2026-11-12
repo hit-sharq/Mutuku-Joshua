@@ -4,6 +4,8 @@ import { prisma } from "@/lib/prisma"
 import Link from "next/link"
 import AnimatedSection from "@/components/AnimatedSection"
 import PremiumButton from "@/components/PremiumButton"
+import JsonLd from "@/components/JsonLd"
+import { breadcrumbSchema, profilePageSchema, webPageSchema } from "@/lib/schema"
 import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config"
 import styles from "./about.module.css"
 
@@ -134,9 +136,20 @@ export default async function AboutPage() {
   const { profile, teamMembers } = await getAboutData()
 
   return (
-    <div className="about-page">
-      {/* HERO */}
-      <section className={styles.hero}>
+    <>
+      <JsonLd
+        data={[
+          profilePageSchema,
+          webPageSchema(TITLE, "/about", DESCRIPTION),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+          ]),
+        ]}
+      />
+      <div className="about-page">
+        {/* HERO */}
+        <section className={styles.hero}>
         <div className={styles.heroLeft}>
           <div className={styles.secEyebrow}>ABOUT ME</div>
           <h1 className={styles.heroH}>
@@ -328,5 +341,6 @@ export default async function AboutPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

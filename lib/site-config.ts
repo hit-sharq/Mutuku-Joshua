@@ -2,6 +2,9 @@ export const SITE_URL = "https://mutukujoshua.lumyn.co.ke"
 
 export const BRAND_URL = "https://www.lumyn.co.ke"
 
+export const PERSONAL_BRAND_NAME = "Mutuku Joshua Mwendwa"
+export const PERSONAL_BRAND_URL = "https://mutukujoshua.lumyn.co.ke"
+
 export const SITE_NAME = "Mutuku Joshua Mwendwa"
 
 export const SITE_TAGLINE = "Fullstack Developer"

@@ -2,6 +2,8 @@ import {
   BRAND_NAME,
   BRAND_URL,
   PERSON,
+  PERSONAL_BRAND_NAME,
+  PERSONAL_BRAND_URL,
   SITE_NAME,
   SITE_URL,
   SOCIAL_LINKS,
@@ -9,7 +11,8 @@ import {
 } from "@/lib/site-config"
 
 const personId = `${SITE_URL}/#person`
-const organizationId = `${SITE_URL}/#organization`
+const personalBrandId = `${SITE_URL}/#personalbrand`
+const organizationId = `${BRAND_URL}/#organization`
 const websiteId = `${SITE_URL}/#website`
 
 export const personSchema = {
@@ -37,15 +40,15 @@ export const personSchema = {
   telephone: PERSON.phone,
   worksFor: {
     "@type": "Organization",
-    "@id": organizationId,
-    name: BRAND_NAME,
-    url: BRAND_URL,
+    "@id": personalBrandId,
+    name: PERSONAL_BRAND_NAME,
+    url: PERSONAL_BRAND_URL,
   },
   founderOf: {
     "@type": "Organization",
-    "@id": organizationId,
-    name: BRAND_NAME,
-    url: BRAND_URL,
+    "@id": personalBrandId,
+    name: PERSONAL_BRAND_NAME,
+    url: PERSONAL_BRAND_URL,
   },
   address: {
     "@type": "PostalAddress",
@@ -163,7 +166,7 @@ export const blogPostingSchema = (post: {
   inLanguage: "en",
   isPartOf: { "@id": websiteId },
   author: { "@id": personId },
-  publisher: { "@id": organizationId },
+  publisher: { "@id": personalBrandId },
   mainEntity: { "@id": personId },
   keywords: "web development, React, Next.js, software engineering, Kenya",
 })
@@ -220,8 +223,22 @@ export const itemListSchema = (
   })),
 })
 
+export const personalBrandSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": personalBrandId,
+  name: PERSONAL_BRAND_NAME,
+  url: PERSONAL_BRAND_URL,
+  alternateName: SITE_NAME,
+  description: `Personal portfolio and professional profile of ${PERSON.name}.`,
+  logo: absoluteUrl("/jm.png"),
+  image: absoluteUrl("/jm.png"),
+  sameAs: [...SOCIAL_LINKS],
+}
+
 export const baseSchemas = [
   personSchema,
+  personalBrandSchema,
   organizationSchema,
   websiteSchema,
   profilePageSchema,

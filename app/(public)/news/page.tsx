@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { prisma } from "@/lib/prisma"
+import { getStaticNewsItems } from "@/lib/static-content"
 import { OG_IMAGE, SITE_URL } from "@/lib/site-config"
 import NewsListingClient, {
   type NewsListingItem,
@@ -52,6 +53,28 @@ export default async function NewsPage() {
   } catch (error) {
     console.error("Error fetching news for the news index:", error)
   }
+
+  const staticItems = getStaticNewsItems().map((item) => ({
+    id: `static:${item.slug}`,
+    title: item.title,
+    slug: item.slug,
+    content: item.html,
+    excerpt: item.excerpt,
+    image: item.image,
+    link: item.link,
+    featured: item.featured,
+    order: item.order,
+    published: item.published,
+    createdAt: item.createdAt,
+    updatedAt: item.updatedAt,
+  }))
+
+  const seen = new Set(newsItems.map((n) => n.slug))
+  newsItems = [...newsItems, ...staticItems.filter((n) => !seen.has(n.slug))].sort((a, b) => {
+    if (a.featured !== b.featured) return a.featured ? -1 : 1
+    if (a.order !== b.order) return a.order - b.order
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  })
 
   const newsListItems = newsItems.map((item) => ({
     name: item.title,

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { prisma } from "@/lib/prisma"
+import { getStaticBlogPosts } from "@/lib/static-content"
 import { OG_IMAGE, SITE_URL } from "@/lib/site-config"
 import BlogListingClient from "./BlogListingClient"
 import JsonLd from "@/components/JsonLd"
@@ -51,7 +52,7 @@ type BlogPost = {
 }
 
 export default async function BlogPage() {
-  const posts = await prisma.blogPost.findMany({
+  const dbPosts = await prisma.blogPost.findMany({
     where: { published: true },
     orderBy: { createdAt: "desc" },
     select: {
@@ -66,6 +67,23 @@ export default async function BlogPage() {
       updatedAt: true,
     },
   })
+
+  const staticPosts = getStaticBlogPosts().map((post) => ({
+    id: `static:${post.slug}`,
+    title: post.title,
+    slug: post.slug,
+    content: post.html,
+    summary: post.summary,
+    image: post.image,
+    published: post.published,
+    createdAt: post.createdAt,
+    updatedAt: post.updatedAt,
+  }))
+
+  const seen = new Set(dbPosts.map((p) => p.slug))
+  const posts = [...dbPosts, ...staticPosts.filter((p) => !seen.has(p.slug))].sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  )
 
   const blogItems = posts.map((post) => ({
     name: post.title,

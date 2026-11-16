@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { prisma } from "@/lib/prisma"
+import { getStaticBlogPosts, getStaticNewsItems } from "@/lib/static-content"
 import { SITE_URL } from "@/lib/site-config"
 
 export const revalidate = 3600
@@ -54,7 +55,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         orderBy: { order: 'asc' },
       }),
     ])
-    content = { blog, news, projects }
+    const staticBlog = getStaticBlogPosts().map((post) => ({
+      slug: post.slug,
+      updatedAt: post.updatedAt,
+    }))
+    const staticNews = getStaticNewsItems().map((item) => ({
+      slug: item.slug,
+      updatedAt: item.updatedAt,
+    }))
+    content = {
+      blog: [...blog, ...staticBlog.filter((s) => !blog.some((b) => b.slug === s.slug))],
+      news: [...news, ...staticNews.filter((s) => !news.some((n) => n.slug === s.slug))],
+      projects,
+    }
   } catch (error) {
     // Still serve the static routes so a database blip cannot drop the whole
     // sitemap and deindex the site.

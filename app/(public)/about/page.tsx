@@ -82,6 +82,7 @@ const VALUES = [
 ]
 
 const TIMELINE = [
+  { yr: "Present", title: "Technical Digital Marketer — Pakakumi & Betkumi", sub: "Paid media, SEO, and growth · Nairobi" },
   { yr: "2024", title: "Founder & Principal Engineer — Lumyn Technologies", sub: "Digital engineering & design · Global" },
   { yr: "2024", title: "Independent Operator", sub: "Real estate, e-commerce, SaaS clients" },
   { yr: "2023", title: "Moringa School — Engineering Certification", sub: "Software Engineering · Nairobi" },

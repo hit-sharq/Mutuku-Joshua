@@ -28,7 +28,7 @@ export default function ResumePage() {
               <span>·</span>
               <a href="https://github.com/hit-sharq" target="_blank" rel="noopener noreferrer">GitHub</a>
               <span>·</span>
-              <a href="https://mutuku-joshua.vercel.app" target="_blank" rel="noopener noreferrer">Portfolio</a>
+              <a href="https://mutukujoshua.lumyn.co.ke" target="_blank" rel="noopener noreferrer">Portfolio</a>
             </div>
           </div>
         </AnimatedSection>
@@ -298,7 +298,7 @@ export default function ResumePage() {
 
         <AnimatedSection delay={0.5}>
           <div className={styles.footer}>
-            <p>Mutuku Joshua Mwendwa · <a href="https://github.com/hit-sharq" target="_blank" rel="noopener noreferrer">github.com/hit-sharq</a> · <a href="https://mutuku-joshua.vercel.app" target="_blank" rel="noopener noreferrer">mutuku-joshua.vercel.app</a> · +254 794 773 452</p>
+            <p>Mutuku Joshua Mwendwa · <a href="https://github.com/hit-sharq" target="_blank" rel="noopener noreferrer">github.com/hit-sharq</a> · <a href="https://mutukujoshua.lumyn.co.ke" target="_blank" rel="noopener noreferrer">mutukujoshua.lumyn.co.ke</a> · +254 794 773 452</p>
           </div>
         </AnimatedSection>
       </div>

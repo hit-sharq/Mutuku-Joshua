@@ -2,7 +2,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { prisma } from "@/lib/prisma"
-import { getStaticBlogPost } from "@/lib/static-content"
 import type { Metadata } from "next"
 import ShareButton from "@/components/ShareButton"
 import JsonLd from "@/components/JsonLd"
@@ -31,28 +30,12 @@ type BlogPostType = {
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPostType | null> {
-  const dbPost = await prisma.blogPost.findUnique({
+  return await prisma.blogPost.findUnique({
     where: {
       slug,
       published: true,
     },
   })
-  if (dbPost) return dbPost as BlogPostType
-
-  const staticPost = getStaticBlogPost(slug)
-  if (!staticPost) return null
-
-  return {
-    id: `static:${staticPost.slug}`,
-    title: staticPost.title,
-    slug: staticPost.slug,
-    content: staticPost.html,
-    summary: staticPost.summary,
-    image: staticPost.image,
-    published: staticPost.published,
-    createdAt: staticPost.createdAt,
-    updatedAt: staticPost.updatedAt,
-  }
 }
 
 export async function getRelatedPosts(slug: string, limit = 3): Promise<BlogPostType[]> {

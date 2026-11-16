@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import { prisma } from "@/lib/prisma"
-import { getStaticNewsItem } from "@/lib/static-content"
 import { notFound, permanentRedirect } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -24,29 +23,12 @@ async function getNews(slug: string) {
 
   const numericId = Number(slug)
   if (Number.isInteger(numericId)) {
-    const byId = await prisma.news.findUnique({
+    return await prisma.news.findUnique({
       where: { id: String(numericId), published: true },
     })
-    if (byId) return byId
   }
 
-  const staticItem = getStaticNewsItem(slug)
-  if (!staticItem) return null
-
-  return {
-    id: `static:${staticItem.slug}`,
-    title: staticItem.title,
-    slug: staticItem.slug,
-    content: staticItem.html,
-    excerpt: staticItem.excerpt,
-    image: staticItem.image,
-    link: staticItem.link,
-    featured: staticItem.featured,
-    order: staticItem.order,
-    published: staticItem.published,
-    createdAt: staticItem.createdAt,
-    updatedAt: staticItem.updatedAt,
-  }
+  return null
 }
 
 export async function generateMetadata({

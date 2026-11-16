@@ -7,26 +7,26 @@ export const PERSONAL_BRAND_URL = "https://mutukujoshua.lumyn.co.ke"
 
 export const SITE_NAME = "Mutuku Joshua Mwendwa"
 
-export const SITE_TAGLINE = "Fullstack Developer"
+export const SITE_TAGLINE = "Full-Stack Developer & Technical Digital Marketer"
 
 export const BRAND_NAME = "Lumyn Technologies"
 
 export const DEFAULT_TITLE =
-  "Mutuku Joshua Mwendwa | Fullstack Developer in Nairobi, Kenya"
+  "Mutuku Joshua Mwendwa | Full-Stack Developer & Technical Digital Marketer in Nairobi, Kenya"
 
 export const DEFAULT_DESCRIPTION =
-  "Mutuku Joshua Mwendwa is a fullstack developer in Nairobi, Kenya, building fast, scalable web applications with React, Next.js, Node.js, Django, and PostgreSQL. Founder of Lumyn Technologies. Available for hire."
+  "Mutuku Joshua Mwendwa is a full-stack developer and technical digital marketer in Nairobi, Kenya — building fast, scalable web applications and running paid media and SEO for Pakakumi and Betkumi. Founder of Lumyn Technologies. Available for hire."
 
 export const OG_IMAGE = {
   url: "/og-image.png",
   width: 1200,
   height: 630,
-  alt: "Mutuku Joshua Mwendwa - Fullstack Developer in Nairobi, Kenya",
+  alt: "Mutuku Joshua Mwendwa - Full-Stack Developer & Technical Digital Marketer in Nairobi, Kenya",
 }
 
 export const PERSON = {
   name: "Mutuku Joshua Mwendwa",
-  jobTitle: "Fullstack Developer",
+  jobTitle: "Full-Stack Developer & Technical Digital Marketer",
   email: "officialjoshua@lumyn.co.ke",
   phone: "+254794773452",
   city: "Nairobi",

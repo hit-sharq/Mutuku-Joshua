@@ -11,7 +11,7 @@ import styles from "./about.module.css"
 
 const TITLE = "About"
 const DESCRIPTION =
-  "Meet Mutuku Joshua Mwendwa, a fullstack developer in Nairobi, Kenya who builds fast, scalable web applications with React, Next.js, Node.js, Django and PostgreSQL. Founder of Lumyn Technologies."
+  "Meet Mutuku Joshua Mwendwa, a full-stack developer and technical digital marketer in Nairobi, Kenya — building fast, scalable web applications and running paid media and SEO for Pakakumi and Betkumi. Founder of Lumyn Technologies."
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -119,6 +119,17 @@ const SKILLS = [
       { name: "REST / GraphQL APIs", pct: 87 },
     ],
   },
+  {
+    cat: "DIGITAL MARKETING",
+    items: [
+      { name: "SEO (Technical & On-page)", pct: 90 },
+      { name: "Media Buying", pct: 88 },
+      { name: "Google Ads", pct: 85 },
+      { name: "Meta Ads", pct: 85 },
+      { name: "GA4 & GTM", pct: 88 },
+      { name: "Conversion Tracking & CRO", pct: 86 },
+    ],
+  },
 ]
 
 const TOOLS = [
@@ -157,8 +168,8 @@ export default async function AboutPage() {
           </h1>
           <p className={styles.aboutP}>
             {profile?.bio ||
-              `Passionate fullstack developer committed to building scalable web applications
-              and digital solutions with clean, efficient code and modern technologies.`}
+              `Passionate full-stack developer and technical digital marketer committed to building scalable web applications
+              and driving growth through paid media and SEO.`}
           </p>
           <div className={styles.aboutVals}>
             {VALUES.map((v) => (
@@ -176,7 +187,7 @@ export default async function AboutPage() {
           <div className={styles.heroAvatar}>
             <Image
               src="/jm.png"
-              alt="Mutuku Joshua Mwendwa - Fullstack Developer"
+              alt="Mutuku Joshua Mwendwa - Full-Stack Developer & Technical Digital Marketer"
               fill
               className={styles.heroAvatarImg}
               priority
@@ -194,16 +205,17 @@ export default async function AboutPage() {
           <div className={styles.secEyebrow}>ABOUT ME</div>
           <div className={styles.secTitle}>Dev who designs. Designer who ships.</div>
           <p className={styles.aboutP}>
-            I&apos;m Mutuku Joshua Mwendwa — a full-stack developer and UI/UX designer based in Nairobi, Kenya.
-            I build digital products that are fast, beautiful, and actually useful.
+            I&apos;m Mutuku Joshua Mwendwa — a full-stack developer and technical digital marketer based in Nairobi, Kenya.
+            I build digital products that are fast, beautiful, and actually useful, and I run paid media and SEO for Pakakumi and Betkumi.
           </p>
           <p className={styles.aboutP}>
             Founder of Lumyn Technologies, a digital engineering company operating globally. Moringa School
             certified engineer, Power Learn Project AI for Software Engineering certified, and Cisco Ethical Hacking certified.
-            Currently pursuing a Diploma in Software Engineering at Zetech University.
+            Currently pursuing a Diploma in Software Engineering at Zetech University. Also a Technical Digital Marketer running
+            paid media buys and SEO for Pakakumi and Betkumi.
           </p>
           <p className={styles.aboutP}>
-            I specialize in React/Next.js frontends, Django and Laravel backends, and Kenya-specific integrations like M-Pesa Daraja. I care deeply about design systems, product thinking, and code quality.
+            I specialize in React/Next.js frontends, Django and Laravel backends, and Kenya-specific integrations like M-Pesa Daraja. I care deeply about design systems, product thinking, and code quality. On the marketing side, I run technical SEO, media buying, and conversion optimization for Pakakumi and Betkumi.
           </p>
         </div>
         <div className={styles.aboutRight}>

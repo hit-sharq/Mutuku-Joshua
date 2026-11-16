@@ -11,9 +11,9 @@ export default function ResumePage() {
           <div className={styles.header}>
             <div className={styles.eyebrow}>CURRICULUM VITAE</div>
             <h1 className={styles.title}>JOSHUA MWENDWA</h1>
-            <p className={styles.subtitle}>Full-Stack Developer</p>
+            <p className={styles.subtitle}>Full-Stack Developer &amp; Technical Digital Marketer</p>
             <div className={styles.tags}>
-              {['React.js', 'Next.js', 'TypeScript', 'Node.js', 'Django', 'Laravel/PHP', 'PostgreSQL', 'Daraja API', 'Mini Program Studio'].map(tag => (
+              {['React.js', 'Next.js', 'TypeScript', 'Node.js', 'Django', 'Laravel/PHP', 'PostgreSQL', 'Daraja API', 'Mini Program Studio', 'SEO', 'Media Buying', 'Google Ads', 'Meta Ads', 'Analytics'].map(tag => (
                 <span key={tag} className={styles.tag}>{tag}</span>
               ))}
             </div>
@@ -43,7 +43,8 @@ export default function ResumePage() {
                   development lifecycle. Proficient in React.js, Next.js, TypeScript, Node.js, Django, Laravel/PHP, and PostgreSQL —
                   comfortable across frontend UI, backend APIs, database management, and deployment. Founder of Lumyn
                   Technologies. Moringa School certified. Passionate about clean code, fintech integrations, and building digital products
-                  that create real impact.
+                  that create real impact. Also a Technical Digital Marketer running paid media buys and SEO for Pakakumi and Betkumi,
+                  combining engineering and data to drive acquisition, conversion, and measurable growth.
                 </p>
               </div>
             </AnimatedSection>
@@ -52,6 +53,21 @@ export default function ResumePage() {
               <div className={styles.section}>
                 <h2>WORK EXPERIENCE</h2>
                 <div className={styles.experience}>
+                  <div className={styles.expItem}>
+                    <div className={styles.expHeader}>
+                      <div>
+                        <div className={styles.expTitle}>Technical Digital Marketer</div>
+                        <div className={styles.expCompany}>Pakakumi &amp; Betkumi</div>
+                      </div>
+                    </div>
+                    <ul>
+                      <li>Plan, launch, and optimize paid media campaigns across multiple media buys (search, social, native, and programmatic) for Pakakumi and Betkumi.</li>
+                      <li>Execute end-to-end SEO strategy: technical audits, keyword research, on-page optimization, content optimization, and performance reporting.</li>
+                      <li>Build tracking, attribution, and reporting pipelines (GA4, GTM, conversion events) and analyze campaign data to improve ROAS and organic traffic.</li>
+                      <li>Partner with engineering and product teams to ship high-converting landing pages, implement conversion tracking, and improve site performance.</li>
+                      <li>Manage budgets, bids, audiences, creatives, and experiments; iterate based on data to drive acquisition and retention.</li>
+                    </ul>
+                  </div>
                   <div className={styles.expItem}>
                     <div className={styles.expHeader}>
                       <div>
@@ -194,6 +210,14 @@ export default function ResumePage() {
                   <div className={styles.skillLabel}>Soft Skills</div>
                   <div className={styles.skillItems}>
                     {['Problem Solving', 'Agile Collaboration', 'Code Reviews', 'Documentation', 'Team Collaboration'].map(skill => (
+                      <span key={skill} className={styles.skill}>{skill}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className={styles.skillGroup}>
+                  <div className={styles.skillLabel}>Digital Marketing</div>
+                  <div className={styles.skillItems}>
+                    {['SEO (Technical & On-page)', 'Keyword Research', 'Media Buying', 'Google Ads', 'Meta Ads', 'Native & Programmatic', 'GA4 & GTM', 'Conversion Tracking', 'A/B Testing', 'Campaign Reporting', 'Landing Page CRO'].map(skill => (
                       <span key={skill} className={styles.skill}>{skill}</span>
                     ))}
                   </div>

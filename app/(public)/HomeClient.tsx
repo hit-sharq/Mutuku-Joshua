@@ -172,7 +172,7 @@ export default function HomeClient({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            DIGITAL ARCHITECT & CREATIVE ENGINEER
+            DIGITAL ARCHITECT · CREATIVE ENGINEER · TECHNICAL DIGITAL MARKETER
           </motion.span>
 
           <motion.h1
@@ -182,8 +182,8 @@ export default function HomeClient({
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="sr-only">
-              Mutuku Joshua Mwendwa is a fullstack developer in Nairobi, Kenya, building fast and
-              scalable web applications with React, Next.js, Node.js, Django and Laravel.
+              Mutuku Joshua Mwendwa is a full-stack developer and technical digital marketer in Nairobi, Kenya, building fast and
+              scalable web applications and running paid media and SEO with React, Next.js, Node.js, Django and Laravel.
             </span>
             I build things<br />that <em>work</em><br />and look good.
           </motion.h1>
@@ -194,7 +194,7 @@ export default function HomeClient({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            React · Next.js · Node · Django · Laravel. Nairobi-born, globally deployed. Founder of Lumyn Technologies.
+            React · Next.js · Node · Django · Laravel · SEO · Media Buying. Nairobi-born, globally deployed. Founder of Lumyn Technologies.
           </motion.p>
 
           <motion.div
@@ -326,6 +326,12 @@ export default function HomeClient({
                 title: 'Database Engineering',
                 desc: 'Efficient data architectures designed for reliability, speed, and long-term maintainability.',
                 items: ['Schema design', 'Query optimization', 'Data migration', 'Performance tuning'],
+              },
+              {
+                icon: '↗',
+                title: 'Digital Marketing & Growth',
+                desc: 'Paid media, SEO, and conversion optimization that turn traffic into measurable business growth.',
+                items: ['Media buying', 'Technical SEO', 'Google & Meta Ads', 'GA4 & GTM', 'CRO & A/B testing'],
               },
             ].map((service, i) => (
               <AnimatedSection key={service.title} delay={i * 0.1}>

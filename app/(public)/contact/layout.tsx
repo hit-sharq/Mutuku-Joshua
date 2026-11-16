@@ -5,7 +5,7 @@ import { breadcrumbSchema, contactPageSchema } from "@/lib/schema"
 import { OG_IMAGE, PERSON, SITE_URL } from "@/lib/site-config"
 
 const TITLE = "Contact"
-const DESCRIPTION = `Get in touch with ${PERSON.name}, a fullstack developer in ${PERSON.city}, ${PERSON.country}. Available for freelance, contract and full-time web development work. Email ${PERSON.email} or call ${PERSON.phone}.`
+const DESCRIPTION = `Get in touch with ${PERSON.name}, a full-stack developer and technical digital marketer in ${PERSON.city}, ${PERSON.country}. Available for freelance, contract and full-time web development and digital marketing work. Email ${PERSON.email} or call ${PERSON.phone}.`
 
 export const metadata: Metadata = {
   title: TITLE,

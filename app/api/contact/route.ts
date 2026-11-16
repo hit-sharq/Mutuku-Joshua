@@ -99,7 +99,7 @@ export async function POST(request: NextRequest) {
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; border: 0.5px solid rgba(184, 150, 12, 0.2);">
         <div style="background: #0f0f0f; border-bottom: 0.5px solid rgba(184, 150, 12, 0.2); padding: 2rem; text-align: center;">
           <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 400; color: #c8a820; letter-spacing: 0.1em; margin-bottom: 0.5rem;">MUTUKU JOSHUA MWENDWA</div>
-          <div style="font-size: 0.75rem; color: rgba(240, 232, 212, 0.5); letter-spacing: 0.15em; text-transform: uppercase;">Fullstack Developer</div>
+          <div style="font-size: 0.75rem; color: rgba(240, 232, 212, 0.5); letter-spacing: 0.15em; text-transform: uppercase;">Full-Stack Developer & Technical Digital Marketer</div>
         </div>
 
         <div style="padding: 2rem; background: #0a0a0a;">
@@ -179,7 +179,7 @@ export async function POST(request: NextRequest) {
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; border: 0.5px solid rgba(184, 150, 12, 0.2);">
         <div style="background: #0f0f0f; border-bottom: 0.5px solid rgba(184, 150, 12, 0.2); padding: 2rem; text-align: center;">
           <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 400; color: #c8a820; letter-spacing: 0.1em; margin-bottom: 0.5rem;">MUTUKU JOSHUA MWENDWA</div>
-          <div style="font-size: 0.75rem; color: rgba(240, 232, 212, 0.5); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem;">Fullstack Developer</div>
+          <div style="font-size: 0.75rem; color: rgba(240, 232, 212, 0.5); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem;">Full-Stack Developer & Technical Digital Marketer</div>
           <div style="font-size: 0.875rem; color: #5dcaa5; letter-spacing: 0.05em;">✓ Contact Request Received</div>
         </div>
 
@@ -214,7 +214,7 @@ export async function POST(request: NextRequest) {
             <p style="color: rgba(240, 232, 212, 0.7); font-size: 0.9375rem; line-height: 1.7; margin: 1.5rem 0 0 0;">
               Best regards,<br>
               <strong style="color: #faf7f2;">Mutuku Joshua Mwendwa</strong><br>
-              <span style="color: rgba(240, 232, 212, 0.4); font-size: 0.8125rem;">Fullstack Developer</span>
+              <span style="color: rgba(240, 232, 212, 0.4); font-size: 0.8125rem;">Full-Stack Developer & Technical Digital Marketer</span>
             </p>
           </div>
         </div>
@@ -229,7 +229,7 @@ export async function POST(request: NextRequest) {
     await transporter.sendMail({
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to: email,
-      subject: "Thank you for contacting Mutuku Joshua Mwendwa - Fullstack Developer",
+      subject: "Thank you for contacting Mutuku Joshua Mwendwa - Full-Stack Developer & Technical Digital Marketer",
       html: confirmationHtml,
     })
 

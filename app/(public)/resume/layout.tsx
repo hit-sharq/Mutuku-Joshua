@@ -6,7 +6,7 @@ import { OG_IMAGE, SITE_URL } from "@/lib/site-config"
 
 const TITLE = "Resume"
 const DESCRIPTION =
-  "Professional resume of Mutuku Joshua Mwendwa, fullstack developer in Nairobi, Kenya. Experience, technical skills across React, Next.js, Node.js, Django, Laravel and PostgreSQL, and a record of shipped projects."
+  "Professional resume of Mutuku Joshua Mwendwa, full-stack developer and technical digital marketer in Nairobi, Kenya. Experience across web development and digital marketing, technical skills in React, Next.js, Node.js, Django, Laravel, PostgreSQL, SEO and media buying, and a record of shipped projects."
 
 export const metadata: Metadata = {
   title: TITLE,

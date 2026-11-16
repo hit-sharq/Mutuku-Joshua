@@ -83,7 +83,7 @@ export default function PremiumHero() {
               variants={itemVariants}
               className="inline-block px-5 py-2 mb-6 text-sm font-semibold text-[#6d8196] border border-[rgba(109,129,150,0.3)] rounded-full bg-[rgba(109,129,150,0.08)] backdrop-blur-sm"
             >
-              Fullstack Developer
+              Full-Stack Developer &amp; Technical Digital Marketer
             </motion.span>
 
             <motion.h1
@@ -134,7 +134,7 @@ export default function PremiumHero() {
               >
                 <Image
                   src="/Mutuku.JPG"
-                  alt="Mutuku Joshua Mwendwa - Fullstack Developer"
+                  alt="Mutuku Joshua Mwendwa - Full-Stack Developer & Technical Digital Marketer"
                   fill
                   className="object-cover"
                   priority

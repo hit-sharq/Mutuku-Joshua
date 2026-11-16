@@ -9,9 +9,9 @@ export default function Footer() {
           {/* Brand Section */}
           <div className={styles.footerSection}>
             <h3 className={styles.footerTitle}>Mutuku Joshua Mwendwa</h3>
-            <p className={styles.footerText}>Fullstack Developer</p>
+            <p className={styles.footerText}>Full-Stack Developer &amp; Technical Digital Marketer</p>
             <p className={styles.footerDesc}>
-              Crafting Code That Works. Building scalable web applications and digital solutions with modern technologies.
+              Building scalable web applications and driving growth through paid media and SEO for Pakakumi and Betkumi.
             </p>
             <div className={styles.socialLinks}>
               <a href="mailto:officialjoshua@lumyn.co.ke" target="_blank" rel="noopener noreferrer" className={styles.socialLink} title="Email">
